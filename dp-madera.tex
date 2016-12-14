@@ -1,0 +1,168 @@
+% !TeX spellcheck = cs_CZ
+\documentclass[a4paper,11pt,titlepage,fleqn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[top=3.5cm, bottom=3cm, left=3.5cm, right=2.5cm]{geometry}
+\usepackage[czech]{babel}
+\usepackage[IL2]{fontenc}  
+\usepackage{graphicx}
+\usepackage[nonumberlist,acronym]{glossaries}
+\usepackage{cite}
+\usepackage{fancyhdr}
+\usepackage{afterpage}
+\usepackage[hidelinks,unicode,hyperfootnotes]{hyperref}
+\usepackage{footnote}
+\usepackage{parskip}
+\usepackage{setspace} 
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{dirtree}
+%\usepackage[T1]{fontenc}
+%\usepackage[bottom]{footmisc}
+%\usepackage{fancyvrb}
+
+\lstset{
+language=PHP,
+basicstyle=\ttfamily\small,
+breaklines=true,
+prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+frame=lines,
+showtabs=false,
+showspaces=false,
+showstringspaces=false,
+keywordstyle=\color{red}\bfseries,
+stringstyle=\color{green!50!black},
+commentstyle=\color{gray}\itshape,
+numbers=left,
+captionpos=t,
+escapeinside={\%*}{*}
+}
+
+\renewcommand{\lstlistingname}{Ukázka kódu}
+\renewcommand*{\lstlistlistingname}{Seznam zdrojových kódů}
+
+\makeglossaries
+\renewcommand*{\glsgroupskip}{}
+
+%\fancyhead[RE,RO]{\textsc{\nouppercase{\leftmark}}}
+\rhead{\textsc{\nouppercase{\leftmark}}}
+\lhead{}
+\pagestyle{fancy}
+
+\addto\captionsczech{\def\refname{Použitá literatura}}
+\linespread{1.3}
+\setlength{\headheight}{15pt}
+
+\newglossaryentry{tulg}{
+name={Technická univerzita v~Liberci},
+description={Technická univerzita v~Liberci}
+}
+\newglossaryentry{dp}{
+type=\acronymtype,
+name={DP},
+description={Diplomová práce},
+first={DP}
+}
+
+\begin{document}
+\includepdf[pages={1,2,3}]{dp-titlepage.pdf}
+\includepdf{prohlaseni.pdf}
+\setcounter{page}{3}
+
+\newpage
+\thispagestyle{plain}
+\section*{Abstrakt}
+
+
+\section*{Klíčová slova}
+
+
+\thispagestyle{empty}
+\newpage
+
+\section*{Abstract}
+
+\section*{Keywords}
+
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\listoftables
+\lstlistoflistings
+\newpage
+\printglossary[type=\acronymtype,title=Seznam zkratek]
+%\printglossary[style=altlist,title=Slovník]
+\cleardoublepage
+
+
+\section{Úvod}
+
+
+\newpage
+\section{Kapitola 1}
+
+\newpage
+\.3 dp\_madera.tex.section{Kapitola 2}
+\label{kapitola}
+
+\subsection{Podkapitola 2.1} 
+\label{kapitola21}
+
+% \subsubsection{}
+% \begin{figure}[ht!]
+% 	\centering
+% 	\includegraphics[scale=0.65]{file.pdf}
+% 	\caption{}
+% 	\label{fig:name}
+% \end{figure}
+
+\newpage
+\section{Závěr}
+
+\newpage
+\begin{thebibliography}{99}
+\addcontentsline{toc}{section}{\refname}
+
+% \bibitem{5EKmCBUoyUxNVwii}
+% CAKE DEVELOPMENT CORPORATION. \textit{CakePHP: The rapid application development framework for PHP} [online]. [cit. 2014-04-05]. Dostupné z: \url{http://cakephp.org/}
+
+% \bibitem{Gilmore2007}
+% GILMORE, Jason W. \textit{Velká kniha PHP a~MySQL 5: kompendium znalostí pro začátečníky i~profesionály}. Vyd.~1. [i.e. 2.~vyd.]. Brno: Zoner Press, 2007, 864~s. ISBN 80-868-1553-6. 
+
+\end{thebibliography}
+
+\newpage
+\section*{Obsah přiloženého DVD}
+\addcontentsline{toc}{section}{Obsah přiloženého DVD}
+
+\begin{figure}[ht!] \dirtree{
+.1 doc.
+.2 pdf.
+.3 dp\_sss.pdf.
+.3 zadani\_madera.pdf.
+.2 src.
+.3 dp\_madera.tex.
+.3 dp\_titlepage.pdf.
+.3 \dots.
+.1 src.
+.2 app.
+.3 html.
+.4 index.php.
+.3 login.
+.4 app.
+.4 \dots.
+.3 README
+}
+\end{figure}
+
+\begin{itemize}
+    \item {\texttt{doc} -- podadresář \texttt{pdf} obsahuje zadání a kompletní text DP ve formátu PDF,
+    podadresář \verb|src| pak {\LaTeX}ové \uv{zdrojové kódy} a~obrázky použité
+    v~textu DP.}
+    \item {\texttt{src} -- podadresář \texttt{app} obsahuje zdrojové kódy webové aplikce}
+\end{itemize}
+
+\end{document}
