@@ -2,7 +2,7 @@
 \documentclass[a4paper,11pt,titlepage,fleqn]{article}
 
 \usepackage[utf8]{inputenc}
-\usepackage[top=3.5cm, bottom=3cm, left=3.5cm, right=2.5cm]{geometry}
+\usepackage[top=3cm, bottom=2.5cm, left=3.5cm, right=2.5cm]{geometry}
 \usepackage[czech]{babel}
 \usepackage[IL2]{fontenc}  
 \usepackage{graphicx}
@@ -72,23 +72,25 @@
 \newpage
 \thispagestyle{plain}
 \section*{Abstrakt}
-
+% 250 až 500 slov
 
 \section*{Klíčová slova}
-
+% 5 klíčových slov
 
 \thispagestyle{empty}
 \newpage
 
 \section*{Abstract}
+% 250 až 500 slov
 
 \section*{Keywords}
-
+% 5 klíčových slov
 
 \thispagestyle{empty}
 
 \newpage
 \tableofcontents
+
 \newpage
 \listoffigures
 \listoftables
@@ -100,25 +102,151 @@
 
 
 \section{Úvod}
+    % proč se zaobývat tímto tématem
+    % neopakovat abstrakt, lehce nastínit zadání, jaká je motivace
+    % popsat, jak je práce strukturovaná - rozcestník
 
 
 \newpage
-\section{Kapitola 1}
+\section{Analýza}
+    % problematika malých dětí a učení slov
+
+    \subsection{Hlavní cíle}
+        % jak si aplikaci představuji
+        % motivace dětí k učení slov (vrámci třídy)
+        % zlepšení přípravy na hodiny cizího jazyka
+        % shrnout v pár odstavcích požadavky na aplikaci
+
+
+    \subsection{Existující řešení}
+        % Langsoft Teacher langsoft.cz
+        % Duolingo
+        % Languagecourse.net - Vocabulary Trainer
+        % AnkiDroid (usermanual)
+        % Supermemo aplikace
+
+        % žádná z aplikací neumožňuje personalizované učení 
+        % ve škole (z učebnice) se učí jiná slovíčka než v aplikacích
+        % po otestování slova nedochází k jeho znovu připomenutí
+
+    \subsection{Učení slovíček}
+        % Biemiller and Boote (2006)
+        % ročně se dá zvládnout maximálně 400 slov u studentů 2 - 5 třídy
+        % docházelo k zvýšení učenlivosti, když studenti si mohli zapsat 
+        % slovo vlastní definicí
+
+        \subsubsection{Učení slov v kontextu}
+        % jak je důlžité se slova učit v kontextu
+        % drive/vocab-techniques.pdf
+    
+    \subsection{Testování slovíček}
+        % drive/accesing-vocabulary-in-the-language-classroom.pdf
+        % pasivní vs aktivní
+        % aktivní - vzpomenutí, rozpoznání
+        % důležitost aktivní slovní zásoby pro výuku cizího jazyka
+
+        % multiplechoice, matching, completion, translation
+    
 
 \newpage
-\section{Kapitola 2}
-    \label{kapitola}
+\section{Návrh aplikace}
+    
+    \subsection{Učebnice}
+    % sdílení učebnic (otevřený systém)
+    % přijít do aplikace a jen tak si protestovat slova z učebnice
+    % nemusí být člověk součástí žádné skupiny
 
-    \subsection{Podkapitola 2.1} 
-        \label{kapitola21}
+    \subsection{Uživatelské role a skupiny}
+    % možná use-case diagram
 
-        % \subsubsection{}
-        % \begin{figure}[ht!]
-        %   \centering
-        %   \includegraphics[scale=0.65]{file.pdf}
-        %   \caption{}
-        %   \label{fig:name}
-        % \end{figure}
+    \subsection{Testování slov}
+
+        \subsubsection{Nápovědy}
+            % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
+            % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
+
+        \subsubsection{Kontrola podvádění}
+            % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
+            % slova ve slovnících a potom nedoplňují do aplikace
+            % měření času odpovědi - v závisloti na délce odpovědi
+
+    \subsection{Interpretace slovíček}
+        % výhody více forem - lepší zapamatovatelnost
+        % vytvoření hlubších asociací
+
+        \subsubsection{Textová forma}
+            % importováním sady slov (bez automatizace překladů)
+
+        \subsubsection{Zvuková forma}
+            % z Google API importovat zvukové nahrávky
+            % shrnout omezení, problematiku
+
+        \subsubsection{Obrazová forma}
+            % vyhledání z Google Images API na základě cizojazyčného slova
+            % autor učebnice vybírá dané slovo z importovaných
+            % omezení dotazů - neprovádí se plně automatiky
+
+    \subsection{Generování slov}
+        % shrnout leitnerův algoritmus
+
+        \subsubsection{Obtížnost}
+        \subsubsection{Adaptivní obtížnost}
+        
+
+    \subsection{Vyhodnocování odpovědí}
+        % určení vzdálenosti slov - více úrovní odpovědí
+        % shrnout levenstein algoritmus
+
+    \subsection{Připomínání slov}
+        % shrnout supermemo aplogritmus
+
+
+\newpage
+\section{Klientská aplikace}
+
+    \subsection{Design}
+
+    \subsection{Vývojové prostředí}
+        \subsubsection{Webpack}
+            % css injections, production vlastní css soubor
+            % - rychlejší načítání (solo js solo css)
+
+        \subsubsection{Babel}
+        \subsubsection{JSX}
+
+
+    \subsection{React}
+        
+        \subsubsection{Abstraktní DOM}
+        \subsubsection{Mobx}
+        \subsubsection{Imutabilita}
+
+    \subsection{Testování}
+
+
+\newpage
+\section{Serverová aplikace}
+    
+    \subsection{Technologie}
+        \subsubsection{Webová aplikace}
+            % výhody webových aplikací
+
+        \subsubsection{Architektura}
+            % architektura klient + server
+            % možnost více klientů (mobilní aplikace apod.)
+
+    \subsection{Django}
+        \subsubsection{Django REST Framework}
+        \subsubsection{Optimalizace API}
+
+    \subsection{Zabezpečení}
+        \subsubsection{HTTP/2}
+        \subsubsection{OAuth2}
+        \subsubsection{JWT}
+
+    \subsection{Testování}
+
+    \subsection{PostgreSQL}
 
 \newpage
 \section{Závěr}
@@ -126,43 +254,5 @@
 \newpage
 \begin{thebibliography}{99}
 \addcontentsline{toc}{section}{\refname}
-
-% \bibitem{5EKmCBUoyUxNVwii}
-% CAKE DEVELOPMENT CORPORATION. \textit{CakePHP: The rapid application development framework for PHP} [online]. [cit. 2014-04-05]. Dostupné z: \url{http://cakephp.org/}
-
-% \bibitem{Gilmore2007}
-% GILMORE, Jason W. \textit{Velká kniha PHP a~MySQL 5: kompendium znalostí pro začátečníky i~profesionály}. Vyd.~1. [i.e. 2.~vyd.]. Brno: Zoner Press, 2007, 864~s. ISBN 80-868-1553-6. 
-
 \end{thebibliography}
-
-% \newpage
-% \section*{Obsah přiloženého DVD}
-% \addcontentsline{toc}{section}{Obsah přiloženého DVD}
-
-% \begin{figure}[ht!]
-%     \dirtree{
-%         .1 doc.
-%         .2 pdf.
-%         .3 dp\_sss.pdf.
-%         .3 zadani\_madera.pdf.
-%         .2 src.
-%         .3 dp\_madera.tex.
-%         .3 dp\_titlepage.pdf.
-%         .3 \dots.
-%         .1 src.
-%         .2 app.
-%         .3 html.
-%         .4 index.php.
-%         .3 login.
-%         .4 app.
-%         .4 \dots.
-%         .3 README.
-%     }
-% \end{figure}
-
-% \begin{itemize}
-%     \item {\texttt{doc} -- podadresář \texttt{pdf} obsahuje zadání a kompletní text DP ve formátu PDF, podadresář \verb|src| pak {\LaTeX}ové \uv{zdrojové kódy} a~obrázky použité v~textu DP.}
-%     \item {\texttt{src} -- podadresář \texttt{app} obsahuje zdrojové kódy webové aplikce}
-% \end{itemize}
-
 \end{document}
