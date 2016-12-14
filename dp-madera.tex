@@ -1,5 +1,6 @@
 % !TeX spellcheck = cs_CZ
 \documentclass[a4paper,11pt,titlepage,fleqn]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage[top=3.5cm, bottom=3cm, left=3.5cm, right=2.5cm]{geometry}
 \usepackage[czech]{babel}
@@ -21,20 +22,20 @@
 %\usepackage{fancyvrb}
 
 \lstset{
-language=PHP,
-basicstyle=\ttfamily\small,
-breaklines=true,
-prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-frame=lines,
-showtabs=false,
-showspaces=false,
-showstringspaces=false,
-keywordstyle=\color{red}\bfseries,
-stringstyle=\color{green!50!black},
-commentstyle=\color{gray}\itshape,
-numbers=left,
-captionpos=t,
-escapeinside={\%*}{*}
+    language=PHP,
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color{red}\bfseries,
+    stringstyle=\color{green!50!black},
+    commentstyle=\color{gray}\itshape,
+    numbers=left,
+    captionpos=t,
+    escapeinside={\%*}{*)}
 }
 
 \renewcommand{\lstlistingname}{Ukázka kódu}
@@ -53,14 +54,14 @@ escapeinside={\%*}{*}
 \setlength{\headheight}{15pt}
 
 \newglossaryentry{tulg}{
-name={Technická univerzita v~Liberci},
-description={Technická univerzita v~Liberci}
+    name={Technická univerzita v~Liberci},
+    description={Technická univerzita v~Liberci}
 }
 \newglossaryentry{dp}{
-type=\acronymtype,
-name={DP},
-description={Diplomová práce},
-first={DP}
+    type=\acronymtype,
+    name={DP},
+    description={Diplomová práce},
+    first={DP}
 }
 
 \begin{document}
@@ -105,19 +106,19 @@ first={DP}
 \section{Kapitola 1}
 
 \newpage
-\.3 dp\_madera.tex.section{Kapitola 2}
-\label{kapitola}
+\section{Kapitola 2}
+    \label{kapitola}
 
-\subsection{Podkapitola 2.1} 
-\label{kapitola21}
+    \subsection{Podkapitola 2.1} 
+        \label{kapitola21}
 
-% \subsubsection{}
-% \begin{figure}[ht!]
-% 	\centering
-% 	\includegraphics[scale=0.65]{file.pdf}
-% 	\caption{}
-% 	\label{fig:name}
-% \end{figure}
+        % \subsubsection{}
+        % \begin{figure}[ht!]
+        %   \centering
+        %   \includegraphics[scale=0.65]{file.pdf}
+        %   \caption{}
+        %   \label{fig:name}
+        % \end{figure}
 
 \newpage
 \section{Závěr}
@@ -134,35 +135,34 @@ first={DP}
 
 \end{thebibliography}
 
-\newpage
-\section*{Obsah přiloženého DVD}
-\addcontentsline{toc}{section}{Obsah přiloženého DVD}
+% \newpage
+% \section*{Obsah přiloženého DVD}
+% \addcontentsline{toc}{section}{Obsah přiloženého DVD}
 
-\begin{figure}[ht!] \dirtree{
-.1 doc.
-.2 pdf.
-.3 dp\_sss.pdf.
-.3 zadani\_madera.pdf.
-.2 src.
-.3 dp\_madera.tex.
-.3 dp\_titlepage.pdf.
-.3 \dots.
-.1 src.
-.2 app.
-.3 html.
-.4 index.php.
-.3 login.
-.4 app.
-.4 \dots.
-.3 README
-}
-\end{figure}
+% \begin{figure}[ht!]
+%     \dirtree{
+%         .1 doc.
+%         .2 pdf.
+%         .3 dp\_sss.pdf.
+%         .3 zadani\_madera.pdf.
+%         .2 src.
+%         .3 dp\_madera.tex.
+%         .3 dp\_titlepage.pdf.
+%         .3 \dots.
+%         .1 src.
+%         .2 app.
+%         .3 html.
+%         .4 index.php.
+%         .3 login.
+%         .4 app.
+%         .4 \dots.
+%         .3 README.
+%     }
+% \end{figure}
 
-\begin{itemize}
-    \item {\texttt{doc} -- podadresář \texttt{pdf} obsahuje zadání a kompletní text DP ve formátu PDF,
-    podadresář \verb|src| pak {\LaTeX}ové \uv{zdrojové kódy} a~obrázky použité
-    v~textu DP.}
-    \item {\texttt{src} -- podadresář \texttt{app} obsahuje zdrojové kódy webové aplikce}
-\end{itemize}
+% \begin{itemize}
+%     \item {\texttt{doc} -- podadresář \texttt{pdf} obsahuje zadání a kompletní text DP ve formátu PDF, podadresář \verb|src| pak {\LaTeX}ové \uv{zdrojové kódy} a~obrázky použité v~textu DP.}
+%     \item {\texttt{src} -- podadresář \texttt{app} obsahuje zdrojové kódy webové aplikce}
+% \end{itemize}
 
 \end{document}
