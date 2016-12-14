@@ -18,3 +18,22 @@ Tex compilation requires TUL package available from [NTI TUL site](http://www.nt
 cd output/
 pdflatex ../dp-titlepage.tex
 pdflatex ../dp-madera.tex
+
+
+## Custom
+
+### Vlna
+
+Add fixed spaces to tex document - available from [petr.olsak.net](http://petr.olsak.net/ftp/olsak/vlna/).
+
+#### Instalation
+
+tar zxfv vlna.tar.gz
+cd vlna/
+./configure
+make
+sudo make install
+
+#### Usage
+
+vlna -l -m -n dp-madera.tex 
