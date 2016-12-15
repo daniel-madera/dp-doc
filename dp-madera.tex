@@ -109,14 +109,12 @@
 
 \newpage
 \section{Analýza}
-    % problematika malých dětí a učení slov
 
     \subsection{Hlavní cíle}
         % jak si aplikaci představuji
         % motivace dětí k učení slov (vrámci třídy)
         % zlepšení přípravy na hodiny cizího jazyka
         % shrnout v pár odstavcích požadavky na aplikaci
-
 
     \subsection{Existující řešení}
         % Langsoft Teacher langsoft.cz
@@ -130,13 +128,18 @@
         % po otestování slova nedochází k jeho znovu připomenutí
 
     \subsection{Učení slovíček}
+        % problematika malých dětí a učení slov
         % Biemiller and Boote (2006)
         % ročně se dá zvládnout maximálně 400 slov u studentů 2 - 5 třídy
         % docházelo k zvýšení učenlivosti, když studenti si mohli zapsat 
         % slovo vlastní definicí
 
+        \subsubsection{Problematika obtížnosti}
+        % každý z žáků má indiviální úroveň znalostí cizího jazyka
+        % a každý z žádů se jiným tempem učí cizojazyčná slovíčka
+
         \subsubsection{Učení slov v kontextu}
-        % jak je důlžité se slova učit v kontextu
+        % jak je důlžité se slova učit v kontextu - použití ve větě z učebnice
         % drive/vocab-techniques.pdf
     
     \subsection{Testování slovíček}
@@ -156,19 +159,10 @@
     % přijít do aplikace a jen tak si protestovat slova z učebnice
     % nemusí být člověk součástí žádné skupiny
 
+        \subsection{Hromadný import slovíček}
+
     \subsection{Uživatelské role a skupiny}
     % možná use-case diagram
-
-    \subsection{Testování slov}
-
-        \subsubsection{Nápovědy}
-            % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
-            % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
-
-        \subsubsection{Kontrola podvádění}
-            % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
-            % slova ve slovnících a potom nedoplňují do aplikace
-            % měření času odpovědi - v závisloti na délce odpovědi
 
     \subsection{Interpretace slovíček}
         % výhody více forem - lepší zapamatovatelnost
@@ -186,11 +180,30 @@
             % autor učebnice vybírá dané slovo z importovaných
             % omezení dotazů - neprovádí se plně automatiky
 
+    \subsection{Testování}
+
+        \subsubsection{Nápovědy}
+            % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
+            % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
+
+        \subsubsection{Kontrola podvádění}
+            % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
+            % slova ve slovnících a potom nedoplňují do aplikace
+            % měření času odpovědi - v závisloti na délce odpovědi
+
+
     \subsection{Generování slov}
         % shrnout leitnerův algoritmus
 
-        \subsubsection{Obtížnost}
-        \subsubsection{Adaptivní obtížnost}
+        \subsubsection{Rozložené opakování} % Spaced repetition
+            % obecně o metodě 
+
+        \subsubsection{Leitnerův algoritmus}
+
+        \subsubsection{Adaptivní a globální obtížnost}
+
+        \subsubsection{Způsob dotazování}
+            % aktivní rozpoznání a aktivní vzpomenutí
         
 
     \subsection{Vyhodnocování odpovědí}
@@ -200,11 +213,33 @@
     \subsection{Připomínání slov}
         % shrnout supermemo aplogritmus
 
+    \subsection{Motivace}
+        % počty zvládnutých slov studenta
+        % třídních zvládnutých slov
+
 
 \newpage
 \section{Klientská aplikace}
 
-    \subsection{Design}
+    \subsection{Návrh aplikace}
+
+        \subsubsection{SPA}
+            % definice
+            % výhody
+
+        \subsubsection{Model aplikace}
+            % url diagram
+            % mock api
+
+        \subsubsection{Editovatelné seznamy}
+            % editace dat v podobě autosave editovatelných seznamů
+
+        \subsubsection{Design}
+            % wireframes
+            % responzivnost      
+
+        \subsubsection{Implementace algoritmů}
+            % Levenstein a Leitner jsou implementovány na klientské straně
 
     \subsection{Vývojové prostředí}
         \subsubsection{Webpack}
@@ -220,8 +255,20 @@
         \subsubsection{Abstraktní DOM}
         \subsubsection{Mobx}
         \subsubsection{Imutabilita}
+        \subsubsection{Směrování}
+        \subsubsection{Komponenty}
+
+
+    \subsection{Implementace technologií}
+        % layout komponenta
+        % využití Mobx - MVC (stores, components)
+
+        \subsubsection{Adresářová struktura}
+        
 
     \subsection{Testování}
+        % Karma, NPM spouštění
+        % využití MOBX data injections v daném stavu aplikace
 
 
 \newpage
@@ -235,18 +282,39 @@
             % architektura klient + server
             % možnost více klientů (mobilní aplikace apod.)
 
-    \subsection{Django}
-        \subsubsection{Django REST Framework}
+        \subsubsection{HTTP a REST API}
+
+        \subsubsection{WSGI}
+
+        \subsubsection{Implementace algoritmů}
+            % Supermemo implementace na serveru
+            % CRON připomínací emaily pouze v případě, že stihneš dodělat do APP
+
+    \subsection{Django a REST framework}
+        
+        \subsubsection{Autorizace}
+
+        \subsubsection{Autentizace}
+
         \subsubsection{Optimalizace API}
 
     \subsection{Zabezpečení}
+
         \subsubsection{HTTP/2}
+
         \subsubsection{OAuth2}
+
         \subsubsection{JWT}
 
-    \subsection{Testování}
+        \subsubsection{CORS}
 
     \subsection{PostgreSQL}
+
+        \subsubsection{DB model}
+
+    \subsection{Testování}
+        % APITestCase Django REST
+
 
 \newpage
 \section{Závěr}
