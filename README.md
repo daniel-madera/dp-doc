@@ -1,6 +1,6 @@
 ## dp-doc
 
-Documentation to master thesis.
+LaTeX document - master thesis
 
 ## Instalation
 
