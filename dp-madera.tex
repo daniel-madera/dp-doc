@@ -89,12 +89,14 @@
 \thispagestyle{empty}
 
 \newpage
+\setcounter{tocdepth}{2}
 \tableofcontents
 
 \newpage
 \listoffigures
 \listoftables
 \lstlistoflistings
+
 \newpage
 \printglossary[type=\acronymtype,title=Seznam zkratek]
 %\printglossary[style=altlist,title=Slovník]
@@ -116,16 +118,36 @@
         % zlepšení přípravy na hodiny cizího jazyka
         % shrnout v pár odstavcích požadavky na aplikaci
 
+        % vysoká motivace dětí pracovat s PC
+        % personalizace podle potřeby konkrétní třídy - konrétní učebnice
+        % personalizace podle potřeby jednotlivých žáků - generování na základě předcházejících výsledků
+        % motivace - přispění k úspěchu třídy
+        % motivace - vlastní úspěchy
+
     \subsection{Existující řešení}
-        % Langsoft Teacher langsoft.cz
-        % Duolingo
-        % Languagecourse.net - Vocabulary Trainer
-        % AnkiDroid (usermanual)
-        % Supermemo aplikace
+        Na trhu aplikací lze nalézt nepřeberné množství aplikací pro výuku cizích jazyků. Řada z nich jsou komplexní aplikace, které provází studenta od základních frází a slovíček až po gramatické standardy cizího jazyka. Analýza existujících řešení byla zaměřena na aplikace, které se zabývají především testováním slovíček a frází.
+
+        Do analýzy existujících řešení byly zahrnuty dvě webové, jedna desktopová i dvě mobilní aplikace. 
+
+        \subsubsection{TS Angličtina}
+            Z analyzovaných řešení byla desktopová aplikace TS Angličtina od firmy Terasoft ta nejlépe funkčně propracovaná. Tato firma se zabývám širokou škálou výukových nástrojů se zaměření pro základní školy. V případě cizích jazyků se zaměřují na výuku anglického a německého jazyka. Hlavní předností aplikace je podpora nejvíce používaných učebnic cizího jazyka. Aplikace umožňuje testování různými způsoby - psaný překlad slova, porozumění mluvenému slovu, vybírání správných významů nebo doplňování vynechaných slov \cite{bib:terasoft}. Bohužel firma Terasoft neposkytuje DEMO nebo TRIAL verzi aplikace, která by umožňovala hlubší analýzu.
+
+        \subsubsection{Langsoft Teacher}
+            Dalším analyzovaným řešením byla aplikace Langsoft Teacher, která je dostupná v podání desktopové aplikace, ale také i mobilní aplikace pro platformy iOS a Android. Aplikace je velmi komplexní, obsahuje různé moduly pro testování například v obrazové formě například pro předškolní děti. Zajímaví vlastnost tetování, kterou aplikace disponuje je pamatování problematických slov a nabízení těchto slov častěji než těch bezproblémových. Dále program umožňuje automaticky rozšiřovat slovní zásobu, kterou pro testování využívá \cite{bib:langsoft}.
+
+        \subsubsection{Duolingo}
+
+
+        \subsubsection{Vocabulary Trainer}
+            % Languagecourse.net - Vocabulary Trainer
+
+        Z výše uvedených aplikací žádná neumožňuje personalizovaný výběr učiva. Tedy nelze vložit vlastní slovíčko nebo si určit sadu slov pro testování. Proto jsou tyto aplikace především cílené pro uživatele, kteří vnímají výuku jazyka jako samostatné vzdělávání sami sebe. Pro studenty, kteří absolvují lekce z cizího jazyka ve škole je tento typ vzdělávání nevyhovující, jelikož se musí učit dvě nezávislé skupiny slovíček. Sice dochází k rozvinutí slovní zásoby studenta i do jiných okruhů než je jeho učebnice, ale málokterý student má ještě energii, časovou dotaci a vlastní iniciativu na to, aby se připravoval na školní test ze slovíček a ještě rozvíjel samostatně svoji cizojazyčnou slovní zásobu.
 
         % žádná z aplikací neumožňuje personalizované učení 
         % ve škole (z učebnice) se učí jiná slovíčka než v aplikacích
         % po otestování slova nedochází k jeho znovu připomenutí
+
+        % Supermemo aplikace
 
     \subsection{Učení slovíček}
         % problematika malých dětí a učení slov
@@ -144,25 +166,33 @@
     
     \subsection{Testování slovíček}
         % drive/accesing-vocabulary-in-the-language-classroom.pdf
-        % pasivní vs aktivní
-        % aktivní - vzpomenutí, rozpoznání
         % důležitost aktivní slovní zásoby pro výuku cizího jazyka
 
+        \subsubsection{Metody testování}
+        % pasivní vs aktivní
+        % aktivní - vzpomenutí, rozpoznání
+
+        \subsection{Typy testů}
         % multiplechoice, matching, completion, translation
     
 
+    \subsection{Specifikace požadavků}
+        % číselný seznam toho, co má aplikace dělat
+
 \newpage
 \section{Návrh aplikace}
-    
-    \subsection{Učebnice}
-    % sdílení učebnic (otevřený systém)
-    % přijít do aplikace a jen tak si protestovat slova z učebnice
-    % nemusí být člověk součástí žádné skupiny
-
-        \subsection{Hromadný import slovíček}
 
     \subsection{Uživatelské role a skupiny}
-    % možná use-case diagram
+        % usecase diagram
+        % jednotlivé use-case by měly být názvy jednotlivých podkapitol v návrhu aplikace
+        % rozvést rozdíl mezi žákem a učitelem - rovnocenné partnerství, každý může být učitel a student
+    
+    \subsection{Učebnice}
+        % sdílení učebnic (otevřený systém)
+        % přijít do aplikace a jen tak si protestovat slova z učebnice
+        % nemusí být člověk součástí žádné skupiny
+
+        \subsection{Hromadný import slovíček}
 
     \subsection{Interpretace slovíček}
         % výhody více forem - lepší zapamatovatelnost
@@ -170,6 +200,7 @@
 
         \subsubsection{Textová forma}
             % importováním sady slov (bez automatizace překladů)
+            % editace definic a použití ve větách
 
         \subsubsection{Zvuková forma}
             % z Google API importovat zvukové nahrávky
@@ -179,18 +210,6 @@
             % vyhledání z Google Images API na základě cizojazyčného slova
             % autor učebnice vybírá dané slovo z importovaných
             % omezení dotazů - neprovádí se plně automatiky
-
-    \subsection{Testování}
-
-        \subsubsection{Nápovědy}
-            % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
-            % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
-
-        \subsubsection{Kontrola podvádění}
-            % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
-            % slova ve slovnících a potom nedoplňují do aplikace
-            % měření času odpovědi - v závisloti na délce odpovědi
-
 
     \subsection{Generování slov}
         % shrnout leitnerův algoritmus
@@ -202,9 +221,24 @@
 
         \subsubsection{Adaptivní a globální obtížnost}
 
-        \subsubsection{Způsob dotazování}
+    \subsection{Testování}
+
+        \subsubsection{Metody testování}
             % aktivní rozpoznání a aktivní vzpomenutí
-        
+            % algoritmus na záměnu vzpomenutí a rozpoznání (možná obrázek)
+    
+        \subsubsection{Nápovědy}
+            % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
+            % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
+
+        \subsubsection{Kontrola podvádění}
+            % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
+            % slova ve slovnících a potom nedoplňují do aplikace
+            % měření času odpovědi - v závisloti na délce odpovědi
+
+            % učitel nevidí statistiky dětí, pouze celé třídy
+            % aplikace nemá sloužit na zkoušení dětí učitelem
+            % testing to learn, not testing to assess        
 
     \subsection{Vyhodnocování odpovědí}
         % určení vzdálenosti slov - více úrovní odpovědí
@@ -216,6 +250,11 @@
     \subsection{Motivace}
         % počty zvládnutých slov studenta
         % třídních zvládnutých slov
+        % cinknutí při zvládnutém slově
+
+    \subsection{Architektura aplikace}
+        % architektura celé aplikace
+        % 2 části, ve skratce popsat, která je za co zodpovědná
 
 
 \newpage
@@ -223,7 +262,7 @@
 
     \subsection{Návrh aplikace}
 
-        \subsubsection{SPA}
+        \subsubsection{Single-page}
             % definice
             % výhody
 
@@ -250,10 +289,11 @@
         \subsubsection{JSX}
 
 
-    \subsection{React}
+    \subsection{Knihovna React}
         
         \subsubsection{Abstraktní DOM}
         \subsubsection{Mobx}
+            % knihovna React se stává frameworkem
         \subsubsection{Imutabilita}
         \subsubsection{Směrování}
         \subsubsection{Komponenty}
@@ -321,6 +361,15 @@
 
 \newpage
 \begin{thebibliography}{99}
-\addcontentsline{toc}{section}{\refname}
+    
+    \addcontentsline{toc}{section}{\refname}
+
+    \bibitem{bib:terasoft}
+        Terasoft, a.s. \textit{Terasoft - Výukové programy} [online] 2002-10-07. [cit. 2016-12-15]. Dostupné z: \url{http://www.terasoft.cz/czpages/cd_aj15.htm}
+    
+    \bibitem{bib:langsoft}
+        LangSoft s.r.o. \textit{Language Teacher} [online]. [cit. 2016-12-07]. Dostupné z: \url{http://www.langsoft.cz/teacher.htm}
+
+
 \end{thebibliography}
 \end{document}
