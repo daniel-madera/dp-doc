@@ -17,6 +17,7 @@
 \usepackage{listings}
 \usepackage{pdfpages}
 \usepackage{dirtree}
+\usepackage{booktabs}
 %\usepackage[T1]{fontenc}
 %\usepackage[bottom]{footmisc}
 %\usepackage{fancyvrb}
@@ -111,6 +112,7 @@
 
 \newpage
 \section{Analýza}
+    Výuka cizích jazyků je pro aktuální společnost jedna z nejzásadnějších otázek, ať se jedná o pracovní příležitosti v zahraničí, tak sociální problematika světa. Žáci a studenti se často účastní různých kroužků nebo později studenti využívají Erasmus programů, kde vyhledávají právě zlepšení komunikace v cizím jazyce. 
 
     \subsection{Hlavní cíle}
         % jak si aplikaci představuji
@@ -120,12 +122,12 @@
         Hlavním cílem aplikace je připravit žáky na hodinu cizího jazyka a zároveň přirozeně rozvíjet slovní zásobu, tak aby studenti neztratili motivaci a chuť k poznávání nových výrazů. Dále také umožnit žákům se protestovat a ověřit, zda naučenou sadu slov ovládají. Aplikace by se měla adaptovat na zdatnost a úroveň každého ze žáků. Vyučujícím by aplikace měla usnadnit správu a import slovíček, které třída má umět v rámci dané učebnice a následně předkládat žákům vhodnou slovní zásobu například pro následující lekci.
 
         \subsubsection{Personalizace}
-
             % personalizace podle potřeby konkrétní třídy - konrétní učebnice
             % personalizace podle potřeby jednotlivých žáků - generování na základě předcházejících výsledků
+            Důležitým cílem aplikace by měla být personalizace podle potřeby jednotlivých žáků a celých tříd. Personalizace na úrovni žáka znamená přistupovat individuálně na základě jeho úrovně znalostí a dovedností. V případě konkrétní třídy jde o individuální přístup a to zejména v sadě slov, které je třeba v přípravě procvičovat. 
 
         \subsubsection{Motivace}
-            Důležitou součástí vzdělávání obecně je motivace. Tedy přimět žáky, aby z vlastní iniciativy chtěli rozvíjet své vědomosti. Problém ale je, že se děti přirozeně neučí z vlastní iniciativy, ale aby uspokojili okolí. Motivace se rozdělují do skupin - vnitřní a vnější nebo pozitivní a negativní \cite{bib:motivace}. V analýze bude zaměřeno pouze na motivační prostředky, které lze zařadit do aplikace pro procvičování slovíček. 
+            Důležitou součástí vzdělávání obecně je motivace. Tedy přimět žáky, aby z vlastní iniciativy chtěli rozvíjet své vědomosti. Problém ale je, že se děti přirozeně neučí z vlastní iniciativy, ale aby uspokojili okolí. Motivace se rozdělují do skupin - vnitřní a vnější nebo pozitivní a negativní \cite{bib:motivace}. V analýze bude zaměřeno pouze na motivační prostředky, které lze zařadit do aplikace pro procvičování slovíček.
 
             Motivace založená na základě vlastních úspěchů je důležitá pro utvrzení sebevědomí žáků. Ocenění v případě zvládnutí sady slov nebo gramatického bloku lze v případě aplikace implementovat například hláškami s projevem pochvaly nebo jiným upozorněním na dosažený výsledek. Zajímavým prvkem v aplikaci by mohlo být i herní prostředí. Žáci si rádi hrají a již J. A. Komenský poukázal na důležitost her ve vzdělávacím procesu.
 
@@ -138,7 +140,6 @@
         \subsubsection{Využití IT pro výuku}
             Posledních několik let se společnost ubírá trendem informačních technologií. Každý ze žáků má už od útlého věku přístup k počítači nebo k chytrému telefonu. Orientace a schopnost tyto zařízení používat není pro ně žádný problém. Přirozeně se tedy tyto zařízení postupně stávají součástí každodenní přípravy žáka na následující školní den. V některých případech tyto zařízení plně nahrazují klasické učebnice a jsou přímo začleněny do výuky. Použití informačních technologií má za následek i zlepšení motivace při výuce. Obecně je známo, že žáci raději studují slovíčka interaktivní formou hádanek, křížovek nebo her, než nekonečných seznamů slov.
 
-            Výuka cizích jazyků je pro aktuální společnost jedna z nejzásadnějších otázek, ať se jedná o pracovní příležitosti v zahraničí, tak sociální problematika světa. Žáci a studenti se často účastní různých kroužků nebo později studenti využívají Erasmus programů, kde vyhledávají právě zlepšení komunikace v cizím jazyce. 
             Důležitost cizích jazyků se projevuje na míře používání například chytrých tabulí nebo tabletů při výuce. Tyto zařízení umožňují interaktivní výuku, kde lze využít nejen textových, ale také obrázkových a zvukových prostředků pro lepší zasazení nově nabytých vědomostí do kontextu. 
 
             % výuka cizích jazyků - smartboards            
@@ -178,29 +179,114 @@
         % ročně se dá zvládnout maximálně 400 slov u studentů 2 - 5 třídy
         % docházelo k zvýšení učenlivosti, když studenti si mohli zapsat 
         % slovo vlastní definicí
+        Standardní učení slovní zásoby cizího jazyka je založeno na častém opakování slov. Dle výzkumu Biemillera a Boote se lze ročně zvládnout až 400 slov u studentů 3.—6. tříd \cite{bib:beimiller}. Což v případě cizího jazyka poměrně velké číslo, ale problém je, do jaké míry je slovo správně ukotveno v dlouhodobé paměti. Porovnání, kolik je potřeba slov pro ovládnutí anglického jazyka, usnadní následující tabulka \ref{tab:english-vocab-usage}, která zahrnuje procentuální využití nejvíce používaných slov v každém z odvětví \cite{bib:learning-vocab}. 
+
+        \begin{table}[ht!]
+            \centering
+            \begin{tabular}{|l|c|c|c|}
+            \hline
+            & \multicolumn{1}{l|}{Konverzace} & \multicolumn{1}{l|}{Noviny} & \multicolumn{1}{l|}{Akademický text} \\ \hline
+            1. 1000 slov & 84,3\% & 75,6\% & 73,5\% \\ \hline
+            2. 1000 slov & 6\% & 4,7\% & 4,6\% \\ \hline
+            Akademické výrazy& 1,9\% & 3,9\% & 8,5\% \\ \hline
+            Ostatní & 7,8\% & 15,7\% & 13,3\% \\ \hline
+            \end{tabular}
+            \caption{Používání slov v britském anglickém jazyce}
+            \label{tab:english-vocab-usage}
+        \end{table}
+
+        \subsubsection{Zastaralý způsob učení}
+            Dle vlastního průzkumu žáci základních škol nevyužívají k učení slovíček nikterak pokročilé technologie. Většinou si udržují vlastní slovníček, do kterého nově nabytá slova. Při učení zakrývají část s cizími slovy a na základě českého ekvivalentu se snaží vybavit překlad slova. Tato metoda neposkytuje prakticky žádnou zpětnou vazbu. Žáci většinou pouze do krátkodobé paměti uloží slova, později při testu rychle zodpoví a následně během pár hodin si na slovo už ani nevzpomenou. Nevýhod a námětů na zlepšení metody má tato metoda celou řadu, ale jedním z klíčových vad je, že žáci si nevytvoří dostatečně souvislostí, aby řádně ukotvilo slovo v paměti.
+
+        \subsubsection{Zvuková interpretace}
+            Zejména v učení cizího jazyka je zvuková podoba a interpretace slov velice důležitá. Jelikož každý jazyk může hlásky různě zvukově interpretovat a pro nováčka v cizím jazyku nemusí textová výslovnost plně vyhovovat. Žák dále díky znění slova získá podvědomí o dialektu daného jazyka a zároveň dochází k lepšímu zapamatování slova. Právě díky zvukům dochází k propojení při učení i pravé mozkové hemisféry. A napomáhá tedy k vytvoření pevnější ukotvení v paměti. Dle studie bulharského vědce George Lozanova, který se zabýval studiem mozku a učebních metod, byl zjištěn obrovský přínos zvukových vjemů \cite{bib:suggestology}.
 
         \subsubsection{Problematika obtížnosti}
-        % každý z žáků má indiviální úroveň znalostí cizího jazyka
-        % a každý z žádů se jiným tempem učí cizojazyčná slovíčka
+            % každý z žáků má indiviální úroveň znalostí cizího jazyka
+            % a každý z žádů se jiným tempem učí cizojazyčná slovíčka
+            Velkým problémem v učení slov je přizpůsobit obtížnost každému ze žáků individuálně. Jelikož ne všichni mají stejnou úroveň znalostí cizího jazyka a každý potřebuje jiné tempo pro zapamatování sady slov. Jsou žáci s výbornou pamětí, kterým stačí si slova pouze jednou projít a dokáží je používat, ale jsou žáci, kde nestačí je pětkrát zopakovat. Dalším problémem obtížnosti je z pohledu jednotlivých slov. Každé slovo má odlišnou obtížnost, které lze soudit například podle míry používanosti v jazyce, délky slova, zdali obsahuje přehlasování, dvojitá písmena nebo podobnost s referenčním slovem.
 
         \subsubsection{Učení slov v kontextu}
-        % jak je důlžité se slova učit v kontextu - použití ve větě z učebnice
-        % drive/vocab-techniques.pdf
-    
+            % jak je důlžité se slova učit v kontextu - použití ve větě z učebnice
+            % drive/vocab-techniques.pdf
+            Pro učení slov cizího jazyka je rovněž důležité správné zasazení významu slova do kontextu. Dle průzkumu Biemillera a Bootea z roku 2006 bylo zjištěno, že u žáků od 10—13 let docházelo k nárůstu zapamatovaných slov o 4\%, pokud byla slova předložena v kontextu vět. Důležitým poznatkem z toho průzkumu je, že žáci si nejen déle naučené slovo pamatovali, ale správně ho i interpretovali, když měli za úkol ho svými slovy vysvětlit \cite{bib:beimiller}. Ve stejném průzkumu rovněž docházelo ještě k vyššímu zlepšení v učení, kdy si žáci zapisovali vlastními slovy definici a použití slova. 
+        
     \subsection{Testování slovíček}
         % drive/accesing-vocabulary-in-the-language-classroom.pdf
         % důležitost aktivní slovní zásoby pro výuku cizího jazyka
 
+        \subsubsection{Aktivní a pasivní slovní zásoba}
+            % co je aktivní a pasivní
+            Slovní zásobu, kterou využíváme k tvorbě vět ať už v cizím nebo mateřském jazyce rozdělujeme na dvě skupiny - aktivní a pasivní. Pasivní zásoba je sada slov, která jsou pevně a spolehlivě uložena v naší paměti. Průměrný žák zná cca 50 000 výrazů. Její velikost je ovlivněna věkem, vzděláním a četbou. Slova ze této sady využíváme zejména při písemné formě, ať už se jedná o čtení nebo psaní. Aktivní zásoba je sada slov, ve které lze najít žádané slovo během desítek milisekund. U většiny lidí dosahuje velikosti 4 000 až 8 000 výrazů \cite{bib:lexikologie}. Slovo se díky používání dostává z pasivní do aktivní slovní zásoby. 
+
         \subsubsection{Metody testování}
-        % pasivní vs aktivní
-        % aktivní - vzpomenutí, rozpoznání
+            \label{test-methods}
+            % pasivní vs aktivní
+            % aktivní - vzpomenutí, rozpoznání
+
+            Metod testování slovní zásoby je mnoho. Základním rozdělením je na pasivní a aktivní. V případě pasivního se jedná například o výběr z nabídnutých možností. Jde o případ, kdy student nemusí znát přesnou odpověď a dokáže otázku vyhodnotit správně vylučovací metodou. Při aktivním testování žáci musí odpověď znát, aby otázka byla vyhodnocena správně. Pasivní metoda má pozitivní vliv například na motivaci žáka, který u ní tolik netápe a za pomoci zdravého rozumu může test vyhodnotit správně. Problém ale vzniká při používání získaných a procvičených informací. V případě cizího jazyka lze pasivní slovní zásobu využít pro čtení a náslech, ale pro ovládnutí cizího jazyka je nedostatečná a tudíž nevhodná. 
+
+            Dalším rozdělením pasivního a aktivního testování slovíček je rozpoznávání (\textit{recognition}) a vzpomenutí (\textit{recall}). Rozpoznávání spočívá v předložení cizího slova žákovi a pro správné zodpovězení musí najít český ekvivalent. Vzpomenutí je způsob testování opačným způsobem než rozpoznání. Tedy uživateli je předložen výraz v jeho mateřském jazyce a on musí nalézt správný výraz v cizím. Rozpoznání je z principu jednodušší pro uživatele než vzpomenutí. Lze ho tedy využít rovněž pro zvýšení motivace při procvičování slov. Ale pro ověření, zda je slovo ovládnuté či nikoliv je metoda rozpoznání také nedostatečná.
 
         \subsection{Typy testů}
-        % multiplechoice, matching, completion, translation
-    
+            % multiplechoice, matching, completion, translation
+            % vyžití her - problém je, že tento způsob většinou není ani efektivní, jelikož si procvičí například v případě doplňování písmen pouze pár slov za poměrně dlouhý čas
+
+            V analýze existujících řešení bylo procvičování a testování slov interpretováno různými způsoby. Obecně by se typ testů dal rozdělit na tři kategorie - textové testy, multimediální a herní testy.
+
+            \subsubsection{Textové testy}
+                Textové testy se vyskytovaly například jako výběr z více možností nebo spojováním spolu souvisejících významů, jak už ale bylo uvedeno v kapitole \ref{test-methods}, jedná se o rozvíjení pasivní slovní zásoby. Zajímavějším typem testů je doplňování slov do vět a klasický překlad slova. Tyto typy rozvíjejí žádanou aktivní slovní zásobu. Standardně textové testy byly doplněny zvukovou interpretací cizího slova.
+
+            \subsubsection{Multimediální a herní testy}
+                Zajímavým využitím multimédií by mohlo být zahrnutí otestování výslovnosti. Tedy možnost nahrání odpovědi a následně by došlo k rozpoznání. Ale analýza a rozpoznání řeči není nikterak triviální záležitost. Dalším zajímavým řešením byly herní testy. Díky nimž docházelo k zvýšením motivace uživatelů. Problém je, že tento typ procvičování většinou není zas tolik efektivní, jelikož si uživatel procvičí například v případě doplňování písmen křížovky nebo známé hry \textit{Hangman} pouze pár slov za poměrně dlouhý čas.  
 
     \subsection{Specifikace požadavků}
         % číselný seznam toho, co má aplikace dělat
+        Na základě analýzy byla provedena specifikace požadavků, které budou implementovány v aplikaci pro testování slovíček z cizího jazyka.
+
+        \begin{enumerate}
+            \item správa učebnic
+                \begin{itemize}
+                    \item tvořit, editovat a mazat vlastní učebnice
+                    \item umožnit publikovat učebnici pro veřejnost
+                \end{itemize} 
+            \item správa slovíček v učebnici
+                \begin{itemize}
+                    \item tvořit, editovat a mazat slovíčka
+                    \item hromadně slovíčka do učebnice importovat
+                    \item částečně automatizovat zvukovou a obrazovou interpretaci slovíčka
+                \end{itemize} 
+            \item správa modulů a tématických okruhů v učebnici
+                \begin{itemize}
+                    \item tvořit, editovat a mazat moduly a tématické okruhy učebnice
+                    \item přiřazovat slovíčka do daných modulů a okruhů
+                \end{itemize}
+            \item správa uživatelských skupin (tříd)
+                \begin{itemize}
+                    \item tvořit, editovat a mazat uživatelské skupiny
+                    \item umožnit uživatelům se přihlásit do skupiny
+                \end{itemize}
+            \item správa testovacích sad
+                \begin{itemize}
+                    \item tvořit, editovat a mazat testovací sady
+                    \item umožnit vybírat slova pro testovací sadu z vlastních i veřejných učebnic
+                    \item přiřazovat testovací sady ke skupinám uživatelů
+                \end{itemize}
+            \item procvičování slovíček
+                \begin{itemize}
+                    \item vybrat testovací sadu slovíček
+                    \item generovat slova na základě úrovně uživatele
+                    \item zahrnout obrazovou a zvukovou interpretaci do procvičování
+                    \item možnost uložit stav testování a umožnit pozdější navázání
+                \end{itemize}
+            \item připomínat a procvičovat ovládnutou slovní zásobu 
+            \item motivace
+                \begin{itemize}
+                    \item motivovat v rámci uživatelské skupiny
+                    \item motivovat vlastní iniciativu k procvičování
+                \end{itemize}
+        \end{enumerate}
+
 
 \newpage
 \section{Návrh aplikace}
@@ -274,6 +360,9 @@
         % počty zvládnutých slov studenta
         % třídních zvládnutých slov
         % cinknutí při zvládnutém slově
+
+    \subsection{Model databáze}
+
 
     \subsection{Architektura aplikace}
         % architektura celé aplikace
@@ -373,8 +462,6 @@
 
     \subsection{PostgreSQL}
 
-        \subsubsection{DB model}
-
     \subsection{Testování}
         % APITestCase Django REST
 
@@ -394,7 +481,20 @@
         LangSoft s.r.o. \textit{Language Teacher} [online]. [cit. 2016-12-07]. Dostupné z: \url{http://www.langsoft.cz/teacher.htm}
 
     \bibitem{bib:motivace}
-        KREJČOVÁ, L. \textit{Psychologické aspekty vzdělávání dospívajících}. 1. vyd. Praha: Grada Publishing, 2011 [cit 2016-12-18]. ISBN 978-80-247-3474-3.
+        KREJČOVÁ, Lenka. \textit{Psychologické aspekty vzdělávání dospívajících}. 1. vyd. Praha: Grada Publishing, 2011 [cit 2016-12-18]. ISBN 978-80-247-3474-3.
+
+    \bibitem{bib:beimiller}
+        BIEMILLER, Andrew, BOOTE, Catherine. \textit{An effective method for building meaning vocabulary in primary grades}. Vol 98(1), Journal of Educational Psychology, 2006 [cit 2016-12-18].
+
+    \bibitem{bib:suggestology}
+        LOZANOV, Georgi. \textit{Suggestology and Outlines of Suggestopedy}. 1. vyd. Gordon and Breach, 1978 [cit 2016-12-18]. ISBN 0-203-39282-5.
+
+    \bibitem{bib:learning-vocab}
+        I. S. P. Nation \textit{Learning Vocabulary in Another Language}. Cambridge University Press, 2001 [cit 2016-12-18]. ISBN 0-521-800927.
+
+    \bibitem{bib:lexikologie}
+        SVOBODOVÁ Jana, SVOBODOVÁ Diana, KULDANOVÁ Pavlína, GEJGUŠOVÁ Ivana, ROSOVÁ Milena, NOVÁK Radomil. \textit{Lexikologie} [online] 2003. [cit. 2016-12-19]. Dostupné z: \url{http://www.osu.cz/fpd/kcd/dokumenty/cestinapositi/lexikologie.htm}
+          
 
 \end{thebibliography}
 \end{document}
