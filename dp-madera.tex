@@ -18,6 +18,8 @@
 \usepackage{pdfpages}
 \usepackage{dirtree}
 \usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{nccmath}
 %\usepackage[T1]{fontenc}
 %\usepackage[bottom]{footmisc}
 %\usepackage{fancyvrb}
@@ -360,8 +362,12 @@
             \label{levenstein}
             Levenshteinova vzdálenost v informatice je míra rozdílu mezi dvěma řetězci. Pro výpočet vzdálenosti se využívá matice s rozměry velikostí délek řetězců. V podstatě vzdálenost je minimální počet jednoznakových úprav ve slově, aby vzniklo slovo referenční. Za jednoznakovou úpravu se považuje smazání, záměna nebo vložení písmene na dané místo.
 
-            Vzorec níže je matematický zápis Levenshteinovy vzdálenosti, kde $a$ a $b$ jsou řetězce $a(i)$ a $b(j)$ jsou indexované znaky v řetězcích. Výsledná vzdálenost je rovna hodnotě v matici $dist_{a,b}$ na pozici $dist_{a,b}(|a|,|b|)$, kde $|a|$ a $|b|$ jsou délky řetězců \cite{bib:levenshtein}.
-            \[dist_{a,b}(i,j) = 
+            Vzorec \ref{levenshtein} je matematický zápis Levenshteinovy vzdálenosti, kde $a$ a $b$ jsou řetězce $a(i)$ a $b(j)$ jsou indexované znaky v řetězcích. Výsledná vzdálenost je rovna hodnotě v matici $dist_{a,b}$ na pozici $dist_{a,b}(|a|,|b|)$, kde $|a|$ a $|b|$ jsou délky řetězců \cite{bib:levenshtein}.
+
+            \begin{ceqn}
+            \begin{align}
+                \label{levenshtein}
+                dist_{a,b}(i,j) = 
                 \begin{cases} 
                     max(i,j) & min(i,j) = 0\\min
                         \begin{cases}
@@ -371,11 +377,28 @@
                             \end{cases} 
                         \end{cases} & min(i,j) \neq 0 
                 \end{cases}
-            \]
+            \end{align}
+            \end{ceqn}
 
             V případě, že se pohybujeme v matici v prvním sloupci a prvním řádku přiřazujeme hodnoty 1 až délka řetězce $a$ do sloupce a 1 až délka řetězce $b$ do řádku. Tedy první sloupec a první řádek v matici slouží jako referenční inicializace. V generování matice se následně pokračuje a porovnávají se jednotlivé znaky. První položka v minimu je případ, kdy písmeno bylo odstraněno z $a$. Druhá položka je případ, kdy došlo k vložení znaku do a na základě znaku v $b$ řetězci. A poslední položka je případ porovnání znaků. V okamžiku, kdy znaky se rovnají, hodnota vzdálenosti na diagonále zůstává, v opačném případě se přičítá jednička.
 
-        \subsubsection{Praktický příklad Levenshteinovy vzdálenosti}
+            Výpočet Levenshteinovy vzdálenosti dvou slov znázorňuje matice \ref{leven-matice}, kde dochází k porovnání českého slova \textit{cyklus} a anglického výrazu \textit{cycle}. Tučně je znázorněna cesta výpočtu. Prováděné jednoznakové operace jsou žádná, žádná, žádná, záměna, záměna a vložení.
+
+            \begin{ceqn}
+            \begin{align}
+                \label{leven-matice}
+                \begin{matrix}
+                    &  & c & y & c & l & e \\
+                    & \textbf{0} & 1 & 2  & 3 & 4  & 5 \\
+                    c & 1 & \textbf{0} & 1 & 2 & 3 & 4 \\
+                    y & 2 & 1 & \textbf{0} & 1 & 2 & 3 \\
+                    k & 3 & 2 & 1 & \textbf{1} & 2 & 3 \\
+                    l & 4 & 3 & 2 & 2 & \textbf{1} & 2 \\
+                    u & 5 & 4 & 3 & 3 & 2 & \textbf{2} \\
+                    s & 2 & 5 & 4 & 4 & 3 & \textbf{3} \\ 
+                \end{matrix}
+            \end{align}
+            \end{ceqn}
 
             % rozvést adaptovanou levenshteinovu vzdálenot?
 
