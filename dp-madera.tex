@@ -308,31 +308,76 @@
         Po konzultacích s vedoucím práce a vyučujícím cizího jazyka na základní škole došlo k několika změnám v návrhu právě v oblasti uživatelských rolí a i v principu aplikace. Vznikl požadavek, že aplikace by mohla fungovat spíše jako portál pro vzdělávání a ne jako výukový nástroj pro učitele. V návrhu tudíž vzniklo rovnocenné partnerství mezi učitelem a žákem.
 
         \subsubsection{Sjednocení uživatelským skupin}
-            Podnětem pro sjednocení uživatelských skupin vedlo umožnění žákům procvičovat si slova i v případě, že nejsou součástí žádné třídy. Tak aby mohl kdokoliv se do aplikace přihlásit, vybrat si testovací sadu a vyzkoušet svoje znalosti slovíček. Tato funkce umožňuje žákům volnější přístup k výuce. Nebylo totiž v požadavcích to, aby učitel měl přehled o znalostech žáka - právě naopak. Účelem aplikace je poskytnout žákům možnost se samostatně vzdělávat a procvičovat slovní zásobu a ne vyučujícím poskytnout nástroj pro otestování, zda žák disponuje daným znalostem. 
+            Podnětem pro sjednocení uživatelských skupin vedlo umožnění žákům procvičovat si slova i v případě, že nejsou součástí žádné třídy. Tak aby mohl kdokoliv se do aplikace přihlásit, vybrat si testovací sadu a vyzkoušet svoje znalosti slovíček. Tato funkce umožňuje žákům volnější přístup k výuce. Nebylo totiž v požadavcích to, aby učitel měl přehled o znalostech žáka - právě naopak. Účelem aplikace je poskytnout žákům možnost se samostatně vzdělávat a procvičovat slovní zásobu a ne vyučujícím poskytnout nástroj pro otestování, zda žák disponuje požadovanými znalostmi. 
 
-    \subsection{Učebnice}
+    \subsection{Správa učebnic}
         % sdílení učebnic (otevřený systém)
         % přijít do aplikace a jen tak si protestovat slova z učebnice
         % nemusí být člověk součástí žádné skupiny
+        Z důvodu personalizace slovíček bylo nutné v návrhu aplikace zařadit učebnice, díky nimž si žáci budou procvičovat pouze slovíčka, která jsou pro ně aktuální ve výuce cizího jazyka. Učebnice obsahují moduly a v modulech se nacházejí jednotlivá slova. Při tvorbě učebnice bude zvolen cizí jazyk, pro který je učebnice připravená. V rámci jedné učebnice jsou slova unikátní. Tzn. do konkrétní učebnice nemohou patřit dvě stejná slova. Majitel učebnice je může editovat, vytvářet, skrýt pro veřejnost a mazat i v případě, že je využívána některým z ostatních uživatelů. 
 
-        \subsection{Hromadný import slovíček}
+        V aplikace se může vyskytovat i více stejných učebnic. Například dva různí vyučující vedou své hodiny cizího jazyka dle stejné učebnice, ale každý si chce přizpůsobit sadu slov po svém. Proto se v aplikaci musí učebnice identifikovat majitelem a názvem učebnice.
 
-    \subsection{Interpretace slovíček}
+        \subsubsection{Sdílení učebnic}
+            Jelikož aplikace slouží jako portál pro vzdělávání, ve výchozím stavu jsou učebnice a slovíčka v nich veřejně přístupné jakémukoliv uživateli. Příchozí uživatel si tedy bude moci buď vytvořit vlastní učebnici se svými slovy, které si chce procvičit nebo může vyhledat už z vytvořených učebnic. Díky sdílení nový uživatel může prakticky okamžitě po přihlášení začít procvičovat slova a nemusí složitě žádná slova importovat. Tento přístup je cílený právě především pro žáky, kteří si chtějí samostatně procvičovat slova a nepatřit do žádné konkrétní třídy.
+
+
+    \subsection{Správa slovíček}
         % výhody více forem - lepší zapamatovatelnost
         % vytvoření hlubších asociací
 
+        Jednotlivá slovíčka se budou ukládat do daným modulů učebnice. Slovíčko se bude charakterizovat - překladem v cizím jazyce, významem v mateřském jazyce, definice slova v cizím i mateřském jazyce a použití ve větách z učebnice. Dalšími atributy, kterými slovíčko bude disponovat, jsou obtížnost a slovní druh. Slovíčko bude možné doplnit o multimediální interpretaci a to v podobě zvuku a obrázku.
+
+        %% Možné rozšíření - přidat možnost více významů slova
         \subsubsection{Textová forma}
             % importováním sady slov (bez automatizace překladů)
             % editace definic a použití ve větách
+            Textová forma slovíčka spočívá v překladu slova a jeho významu v mateřském jazyce. Pro zjištění významu slova se může využít již hotové aplikace. Například Google Translate poskytuje aplikační rozhraní pro překlady slov i celých vět. Výhodou by bylo usnadnění zadávání a import slovíček do aplikace. Jelikož se aplikace bude zabývat aktivním rozpoznání a vzpomínání, je vhodné neautomatizovat významy slov. Učebnice nebo učitelé se mohou s Google Translate lišit v definování významů slov. Dalším problémem je cena využívání překladů z Google Translete, která je účtovaná měsíčně a to \$20 za 1 milion znaků \cite{bib:google-api}.
 
         \subsubsection{Zvuková forma}
             % z Google API importovat zvukové nahrávky
             % shrnout omezení, problematiku
+            % 60 minut měsíčně je zdarma
+            Do aplikace by měla být implementována i zvuková interpretace slovíčka v cizím jazyce. Zvukové nahrávky mohou být zařazeny do aplikace dvěma způsoby - manuálně vlastními nahrávkami nebo využít Google Text to Speech API, které poskytuje zdarma, pokus se měsíční využití zvukových nahrávek obsáhne do 60 minut\cite{bib:google-api}. V případě jedno nebo dvouslovných spojení, které zaberou přibližně 4—8 vteřin, je dostačující pro cca 600 slovíček za měsíc. Aplikace bude záznam lokálně ukládat, aby bylo se co nejvíce omezilo využívání API. Zvuková nahrávka bude získána při importu slovíček do učebnice. Zadávající uživatel si bude moci zvolit, k jakému slovu chce zvukovou interpretaci.
 
         \subsubsection{Obrazová forma}
             % vyhledání z Google Images API na základě cizojazyčného slova
             % autor učebnice vybírá dané slovo z importovaných
             % omezení dotazů - neprovádí se plně automatiky
+            Obrazová interpretace slovíčka bude rovněž získaná z Google Custom Search API. Toto aplikační rozhraní není omezené a lze v parametrech omezit vyhledávání pouze na obrázky. Při importu si uživatel zvolí pro jaká slovíčka chce obrazovou formu. Automatizace v tomto případě není vhodná, jelikož ne všechny slovíčka lze interpretovat jako obrázek. Uživatel si také bude moci zvolit obrázek z několika možností. Po vybrání obrázku bude vytvořena komprimovaná kopie souboru a uloží se rovněž zdroj, odkud je obrázek získán. Tato forma bude v aplikaci sloužit pouze jako nápověda pro žáky, díky níž si mohou ke slovíčku vytvořit hlubší asociaci. 
+
+            % využití možnost hledání dle "Lze volně užívat nebo sdílet". Vytvoření kopie, 
+            Díky Google Custom Search API lze vyhledávání parametrizovat. Výrazem pro vyhledávání bude referenční slovo v cizím jazyce, jelikož cílový jazyk bude nejspíš anglický, německý nebo španělský a všechny tyto jazyky jsou více rozšířené než ten český. Dalším parametrem vyhledávání je omezení pouze na obrázky s licencí a \uv{Volně užívat nebo sdílet}, která umožňuje obrázek zkopírovat a nekomerčně publikovat s uvedením zdroje. Bohužel společnost Google Inc. nezaručuje pod jakou licencí obrázek aktuálně se na stránkách prezentuje. Proto bude uživatel při výběru obrázku vyzván, aby zkontroloval licenci použití.
+
+    \subsection{Obtížnost slovíček}
+        % vygenerovaná obtížnost na základě délky slova, podobnosti s českým jazykem, přizpůsobena vyučujícím
+        Při zadávání slova do učebnice bude automaticky vyhodnocena jeho obtížnost, která je rozdělena do čtyř kategorií - snadné, střední, těžké a nemožné. Vyhodnocení obtížnosti je založeno na kombinaci několika parametrů slova - jeho délky, podobnosti s českým ekvivalentem a další atributy jako počet přehlasovaných písmen nebo počet výskytů dvojitých písem. V případě nevhodně vygenerované obtížnosti slova, uživatel ji bude moci opravit dle vlastního uvážení. Délka slova je prahově rozdělena do kategorií obtížnosti, následně bude vyhodnocena podobnost s významem pomocí Levensteinovy vzdálenosti popsané v podkapitole \ref{levenstein}. Poté následuje vyhodnocení přehlasování a dvojitých hlásek, které ale ovlivňují obtížnost už minimálně.
+
+        \subsubsection{Výběr algoritmu}       
+            Levenshteinova vzdálenost je velmi podobná známe Hammingově vzdálenosti s tím rozdílem, že Hammingova vzdálenost uvádí počet pozic se stejným symbolem v obou řetězcích. Kdežto Levenshteinova uvádí počet jednoznakových editací. Pro určení míry podobnosti mezi slovem v cizím jazyce a jeho překladem je vhodnější Levenshteinova vzdálenost, jelikož akceptuje řetězce s různou délkou a v případě, že písmeno chybí, je to vyhodnoceno pouze jako odstraněné písmeno a algoritmus pokračuje dál. V případě Hammingovy vzdálenosti, vynechané písmeno naruší porovnávání zbytku řetězce.
+
+        \subsubsection{Levenshteinova vzdálenost}
+            \label{levenstein}
+            Levenshteinova vzdálenost v informatice je míra rozdílu mezi dvěma řetězci. Pro výpočet vzdálenosti se využívá matice s rozměry velikostí délek řetězců. V podstatě vzdálenost je minimální počet jednoznakových úprav ve slově, aby vzniklo slovo referenční. Za jednoznakovou úpravu se považuje smazání, záměna nebo vložení písmene na dané místo.
+
+            Vzorec níže je matematický zápis Levenshteinovy vzdálenosti, kde $a$ a $b$ jsou řetězce $a(i)$ a $b(j)$ jsou indexované znaky v řetězcích. Výsledná vzdálenost je rovna hodnotě v matici $dist_{a,b}$ na pozici $dist_{a,b}(|a|,|b|)$, kde $|a|$ a $|b|$ jsou délky řetězců \cite{bib:levenshtein}.
+            \[dist_{a,b}(i,j) = 
+                \begin{cases} 
+                    max(i,j) & min(i,j) = 0\\min
+                        \begin{cases}
+                            dist_{a,b}(i-1,j)+1\\dist_{a,b}(i,j-1)+1\\dist_{a,b}(i-1,j-1)+
+                            \begin{cases}
+                                0 & a(i) = b(j)\\1 & a(i) \neq b(j)
+                            \end{cases} 
+                        \end{cases} & min(i,j) \neq 0 
+                \end{cases}
+            \]
+
+            V případě, že se pohybujeme v matici v prvním sloupci a prvním řádku přiřazujeme hodnoty 1 až délka řetězce $a$ do sloupce a 1 až délka řetězce $b$ do řádku. Tedy první sloupec a první řádek v matici slouží jako referenční inicializace. V generování matice se následně pokračuje a porovnávají se jednotlivé znaky. První položka v minimu je případ, kdy písmeno bylo odstraněno z $a$. Druhá položka je případ, kdy došlo k vložení znaku do a na základě znaku v $b$ řetězci. A poslední položka je případ porovnání znaků. V okamžiku, kdy znaky se rovnají, hodnota vzdálenosti na diagonále zůstává, v opačném případě se přičítá jednička.
+
+        \subsubsection{Praktický příklad Levenshteinovy vzdálenosti}
+
+            % rozvést adaptovanou levenshteinovu vzdálenot?
 
     \subsection{Generování slov}
         % shrnout leitnerův algoritmus
@@ -344,7 +389,7 @@
 
         \subsubsection{Adaptivní a globální obtížnost}
 
-    \subsection{Testování}
+    \subsection{Procvičování slovíček}
 
         \subsubsection{Metody testování}
             % aktivní rozpoznání a aktivní vzpomenutí
@@ -404,7 +449,13 @@
             % responzivnost      
 
         \subsubsection{Implementace algoritmů}
+
+        \subsubsection{Adaptovaná Levenshteinova vzdálenost}
             % Levenstein a Leitner jsou implementovány na klientské straně
+
+        \subsubsection{Google API}
+            % api console key
+            % images
 
     \subsection{Vývojové prostředí}
         \subsubsection{Webpack}
@@ -482,6 +533,7 @@
 
 \newpage
 \section{Závěr}
+    %% Možné rozšíření - přidat možnost více významů slova
 
 \newpage
 \begin{thebibliography}{99}
@@ -508,7 +560,12 @@
 
     \bibitem{bib:lexikologie}
         SVOBODOVÁ Jana, SVOBODOVÁ Diana, KULDANOVÁ Pavlína, GEJGUŠOVÁ Ivana, ROSOVÁ Milena, NOVÁK Radomil. \textit{Lexikologie} [online] 2003. [cit. 2016-12-19]. Dostupné z: \url{http://www.osu.cz/fpd/kcd/dokumenty/cestinapositi/lexikologie.htm}
-          
 
+    \bibitem{bib:levenshtein}
+         Wikimedia Foundation, Inc. \textit{Levenshtein distance} [online] 2016-12-20. [cit. 2016-12-21]. Dostupné z: \url{https://en.wikipedia.org/wiki/Levenshtein_distance}
+        
+    \bibitem{bib:google-api}
+        Google Inc. \textit{Google Cloud Platform} [online]. [cit 2016-12-21]. Dostupné z: \url{https://cloud.google.com/}
+ 
 \end{thebibliography}
 \end{document}
