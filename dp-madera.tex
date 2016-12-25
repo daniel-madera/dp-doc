@@ -240,7 +240,28 @@
                 Textové testy se vyskytovaly například jako výběr z více možností nebo spojováním spolu souvisejících významů, jak už ale bylo uvedeno v kapitole \ref{test-methods}, jedná se o rozvíjení pasivní slovní zásoby. Zajímavějším typem testů je doplňování slov do vět a klasický překlad slova. Tyto typy rozvíjejí žádanou aktivní slovní zásobu. Standardně textové testy byly doplněny zvukovou interpretací cizího slova.
 
             \subsubsection{Multimediální a herní testy}
-                Zajímavým využitím multimédií by mohlo být zahrnutí otestování výslovnosti. Tedy možnost nahrání odpovědi a následně by došlo k rozpoznání. Ale analýza a rozpoznání řeči není nikterak triviální záležitost. Dalším zajímavým řešením byly herní testy. Díky nimž docházelo k zvýšením motivace uživatelů. Problém je, že tento typ procvičování většinou není zas tolik efektivní, jelikož si uživatel procvičí například v případě doplňování písmen křížovky nebo známé hry \textit{Hangman} pouze pár slov za poměrně dlouhý čas.  
+                Zajímavým využitím multimédií by mohlo být zahrnutí otestování výslovnosti. Tedy možnost nahrání odpovědi a následně by došlo k rozpoznání. Ale analýza a rozpoznání řeči není nikterak triviální záležitost. Dalším zajímavým řešením byly herní testy. Díky nimž docházelo k zvýšením motivace uživatelů. Problém je, že tento typ procvičování většinou není zas tolik efektivní, jelikož si uživatel procvičí například v případě doplňování písmen křížovky nebo známé hry \textit{Hangman} pouze pár slov za poměrně dlouhý čas.
+
+        \subsection{Metoda rozloženého opakování}
+            % obecně o metodě 
+            Až na výjmečné paměti je obecně známo, že pokud chceme informaci v paměti uchovat dlouhodobě, je nutné opakovaně připomínat. Pokud informace není vyžívána s největší pravděpodobností dojde ke ztráte této informace. V případě, že uživatel s touto informací pracuje častěji, výrazně navyšuje šance pro její zapamatování. Metoda rozloženého opakování (\textit{spaced repetition}) je učební technika založená na opakovaném připomínání informace s navyšujícím itervalem. Na začátku učebního procesu, jsou intervaly krátké například na hodinu, 4 hodiny nebo celý den. S postupem se tyto intervaly mohou zvyšují až na týdny a měsíce. Ideální systém rozploženého opakování nabídne zopakování informace před tím, než dojde k jejímu eventuálnímu nevzpomenutí.
+
+        \subsubsection{Křivka zapomínání}
+            Křivka zapomínání je graf exponenciálního charakteru, který znázorňuje za jak dlouho a s jakou pravděpodobností je možné si na nově nabytou informaci vzpomenout. První tuto křivku specifikoval už v roce 1885 Hermann Ebbinghaus. Na ose Y lze nalézt procentuální pravděpodobnost vzpomenutí na informaci, na ose X je čas. V čase 0 dojde k nabytí informace a spostupem času dochází k zapomínání. U průměrných pamětí dojde k potencionálnímu zapomenutí nové nesouvisející informace bez kontextu během pěti dní \cite{bib:ebbinghaus}.
+
+            Následující obrázek \ref{fig:forgetting-curve} znázorňuje metodu rozloženého opakování na křivce zapomínání. V čase s 80\% pravděpodobností vzpomenutí na danout informaci dojde k znovu připomenutí informace. Křivka zapomínání se posune na ose Y a znovu dochází k postupnému zapomínání. Díky exponencionálnímu charakteru interval mezi jednotlivými opakováními narůstá také exponencionálně. V ideálním případě se posune exponenciála tak, že se bude limitně blížit 80\% hranici.
+
+            \begin{figure}[ht!]
+                \centering
+                \includegraphics[scale=0.55]{../diagrams/forgetting-curve.pdf}
+                \caption{Naznačení rozloženého opakování na základě křivky zapomínání}
+                \label{fig:forgetting-curve}
+            \end{figure}
+         
+        \subsubsection{Leitnerův algoritmus}
+            % shrnout leitnerův algoritmus
+            \label{leitner}
+            Na Leitnerův algoritmus lze nahlížet jako na známý učební postup v podobě karet s otázkami na informace. Tyto karty jsou rozděleny do skupin, které jsou označeny například 1 až 3, kategorií ale obecně může být více. Nová karta je zařazena do první kategorie. Karty v první kategorii jsou opakovány častěji, v poslední kategorii jsou karty opakovány méně častěji. Karty jsou přemisťovány podle toho, jak uživatel zvládá odpovídat na jednotlivé otázky. V případě, že uživateli otázka na kartě nedělá problémy, přesune kartu do vyšší kategorie. V opačném případě, kdy uživatel nemůže opovědět správně na danou otázku, karta se přesune do prní kategorie a cyklus pro danou kartu začíná znovu.
 
     \subsection{Specifikace požadavků}
         % číselný seznam toho, co má aplikace dělat
@@ -403,41 +424,13 @@
         \subsubsection{Určení obtížnosti}
             % shrnutí o váženém průměru obtížnosti, jaké a v jaké váze faktory jako Levenshtein, přehlasování a dvojitá písmena tvoří určení obtížnosti slova
 
-    \subsection{Generování slov pro testování}
-        % generování slov na základě motivace, obtížnosti 
-        % základem je slova, která jsou problematická pro žáka generovat častěji než slova, 
-        % která zvládá s přehledem
-        % účel generování slov má procvičit slova tak, aby byly správně ukotveny v dlouhodobé paměti a ne pouze v té krátkodobé
-        Způsob generování slov je důležité pro správné ukotvení slova v dlouhodobé a ne krátkodobé paměti. Při testování bude docházet i k několika násobnému opakování slova, což popisuje podkapitola \ref{repeating}. Základem generování je častěji a vícekrát předkládat slova, která jsou pro žáka problematická a slova, která jsou zvládnuta žákem s přehledem, budou méně častěji testována. Pro generování byla zvolena metoda rozloženého opakování (\textit{spaced repetition}) popsaná v následujících podkapitolách.
-	
-        \subsubsection{Křivka zapomínání}
-                Křivka zapomínání je graf exponenciálního charakteru, který znázorňuje za jak dlouho a s jakou pravděpodobností je možné si na nově nabytou informaci vzpomenout. První tuto křivku specifikoval už v roce 1885 Hermann Ebbinghaus. Na ose Y lze nalézt procentuální pravděpodobnost vzpomenutí na informaci, na ose X je čas. V čase 0 dojde k nabytí informace a spostupem času dochází k zapomínání. U průměrných pamětí dojde k potencionálnímu zapomenutí nové nesouvisející informace bez kontextu během pěti dní \cit{bib:ebbinghouse}.
-
-        \subsubsection{Rozložené opakování} % Spaced repetition
-            % obecně o metodě 
-            Až na výjmečné paměti je obecně známo, že pokud chceme informaci v paměti uchovat dlouhodobě, je nutné opakovaně připomínat. Pokud informace není vyžívána s největší pravděpodobností dojde ke ztráte této informace. V případě, že uživatel s touto informací pracuje častěji, výrazně navyšuje šance pro její zapamatování. Metoda rozloženého opakování je učební technika založená na opakovaném připomínání informace s navyšujícím itervalem. Na začátku učebního procesu, jsou intervaly krátké například na hodinu, 4 hodiny nebo celý den. S postupem se tyto intervaly mohou zvyšují až na týdny a měsíce. Ideální systém rozploženého opakování nabídne zopakování informace před tím, než dojde k jejímu eventuálnímu nevzpomenutí.
-
-		Následující graf \ref{fig:forgetting-curve} znázorňuje metodu rozloženého opakování na křivce zapomínání. V čase s 80\% pravděpodobností vzpomenutí na danout informaci dojde k znovu připomenutí informace. Křivka zapomínání se posune na ose Y a znovu dochází k postupnému zapomínání. Díky exponencionálnímu charakteru interval mezi jednotlivými opakováními narůstá také exponencionálně. V ideálním případě se posune exponenciála tak, že se bude limitně blížit 80\% hranici.
-
-        \begin{figure}[ht!]
-            \centering
-            \includegraphics[scale=0.63]{../diagrams/forgetting-curve.pdf}
-            \caption{Naznačení rozloženého opakování na základě křivky zapomínání}
-            \label{fig:forgetting-curve}
-        \end{figure}
-         
-        \subsubsection{Leitnerův algoritmus}
-            % shrnout leitnerův algoritmus
-	Na Leitnerův algoritmus lze nahlížet jako na známý učební postup v podobě karet s otázkami na informace. Tyto karty jsou rozděleny do skupin, které jsou označeny například 1 až 3, kategorií ale obecně může být více. Nová karta je zařazena do první kategorie. Karty v první kategorii jsou opakovány častěji, v poslední kategorii jsou karty opakovány méně častěji. Karty jsou přemisťovány podle toho, jak uživatel zvládá odpovídat na jednotlivé otázky. V případě, že uživateli otázka na kartě nedělá problémy, přesune kartu do vyšší kategorie. V opačném případě, kdy uživatel nemůže opovědět správně na danou otázku, karta se přesune do prní kategorie a cyklus pro danou kartu začíná znovu.    
-
-        \subsubsection{Opakování slov v testování}
-            \label{repeating}
-	Pro gernerování slov v aplikaci je využíván přizpůsobený Leitnerův algoritmus. 
-
-        \subsubsection{Adaptivní a globální obtížnost}
-
-
     \subsection{Procvičování slovíček}
+        % učitel nevidí statistiky dětí, pouze celé třídy
+        % aplikace nemá sloužit na zkoušení dětí učitelem
+        % testing to learn, not testing to assess 
+
+        \subsubsection{Vyhodnocování odpovědí}
+            % určení vzdálenosti slov - více úrovní odpovědí
 
         \subsubsection{Metody testování}
             % aktivní rozpoznání a aktivní vzpomenutí
@@ -450,15 +443,36 @@
         \subsubsection{Kontrola podvádění}
             % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
             % slova ve slovnících a potom nedoplňují do aplikace
-            % měření času odpovědi - v závisloti na délce odpovědi
+            % měření času odpovědi - v závisloti na délce odpověd 
 
-            % učitel nevidí statistiky dětí, pouze celé třídy
-            % aplikace nemá sloužit na zkoušení dětí učitelem
-            % testing to learn, not testing to assess        
 
-    \subsection{Vyhodnocování odpovědí}
-        % určení vzdálenosti slov - více úrovní odpovědí
-        % shrnout levenstein algoritmus
+    \subsection{Generování slov pro procvičování}
+        % generování slov na základě motivace, obtížnosti 
+        % základem je slova, která jsou problematická pro žáka generovat častěji než slova, 
+        % která zvládá s přehledem
+        % účel generování slov má procvičit slova tak, aby byly správně ukotveny v dlouhodobé paměti a ne pouze v té krátkodobé
+        Způsob generování slov je důležité pro správné ukotvení slova v dlouhodobé a ne krátkodobé paměti. Při testování bude docházet i k několika násobnému opakování slova. Základem generování je častěji a vícekrát předkládat slova, která jsou pro žáka problematická a slova, která jsou zvládnuta žákem s přehledem, jsou méně častěji testována. Pro generování byla zvolena metoda rozloženého opakování v podobě přizpůsobeného Leitnerova algoritmu, který je popsán v kapitole \ref{leitner}.
+        
+        Algoritmus pro procvičování slov se dělí na dvě části. V první části se zjišťuje, jaká slova jsou pro zkoušeného uživatele jednoduchá a naopak s jakými slovy má problém - tato fáze se bude dále nazývat inicializační. Po této fázi následuje fáze s použitím Leitnerova algoritmu - tato fáze bude nazývána testovací.
+
+        \subsubsection{Inicializační fáze}
+            % setřídění slov nejlehčí, nejtěžší atd.
+            % na základě odpovědi určení počet nutných správných opakování
+            Na začátku testování jsou k dispozici slova s přiřazenou obtížností. Tato obtížnost je buď globální v případě, že se uživatel nesetkal ještě s daným slovem v aplikaci nebo uživatelská v případě, že uživatel dané slovo již procvičoval. Dle této obtížnosti se slovíčka seřadí tak, aby se střídala nejnižší a nejvyšší obtížnost. Na prvním místě tedy je slovo s nejnižší obtížností, následuje slovo s nejvyšší, dále slovo s druhou nejnižší atd. Důvodem tohoto seřazení je zvýšení motivace dětí. V případě, že by žák dostal na začátku nejtěžší slova, mohlo by si vytvořit odpor k procvičování v domnění, že slova jsou příliš složitá pro něj. 
+
+            Uživatel tedy postupně odpovídá na slovíčka. Jeho odpověď je vyhodnocena buď správně, špatně nebo neúplně. Na základě vyhodnocené odpovědi a globální nebo uživatelské obtížnosti je ke slovu přiřazen počet správných opakování pro dokončení slova.
+
+        \subsubsection{Testovací fáze}
+            % výběr slov na základě Leitnerova algoritmu
+            Po inicializační fázi následuje fáze testovací. V této fázi již je známo, jaká slova dělají uživateli problém. Oproti standardnímu Leitnerovu systému popsaném v kapitole \ref{leitner}, kde na začátku jsou všechny otázky zařazeny do první kategorie, zde se otázky rozdělují do třech kategorií na základě inicializační fáze. Následuje první fáze, kde dochází postupnému procházení otázek v první Leitnerově kategorii od nejtěžší pro uživatele po nejlehčí. V případě správně nebo neúplně zodpovězené otázky, slovo je přesunuto do vyšší kategorie. Následuje druhá fáze, kde se prochází otázky z první a druhé Leitnerovy kategorie. I zde platí, na základě odpovědi dochází k přesouvání otázek mezi kategoriemi, jak už tomu je ve standardním provedení Leitnerova systému. Ve třetí fázi jsou nabízeny otázky z první, druhé a třetí Leitnerovy kategorie. Po průchodu třetí fáze následuje znovu fáze první. Takto algoritmus cykluje do doby, dokud uživatel nepřeruší test nebo nezůstanou žádná slova, které by uživatel nedokončil. 
+
+            Za dokončené slovo se považuje takové, kde uživatel odpověděl správně nebo neúplně tolikrát, kolik má slovo přiřazených nutných správných opakovaní, a zároveň poslední odpověď nesmí být neúplná, ale pouze správná. Je to z důvodu, aby bylo ověřeno, že uživatel má správně zapamatovanou informaci.
+
+            % možná nějaký obrázek 
+
+        \subsubsection{Adaptivní a globální obtížnost}      
+            % ukládání Leitnerovy kategorie jako adaptivní obtížnost
+
 
     \subsection{Připomínání slov}
         % shrnout supermemo aplogritmus
