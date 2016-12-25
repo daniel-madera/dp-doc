@@ -421,16 +421,19 @@
             \end{align}
             \end{ceqn}
 
-        \subsubsection{Určení obtížnosti}
+        \subsubsection{Určení globální obtížnosti}
             % shrnutí o váženém průměru obtížnosti, jaké a v jaké váze faktory jako Levenshtein, přehlasování a dvojitá písmena tvoří určení obtížnosti slova
+
 
     \subsection{Procvičování slovíček}
         % učitel nevidí statistiky dětí, pouze celé třídy
         % aplikace nemá sloužit na zkoušení dětí učitelem
         % testing to learn, not testing to assess 
 
+
         \subsubsection{Vyhodnocování odpovědí}
             % určení vzdálenosti slov - více úrovní odpovědí
+            % využívá se Levenshteina
 
         \subsubsection{Metody testování}
             % aktivní rozpoznání a aktivní vzpomenutí
@@ -472,7 +475,9 @@
 
         \subsubsection{Adaptivní a globální obtížnost}      
             % ukládání Leitnerovy kategorie jako adaptivní obtížnost
+            V případě přerušení testu dochází k ukládání aktuální Leitnerovy kategorie k danému uživateli. Díky tomu lze znovu navázat v případě, že uživatel se bude chtít k testování dané skupiny slov vrátit. Leitnerova kategorie vypovídá, jak problematické je slovo pro uživatele. V případě, že se slovo nachází v první kategorii je problematické a v případě, že se nachází ve třetí, uživatel ho zvládá bez obtíží. Díky této informaci dochází k adaptivnímu generování obtížnosti. V případě, že není u daného slova a uživatele uložená Leitnerova kategorie, je v inicializační části brána globální obtížnost.
 
+            Například se může stát, že globální obtížnost slova je v kategorii těžkých, ale uživatel se s tímto slovem už několikrát setkal a dobře se mu pamatuje. Je proto zbytečné slovo mu opakovat vícekrát, jelikož na základě obtížnosti a správnosti odpovědi se generuje počet opakování. 
 
     \subsection{Připomínání slov}
         % shrnout supermemo aplogritmus
@@ -494,10 +499,15 @@
 \section{Klientská aplikace}
 
     \subsection{Návrh aplikace}
+        % nutnost použití webové aplikace - více uživatelů, sdílení dat, výhody žádná instalace apod
+        % respoznivnost uživatelského rozhraní
 
         \subsubsection{Single-page}
             % definice
             % výhody
+            Single page application (SPA) je jedna webová stránka, která poskytuje celou aplikaci. Při prvním načtení je přenesen veškerý kód pro aplikační běh, tj. HTML šablony, JavaScript i kaskádové styly (CSS). Na základě akcí prováděných uživatelem jsou poté dynamicky načítány ostatní zdroje jako data, obrázky apod. Celá stránka se nikdy neobnovuje jako tomu je v klasické webové aplikaci. Veškerá aplikační logika je přenesena ze serveru na klienta za účelem server odlehčit. V případě SPA server většinou po načtení aplikace poskytuje pouze data a to nejčastěji ve formátech JavaScript Object Notation (JSON) nebo Extensible Markup Language (XML).
+
+            SPA komunikuje se serverem obvykle dvěma způsoby - web sokety nebo AJAX (asynchronous JavaScript and XML) dotazy. Další technologií pro komunikaci, která by mohla být využita je Server-sent events (SSEs), která umožňuje serveru zasílat data klientovi přes HTTP protokol. Pro účely aplikace bude omezenou pouze na AJAX komunikaci, jelikož pro web sokety a tudíž obousměrnou komunikaci v aplikaci využití není.
 
         \subsubsection{Model aplikace}
             % url diagram
@@ -518,6 +528,8 @@
         \subsubsection{Google API}
             % api console key
             % images
+
+        \subsubsection{Zabezpečení}
 
     \subsection{Vývojové prostředí}
         \subsubsection{Webpack}
