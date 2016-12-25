@@ -409,28 +409,30 @@
         % která zvládá s přehledem
         % účel generování slov má procvičit slova tak, aby byly správně ukotveny v dlouhodobé paměti a ne pouze v té krátkodobé
         Způsob generování slov je důležité pro správné ukotvení slova v dlouhodobé a ne krátkodobé paměti. Při testování bude docházet i k několika násobnému opakování slova, což popisuje podkapitola \ref{repeating}. Základem generování je častěji a vícekrát předkládat slova, která jsou pro žáka problematická a slova, která jsou zvládnuta žákem s přehledem, budou méně častěji testována. Pro generování byla zvolena metoda rozloženého opakování (\textit{spaced repetition}) popsaná v následujících podkapitolách.
+	
+        \subsubsection{Křivka zapomínání}
+                Křivka zapomínání je graf exponenciálního charakteru, který znázorňuje za jak dlouho a s jakou pravděpodobností je možné si na nově nabytou informaci vzpomenout. První tuto křivku specifikoval už v roce 1885 Hermann Ebbinghaus. Na ose Y lze nalézt procentuální pravděpodobnost vzpomenutí na informaci, na ose X je čas. V čase 0 dojde k nabytí informace a spostupem času dochází k zapomínání. U průměrných pamětí dojde k potencionálnímu zapomenutí nové nesouvisející informace bez kontextu během pěti dní \cit{bib:ebbinghouse}.
 
         \subsubsection{Rozložené opakování} % Spaced repetition
             % obecně o metodě 
-            Až na výjmečné paměti je obecně známo, že pokud chceme informaci v paměti uchovat dlouhodobě, je nutné opakovaně připomínat. Pokud informace není vyžívána s největší pravděpodobností dojde ke ztráte této informace. V případě, že uživatel s touto informací pracuje častěji, výrazně navyšuje šance pro její zapamatování. Metoda rozloženého opakování je učební technika založená na opakovaném připomínání informace s navyšujícím itervalem. Na začátku učebního procesu, jsou intervaly krátké například na hodinu, 4 hodiny nebo celý den. S postupem se tyto intervaly mohou zvyšují až na týdny a měsíce. Ideální systém rozploženého opakování nabídne zopakování informace těsně před tím, než dojde k jejímu zapomenutí.
+            Až na výjmečné paměti je obecně známo, že pokud chceme informaci v paměti uchovat dlouhodobě, je nutné opakovaně připomínat. Pokud informace není vyžívána s největší pravděpodobností dojde ke ztráte této informace. V případě, že uživatel s touto informací pracuje častěji, výrazně navyšuje šance pro její zapamatování. Metoda rozloženého opakování je učební technika založená na opakovaném připomínání informace s navyšujícím itervalem. Na začátku učebního procesu, jsou intervaly krátké například na hodinu, 4 hodiny nebo celý den. S postupem se tyto intervaly mohou zvyšují až na týdny a měsíce. Ideální systém rozploženého opakování nabídne zopakování informace před tím, než dojde k jejímu eventuálnímu nevzpomenutí.
+
+		Následující graf \ref{fig:forgetting-curve} znázorňuje metodu rozloženého opakování na křivce zapomínání. V čase s 80\% pravděpodobností vzpomenutí na danout informaci dojde k znovu připomenutí informace. Křivka zapomínání se posune na ose Y a znovu dochází k postupnému zapomínání. Díky exponencionálnímu charakteru interval mezi jednotlivými opakováními narůstá také exponencionálně. V ideálním případě se posune exponenciála tak, že se bude limitně blížit 80\% hranici.
 
         \begin{figure}[ht!]
             \centering
             \includegraphics[scale=0.63]{../diagrams/forgetting-curve.pdf}
-            \caption{Křivka zapomínání}
+            \caption{Naznačení rozloženého opakování na základě křivky zapomínání}
             \label{fig:forgetting-curve}
         \end{figure}
-
-
-            
-
+         
         \subsubsection{Leitnerův algoritmus}
             % shrnout leitnerův algoritmus
-            % The Leitner System can be viewed as a physical box in which you store your flashcards. The box has several compartments labeled e.g. 1 to 5 (you could choose more compartments as well). You then put each of your flashcards into appropriate compartments in this box. If your flashcard is still new you will want to put it in the first compartment, where you repeat the flashcards every day. Flashcards, which you know well will be put into the second compartment. Flashcards in the second compartment have to be reviewed every second day. Flashcards, which you know well there will be moved to the third compartment and so on. Each compartment has a different repetition interval. And flashcards, which you know well, get promoted to the next compartment.
-            % In case that you could not answer a flashcard correctly you move it back to the first compartment where the cycle starts again.
+	Na Leitnerův algoritmus lze nahlížet jako na známý učební postup v podobě karet s otázkami na informace. Tyto karty jsou rozděleny do skupin, které jsou označeny například 1 až 3, kategorií ale obecně může být více. Nová karta je zařazena do první kategorie. Karty v první kategorii jsou opakovány častěji, v poslední kategorii jsou karty opakovány méně častěji. Karty jsou přemisťovány podle toho, jak uživatel zvládá odpovídat na jednotlivé otázky. V případě, že uživateli otázka na kartě nedělá problémy, přesune kartu do vyšší kategorie. V opačném případě, kdy uživatel nemůže opovědět správně na danou otázku, karta se přesune do prní kategorie a cyklus pro danou kartu začíná znovu.    
 
         \subsubsection{Opakování slov v testování}
             \label{repeating}
+	Pro gernerování slov v aplikaci je využíván přizpůsobený Leitnerův algoritmus. 
 
         \subsubsection{Adaptivní a globální obtížnost}
 
@@ -612,6 +614,8 @@
         
     \bibitem{bib:google-api}
         Google Inc. \textit{Google Cloud Platform} [online]. [cit 2016-12-21]. Dostupné z: \url{https://cloud.google.com/}
- 
+	\bibitem{bib:ebbinghaus}
+		Hermann Ebbinghaus \textit{Memory: A Contribution to Experimental Psychology}. New York, 1913 [cit 25-12-2016]. ISBN 978-16-142-7166-6.
+
 \end{thebibliography}
 \end{document}
