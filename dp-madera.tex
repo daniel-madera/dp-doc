@@ -474,15 +474,20 @@
         \subsubsection{Nápovědy}
             % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
             % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
+            V procvičování slovíček uživatel má k dispozici i nápovědy, v případě, že vlastník učebnice vyplní ke slovům i doplňující informace jako definici a použití ve větě z fyzické učebnice. Tyto nápovědy jsou použity pouze v případě, že se testuje metodou vzpomenutí. Další nápovědou je zobrazení prvního písmene odpovědi. Definice je nápověda, kterou uživatelé vidí jako doplňující atribut otázky. V případě, že uživatel klikne na tlačítko "Použít nápovědu", zobrazí se mu první písmeno odpovědi. Pokud klikne na tlačítko znovu, zobrazí se mu použití slova ve větě.
 
         \subsubsection{Vyhodnocování odpovědí}
             % určení vzdálenosti slov - více úrovní odpovědí
             % využívá se Levenshteina
+            K vyhodnocování odpovědi se využívá znovu Levenshteinovy vzdálenosti popsané v kapitole \ref{levenshtein}. Odpověď je vyhodnocena do tří kategorií - správně, špatně a neúplně. Před porovnáváním slova, je z odpovědi odstraněné mezery, tabulátory a další speciální znaky. Správně je vyhodnocena pouze odpověď, která se plně shoduje s referenčním slovem. Jako neúplná je vyhodnocena v případě, že na 5 písmen je pouze jedna jednoznaková editace - tedy chybovost 20\%. V ostatních případech je odpověď vyhodnocená jako špatná. Pokud uživatel využije alespoň jednu z nápověd, automaticky se vyhodnocuje odpověď jako neúplná i v případě zcela správné odpovědi. 
 
         \subsubsection{Kontrola podvádění}
             % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
             % slova ve slovnících a potom nedoplňují do aplikace
             % měření času odpovědi - v závisloti na délce odpověd 
+            Aplikace nemá za úkol testovat žáky, zda zodpovědně a bez pomoci procvičují slova. Filozofie aplikace má být motivovat žáky a poskytnout jim příjemný nástroj na efektivnější učení slovíček z cizího jazyka. Proto v aplikace nejsou zakomponovány žádné mechanismy, které mají za úkol kontrolovat uživatele, zda si například nevyhledávají slovíčka ve slovníku nebo nepracují na procvičení společně s další osobou. 
+
+            Jsou způsoby, jak by se ale tato funkčnost dala do aplikace implementovat a to například v podobě měření času odpovědi. Vyhodnocení by bylo na základě délky odpovědi a časem odpovědi. Další, více striktnější, omezení podvádění by mohla být kontrola, zda uživatel opustil aktuální okno aplikace.
 
     \subsection{Připomínání slov}
         % shrnout supermemo aplogritmus
@@ -539,13 +544,36 @@
         % počty zvládnutých slov studenta
         % třídních zvládnutých slov
         % cinknutí při zvládnutém slově
+        % motivace je důležitou součástí, jelikož aplikace apeluje na vlastní iniciativu a nenutí žáky si procvičovat slovíčka
+        Motivace je důležitou součástí, jelikož aplikace apeluje na vlastní iniciativu, popřípadě mohou být nuceni externě (mimo aplikaci) například vyučujícím. Aby se žáci rádi vraceli k aplikaci, je nutné zaujmout je designem nebo nějakou vnitřní psychologickou motivací. Další možností motivace je zařadit do aplikace nějakou formu hry. Například za milník naučených slov žáky odměnit například jednoduchou hrou. To by ale vyžadovalo složitější návrh aplikace.
 
-    \subsection{Model databáze}
+        \subsubsection{Třídní počet zvládnutých slov}
+            % zobrazeno neustále v panelu s přihlášeným uživatelem
+            % cinknutí a zobrazení upozornění v podobě výrazného prvku
+            Jednou z vnitřních psychologických motivací je ukázání uživateli, že nějakým způsobem přispívá do kolektivu. Pokud je uživatel přihlášen do nějaké třídy nebo skupiny uživatelů, vidí v horním panelu počet zvládnutých slov v rámci třídy. Tento způsob má za následek to, že může dojít k předháněním mezi třídami, přičemž přispívání zvládnutými slovy na úrovní uživatelů je anonymní. V případě, že uživatel dokončí slovo v rámci dané třídy, aplikace ho upozorní v podobě zvukové signalizace a zvýrazní sekci, kde se nachází tyto statistické údaje.
 
+        \subsubsection{Vlastní počet zvládnutých slov}
+            % skryté, až na rozkliknutí se zobrazí počet zvládnutých slov
+            % problém výskytu stejných slov v různých učebnicích
+            Další vnitřní psychologickou motivací je zobrazení uživateli, kolik slov doposud v aplikaci zvládl procvičit. Tato informace je uživateli skryta ve výchozím stavu, pokud uživatel chce vidět jeho pokrok, musí kliknout na doplňující statistické informace. Důvodem skrytého výchozího stavu je to, aby uživatel neviděl, kolik úsilí je nutné vynaložit, aby slovo bylo korektně dokončeno. Mohlo by se totiž zdát, že slova do dokončených se načítají příliš pomalu, jelikož procvičení slova vyžaduje několika násobné opakování. 
+
+            Dalším problémem je unikátnost slov, protože učebnice jsou editovatelné prostřednictvím různých vlastníků a do každé z nich lze zapsat identické slovo. Nelze proto počet zvládnutých slov vyhodnocovat pouze na základě úspěšně dokončených slov, ale na základě unikátních úspěšně dokončených slov. Unikátnost se provádí na referenčním slově v cizím jazyce. Problém ale vzniká, pokud nějaký uživatel při tvorbě slovíček zadává slovo včetně členu a jiný ne. Tato slova se posuzují jako dvě různá.
+
+        \subsubsection{Design aplikace}
+            % spíše, aby 
+            % nechat na profesionálním grafikovi
+            Design aplikace má také velký vliv na motivaci žáků se do ní vracet. Pokud design disponuje dostatkem barev, různých designových prvků v podobě zvířat nebo jiných entit, ze kterých jsou děti odvázané. Aplikace je cílená pro děti základních škol zejména prvního stupně tedy ve věku 6 až 10 let, u nichž design hraje velkou roli. Další vlastností, kterou by měl design disponovat je responzivnost pro mobilní telefony, potažmo přímo dedikovanou aplikaci pro chytrý telefon. Aktuální trend je takový, že každý žák na první stupni ZŠ ovládá chytrý telefon.
+
+            Pro kvalifikovaný přístup k designu by se měla aplikace zadat profesionálnímu grafikovi, který by design přizpůsobil pro děti.
 
     \subsection{Architektura aplikace}
         % architektura celé aplikace
-        % 2 části, ve skratce popsat, která je za co zodpovědná
+        % 2 části, ve zkratce popsat, která je za co zodpovědná
+        Aplikace je implementovaná v podobě webové služby a skládá se z dvou částí - klientská a serverová. 
+
+        Serverová část je zodpovědná za servírování klientské aplikace, rovněž aplikace poskytuje aplikační rozhraní, kde na základě dotazů lze získat data ve formátu JSON. V serverové části je implementovaný Supermemo algoritmus pro připomínání slov. Dále je server zodpovědný za získání zvukové nahrávky z Google Text to Speech API, ukládání její kopie a její poskytnutí pro klienta. V neposlední řadě se server zabývá problematikou autorizace a autentizace uživatelů v podobě JavaScript Web Tokens (JWT). 
+
+        Klientská aplikace je zodpovědná za zobrazení načtených dat ze serveru, poskytnutí přehledného grafického rozhraní pro tvorbu, editaci a mazání dat nutných pro procvičování a připomínání slov (slovíčka, učebnice, třídy apod.). V klientské části je implementovány algoritmy Leitnerova systému a spočtení Levenshteinovy vzdálenosti. Dále klient je zodpovědný za načítání obrázků z Google Search API.
 
 
 \newpage
@@ -628,8 +656,6 @@
 
         \subsubsection{HTTP a REST API}
 
-        \subsubsection{WSGI}
-
         \subsubsection{Implementace algoritmů}
             % Supermemo implementace na serveru
             % CRON připomínací emaily pouze v případě, že stihneš dodělat do APP
@@ -648,7 +674,7 @@
 
         \subsubsection{OAuth2}
 
-        \subsubsection{JWT}
+        \subsubsection{JavaScript Web Tokens}
 
         \subsubsection{CORS}
 
