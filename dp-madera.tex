@@ -165,6 +165,7 @@
             Vocabulary Trainer je webová aplikace zdarma napsaná v jazyce PHP, která naučí 5000 nejvíce používaných slov daného jazyka. Aplikace umožňuje hodně možného nastavení. K dispozici je i řada jazyků včetně češtiny a to jako referenční i jako učený jazyk. Testování spočívá nejdříve ve čtení slov a následně uživatel vybírá možnosti odpovědi. Aktuálně překládané slovo si lze kdykoliv přehrát v různé rychlosti. Jako motivační základ aplikace využívá jednoduchý bodový systém. Součástí je i kalendář s email upomínkou k dalšímu testování. Program je propracovaný, ale poměrně pomalý a dlouho trvá zejména úvodní načítání dat. Její výrobce LanguageCourse S.L. poskytuje i mobilní aplikaci pro Android k učení anglických slov a frází.
 
         \subsubsection{Supermemo aplikace}
+            \label{supermemo-app}
             Za zmínku ještě stojí aplikace Supermemo. Není to aplikace s připravenými daty k testování slov cizího jazyka, ale slouží čistě jako šablona pro testování jakéhokoliv druhu otázek. Aplikace implementuje algoritmus Supermemo, který je založen na metodě postupného zvyšování intervalu dotazování na dané otázky. Při každé odpovědi program spočítá, kdy by si uživatel měl danou otázku zopakovat tak, aby odpověď byla správná a zároveň se co nejvíce zvyšoval interval mezi aktuální a předchozí odpovědí. Aplikace se adaptuje na schopnosti uživatele, v přiměřeném měřítku buď zvyšuje nebo snižuje interval dalšího připomenutí.
 
         % možné ještě rozvést aplikaci EasyWords
@@ -243,6 +244,7 @@
                 Zajímavým využitím multimédií by mohlo být zahrnutí otestování výslovnosti. Tedy možnost nahrání odpovědi a následně by došlo k rozpoznání. Ale analýza a rozpoznání řeči není nikterak triviální záležitost. Dalším zajímavým řešením byly herní testy. Díky nimž docházelo k zvýšením motivace uživatelů. Problém je, že tento typ procvičování většinou není zas tolik efektivní, jelikož si uživatel procvičí například v případě doplňování písmen křížovky nebo známé hry \textit{Hangman} pouze pár slov za poměrně dlouhý čas.
 
         \subsection{Metoda rozloženého opakování}
+            \label{spaced-repetition}
             % obecně o metodě 
             Až na výjmečné paměti je obecně známo, že pokud chceme informaci v paměti uchovat dlouhodobě, je nutné opakovaně připomínat. Pokud informace není vyžívána s největší pravděpodobností dojde ke ztráte této informace. V případě, že uživatel s touto informací pracuje častěji, výrazně navyšuje šance pro její zapamatování. Metoda rozloženého opakování (\textit{spaced repetition}) je učební technika založená na opakovaném připomínání informace s navyšujícím itervalem. Na začátku učebního procesu, jsou intervaly krátké například na hodinu, 4 hodiny nebo celý den. S postupem se tyto intervaly mohou zvyšují až na týdny a měsíce. Ideální systém rozploženého opakování nabídne zopakování informace před tím, než dojde k jejímu eventuálnímu nevzpomenutí.
 
@@ -423,7 +425,7 @@
 
         \subsubsection{Určení globální obtížnosti}
             % shrnutí o váženém průměru obtížnosti, jaké a v jaké váze faktory jako Levenshtein, přehlasování a dvojitá písmena tvoří určení obtížnosti slova
-
+            Základním parametrem globální obtížnosti slova je jeho délka, která má váhu 4 v celkovém průměru jednotlivých hodnot obtížnosti. Na základě prahových hodnot je délka rozdělena do čtyř kategorií - $\langle1,6)$ je snadné, $\langle6,11)$ je střední a $\langle11,\infty)$ je slovo těžké. Dalším parametrem k určení obtížnosti je Levenshteinova vzdálenost mezi referenčním slovem a jeho překladem, jejíž váha je 2. Znovu zde figurují nastavitelné prahové hodnoty - v případě, že se procentuální podobnost (tj. $pp = (1-a/l)*100$; kde $l$ je délka slova a $a$ je počet jednoznakových editací) nachází v intervalu $\langle70,100\rangle$, je obtížnost nejlehčí; v intervalu $\langle30,70)$ je střední a v intervalu $\langle0,30)$ je slovo těžké. Přehlasování znaku a dvojitý výskyt stejného znaku mají oba stejnou váhu 1. Bez výskytu přehlasování a dvojitého znaku je obtížnost kvalifikována jako snadná, jeden výskyt je střední obtížnost a více výskytů je obtížnost vyhodnocena jako těžká. 
 
     \subsection{Procvičování slovíček}
         % učitel nevidí statistiky dětí, pouze celé třídy
@@ -481,6 +483,54 @@
 
     \subsection{Připomínání slov}
         % shrnout supermemo aplogritmus
+        Připomínání slov je důležitou součástí aplikace. Funkce slouží k tomu, aby studenti nezapomněli na již naučená a zvládnutá slova z procvičování. Jelikož se jedná o webovou aplikaci, není úplně možné připomínat slova v přesných intervalech přímo v aplikaci. Způsob implementace připomínání slov je závislý na tom, aby se uživatel sám přihlásil a spustil funkci připomínání slov. Je možné na základě softwarového démonu Cron v určitých intervalech ze serveru odesílat emailová upozornění se slovy, které by si měl uživatel připomenout.
+
+        \subsubsection{Supermemo algoritmus}
+            Supermemo algoritmus je rovněž další implementace metody rozloženého opakování popsané v kapitole \ref{spaced-repetition}. První implementace Supermemo algoritmu v papírové podobě byla vytvořena již v roce 1985. V aplikaci je využívání aktuální verze 11, poprvé implementována v roce 2005. 
+
+            Algoritmus má dvě možnosti implementace - optimální interval a pokročilé opakování \cite{bib:supermemo}. Verze s optimálním interval je pro účely aplikace dostačující, jelikož pro implementaci s pokročilým opakováním by bylo nutné ukládat ke každému uživateli nepřeberné množství dat. Pro správnou funkci je nutné ukládat každou odpověď ke každému ze slovíček, na základě nichž se aplikace adaptuje na schopnosti uživatele. Oba algoritmy je možné si vyzkoušet v podobě desktopové aplikace popsané v kapitole \ref{supermemo-app}. V aplikaci lze pozorovat změny na uživateli v podobě křivky zapomínání a dalších statistických informacích. 
+
+            Definice spočtení optimálního interval\cite{bib:supermemo}: 
+
+                \begin{gather}
+                    I(1)=OF[1,L+1]\label{eq:2}\\
+                    I(n)=I(n-1)*OF[n,AF]
+                \end{gather}
+
+            kde:
+                \begin{itemize}
+                    \item $n$ počet již provedených připomenutí
+                    \item $I(n)$ je n-tý interval v řadě intervalů pro opakování
+                    \item $AF$ je absolutní obtížnost
+                    \item $L$ počet, kolikrát si uživatel nemohl vzpomenout na slovo
+                    \item $OF$ matice optimálních koeficientů pro zvyšování intervalu
+                    \item $OF[1,L+1]$ koeficient z matice na prvním řádku a L+1 sloupci
+                    \item $OF[n,AF]$ koeficient z matice, který koresponduje n-tému opakování a obtížnosti slova
+                \end{itemize} 
+
+            Matice koeficientů k výpočtu optimálních intervalů je získána z freeware aplikace SuperMemo 15. Tato matice je statisticky nejvhodnější pro žáky základních tříd. Ukázku matice znázorňuje následující tabulka \ref{of-matrix}.
+
+            \begin{table}[ht!]
+                \centering
+                \begin{tabular}{|c|c|c|l|c|c|c|}
+                    \hline
+                     & \textbf{1} & \textbf{2} & ... & \textbf{8} & \textbf{9} & \textbf{10} \\ \hline
+                    \textbf{1} & 2.48 & 2.22 &  & 1.12 & 1.00 & 0.89 \\ \hline
+                    \textbf{2} & 1.20 & 1.80 &  & 5.40 & 6.00 & 6.60 \\ \hline
+                    \textbf{3} & 1.20 & 1.50 &  & 3.30 & 3.60 & 3.90 \\ \hline
+                    \textbf{4} & 1.20 & 1.40 &  & 2.60 & 2.80 & 3.00 \\ \hline
+                    \multicolumn{1}{|l|}{...} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \hline
+                    \textbf{17} & 1.20 & 1.24 &  & 1.46 & 1.50 & 1.54 \\ \hline
+                    \textbf{18} & 1.20 & 1.24 &  & 1.45 & 1.48 & 1.52 \\ \hline
+                    \textbf{19} & 1.20 & 1.23 &  & 1.43 & 1.47 & 1.50 \\ \hline
+                    \textbf{20} & 1.20 & 1.23 &  & 1.42 & 1.45 & 1.48 \\ \hline
+                \end{tabular}
+                \caption{Matice koeficientů pro výpočet optimálních intervalů}
+                \label{of-matrix}
+            \end{table}
+
+        \subsubsection{Příklad řady optimálních intervalů}
+            V případě, že si uživatel pokaždé správně vzpomene na naučenou informaci spočtené intervaly pro středně těžké slovo budou přibližně - 2 dny, 6 dní, 14 dní, 27 dní, 49 dní, 82 dní, 131 dní, 7 měsíců, 10 měsíců, 15 měsíců, 21 měsíců, 2,5 roku, 3,5 roku atd. V případě, že dojde k zapomenutí slova, tj. uživatel při připomenutí nebude moci slovo vybavit, interval se ze začátku zkrátí a začíná se v matici koeficientů na dalším sloupci - což znázorňuje parametr $L$ v rovnici \ref{eq:2}.
 
     \subsection{Motivace}
         % počty zvládnutých slov studenta
@@ -615,19 +665,19 @@
     \addcontentsline{toc}{section}{\refname}
 
     \bibitem{bib:terasoft}
-        Terasoft, a.s. \textit{Terasoft - Výukové programy} [online] 2002-10-07. [cit. 2016-12-15]. Dostupné z: \url{http://www.terasoft.cz/czpages/cd_aj15.htm}
+        Terasoft a.s. \textit{Terasoft - Výukové programy} [online] 2002-10-07. [cit. 2016-12-15]. Dostupné z: \url{http://www.terasoft.cz/czpages/cd_aj15.htm}
     
     \bibitem{bib:langsoft}
         LangSoft s.r.o. \textit{Language Teacher} [online]. [cit. 2016-12-07]. Dostupné z: \url{http://www.langsoft.cz/teacher.htm}
 
     \bibitem{bib:motivace}
-        KREJČOVÁ, Lenka. \textit{Psychologické aspekty vzdělávání dospívajících}. 1. vyd. Praha: Grada Publishing, 2011 [cit 2016-12-18]. ISBN 978-80-247-3474-3.
+        KREJČOVÁ Lenka. \textit{Psychologické aspekty vzdělávání dospívajících}. 1. vyd. Praha: Grada Publishing, 2011 [cit 2016-12-18]. ISBN 978-80-247-3474-3.
 
     \bibitem{bib:beimiller}
-        BIEMILLER, Andrew, BOOTE, Catherine. \textit{An effective method for building meaning vocabulary in primary grades}. Vol 98(1), Journal of Educational Psychology, 2006 [cit 2016-12-18].
+        BIEMILLER Andrew, BOOTE Catherine. \textit{An effective method for building meaning vocabulary in primary grades}. Vol 98(1), Journal of Educational Psychology, 2006 [cit 2016-12-18].
 
     \bibitem{bib:suggestology}
-        LOZANOV, Georgi. \textit{Suggestology and Outlines of Suggestopedy}. 1. vyd. Gordon and Breach, 1978 [cit 2016-12-18]. ISBN 0-203-39282-5.
+        LOZANOV Georgi. \textit{Suggestology and Outlines of Suggestopedy}. 1. vyd. Gordon and Breach, 1978 [cit 2016-12-18]. ISBN 0-203-39282-5.
 
     \bibitem{bib:learning-vocab}
         I. S. P. Nation \textit{Learning Vocabulary in Another Language}. Cambridge University Press, 2001 [cit 2016-12-18]. ISBN 0-521-800927.
@@ -639,9 +689,12 @@
          Wikimedia Foundation, Inc. \textit{Levenshtein distance} [online] 2016-12-20. [cit. 2016-12-21]. Dostupné z: \url{https://en.wikipedia.org/wiki/Levenshtein_distance}
         
     \bibitem{bib:google-api}
-        Google Inc. \textit{Google Cloud Platform} [online]. [cit 2016-12-21]. Dostupné z: \url{https://cloud.google.com/}
+        Google, Inc. \textit{Google Cloud Platform} [online]. [cit 2016-12-21]. Dostupné z: \url{https://cloud.google.com/}
 	\bibitem{bib:ebbinghaus}
 		Hermann Ebbinghaus \textit{Memory: A Contribution to Experimental Psychology}. New York, 1913 [cit 25-12-2016]. ISBN 978-16-142-7166-6.
+
+    \bibitem{bib:supermemo}
+        WOZNIAK Piotr A. \textit{Repetition spacing algorithm used in SuperMemo 2002 through SuperMemo 2006} [online] 2006-04-02. [cit. 2016-12-26]. Dostupné z: \url{https://www.supermemo.com/english/algsm11.htm}
 
 \end{thebibliography}
 \end{document}
