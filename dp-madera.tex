@@ -425,31 +425,7 @@
 
         \subsubsection{Určení globální obtížnosti}
             % shrnutí o váženém průměru obtížnosti, jaké a v jaké váze faktory jako Levenshtein, přehlasování a dvojitá písmena tvoří určení obtížnosti slova
-            Základním parametrem globální obtížnosti slova je jeho délka, která má váhu 4 v celkovém průměru jednotlivých hodnot obtížnosti. Na základě prahových hodnot je délka rozdělena do čtyř kategorií - $\langle1,6)$ je snadné, $\langle6,11)$ je střední a $\langle11,\infty)$ je slovo těžké. Dalším parametrem k určení obtížnosti je Levenshteinova vzdálenost mezi referenčním slovem a jeho překladem, jejíž váha je 2. Znovu zde figurují nastavitelné prahové hodnoty - v případě, že se procentuální podobnost (tj. $pp = (1-a/l)*100$; kde $l$ je délka slova a $a$ je počet jednoznakových editací) nachází v intervalu $\langle70,100\rangle$, je obtížnost nejlehčí; v intervalu $\langle30,70)$ je střední a v intervalu $\langle0,30)$ je slovo těžké. Přehlasování znaku a dvojitý výskyt stejného znaku mají oba stejnou váhu 1. Bez výskytu přehlasování a dvojitého znaku je obtížnost kvalifikována jako snadná, jeden výskyt je střední obtížnost a více výskytů je obtížnost vyhodnocena jako těžká. 
-
-    \subsection{Procvičování slovíček}
-        % učitel nevidí statistiky dětí, pouze celé třídy
-        % aplikace nemá sloužit na zkoušení dětí učitelem
-        % testing to learn, not testing to assess 
-
-
-        \subsubsection{Vyhodnocování odpovědí}
-            % určení vzdálenosti slov - více úrovní odpovědí
-            % využívá se Levenshteina
-
-        \subsubsection{Metody testování}
-            % aktivní rozpoznání a aktivní vzpomenutí
-            % algoritmus na záměnu vzpomenutí a rozpoznání (možná obrázek)
-    
-        \subsubsection{Nápovědy}
-            % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
-            % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
-
-        \subsubsection{Kontrola podvádění}
-            % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
-            % slova ve slovnících a potom nedoplňují do aplikace
-            % měření času odpovědi - v závisloti na délce odpověd 
-
+            Základním parametrem globální obtížnosti slova je jeho délka, která má váhu 4 v celkovém průměru jednotlivých hodnot obtížnosti. Na základě prahových hodnot je délka rozdělena do čtyř kategorií - $\langle1,6)$ je snadné, $\langle6,11)$ je střední a $\langle11,\infty)$ je slovo těžké. Dalším parametrem k určení obtížnosti je Levenshteinova vzdálenost mezi referenčním slovem a jeho překladem, jejíž váha je 2. Znovu zde figurují nastavitelné prahové hodnoty - v případě, že se procentuální podobnost (tj. $pp = (1-a/l)*100$; kde $l$ je délka slova a $a$ je počet jednoznakových editací) nachází v intervalu $\langle70,100\rangle$, je obtížnost nejlehčí; v intervalu $\langle30,70)$ je střední a v intervalu $\langle0,30)$ je slovo těžké. Přehlasování znaku a dvojitý výskyt stejného znaku mají oba stejnou váhu 1. Bez výskytu přehlasování a dvojitého znaku je obtížnost kvalifikována jako snadná, jeden výskyt je střední obtížnost a více výskytů je obtížnost vyhodnocena jako těžká.
 
     \subsection{Generování slov pro procvičování}
         % generování slov na základě motivace, obtížnosti 
@@ -461,6 +437,7 @@
         Algoritmus pro procvičování slov se dělí na dvě části. V první části se zjišťuje, jaká slova jsou pro zkoušeného uživatele jednoduchá a naopak s jakými slovy má problém - tato fáze se bude dále nazývat inicializační. Po této fázi následuje fáze s použitím Leitnerova algoritmu - tato fáze bude nazývána testovací.
 
         \subsubsection{Inicializační fáze}
+            \label{init-faze}
             % setřídění slov nejlehčí, nejtěžší atd.
             % na základě odpovědi určení počet nutných správných opakování
             Na začátku testování jsou k dispozici slova s přiřazenou obtížností. Tato obtížnost je buď globální v případě, že se uživatel nesetkal ještě s daným slovem v aplikaci nebo uživatelská v případě, že uživatel dané slovo již procvičoval. Dle této obtížnosti se slovíčka seřadí tak, aby se střídala nejnižší a nejvyšší obtížnost. Na prvním místě tedy je slovo s nejnižší obtížností, následuje slovo s nejvyšší, dále slovo s druhou nejnižší atd. Důvodem tohoto seřazení je zvýšení motivace dětí. V případě, že by žák dostal na začátku nejtěžší slova, mohlo by si vytvořit odpor k procvičování v domnění, že slova jsou příliš složitá pro něj. 
@@ -480,6 +457,32 @@
             V případě přerušení testu dochází k ukládání aktuální Leitnerovy kategorie k danému uživateli. Díky tomu lze znovu navázat v případě, že uživatel se bude chtít k testování dané skupiny slov vrátit. Leitnerova kategorie vypovídá, jak problematické je slovo pro uživatele. V případě, že se slovo nachází v první kategorii je problematické a v případě, že se nachází ve třetí, uživatel ho zvládá bez obtíží. Díky této informaci dochází k adaptivnímu generování obtížnosti. V případě, že není u daného slova a uživatele uložená Leitnerova kategorie, je v inicializační části brána globální obtížnost.
 
             Například se může stát, že globální obtížnost slova je v kategorii těžkých, ale uživatel se s tímto slovem už několikrát setkal a dobře se mu pamatuje. Je proto zbytečné slovo mu opakovat vícekrát, jelikož na základě obtížnosti a správnosti odpovědi se generuje počet opakování. 
+
+    \subsection{Procvičování slovíček}
+        % učitel nevidí statistiky dětí, pouze celé třídy
+        % aplikace nemá sloužit na zkoušení dětí učitelem
+        % testing to learn, not testing to assess 
+        Základní myšlenkou procvičování a testování slovíček je pomoci se žákům efektivně naučit slovíčka, nikoliv poskytnou vyučujícím možnost posuzovat, jak na tom žáci jsou. Následující podkapitoly popisují, jakým způsobem probíhá testování, napovídání, vyhodnocování odpovědí a kontrola podvádění.
+
+        \subsubsection{Metody testování}
+            % aktivní rozpoznání a aktivní vzpomenutí
+            % algoritmus na záměnu vzpomenutí a rozpoznání (možná obrázek)
+            Pro procvičování slovíček je zvolen pouze aktivní přístup a to v metodách aktivního rozpoznání a aktivního vzpomenutí. Tyto metody se automaticky střídají v závislosti na odpovídání uživatele. V případě inicializační fáze procvičování, popsané v kapitole \ref{init-faze}, se metoda testování nemění, aby uživatel měl stejné podmínky pro vyhodnocení úvodní obtížnosti slova. V následující fázi, kde probíhá samotné procvičování se metody střídají. Když uživatel odpoví špatně na vzpomenutí a u slova má více než jednu nutnou správnou odpověď pro dokončení slova, následující procvičení stejného slova je metodou rozpoznání. Je to z důvodu zvýšení motivace, aby procvičování uživatele neodradilo, když si nevzpomene na cizojazyčný výraz. 
+
+            Jelikož vzpomenutí je paměťově náročnější úkol pro uživatele, je nutné, aby metoda potencionálně poslední odpovědi byla vzpomenutí. Jinak není možné ověřit, zda uživatel opravdu se slovo naučil i v cizojazyčném výraze. Tzn. V případě, že počet nutných správných odpovědí byl vyhodnocen na číslo 2, první metoda testování bude rozpoznání - uživatel napíše význam slova v mateřském jazyce. Pokud odpoví správně následuje metoda vzpomenutí. Pokud ale odpoví špatně, následuje znovu metoda rozpoznání.
+    
+        \subsubsection{Nápovědy}
+            % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
+            % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
+
+        \subsubsection{Vyhodnocování odpovědí}
+            % určení vzdálenosti slov - více úrovní odpovědí
+            % využívá se Levenshteina
+
+        \subsubsection{Kontrola podvádění}
+            % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
+            % slova ve slovnících a potom nedoplňují do aplikace
+            % měření času odpovědi - v závisloti na délce odpověd 
 
     \subsection{Připomínání slov}
         % shrnout supermemo aplogritmus
