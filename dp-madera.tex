@@ -721,29 +721,36 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
             Pro všechny funkce v aplikaci je nutné se přihlásit popřípadě registrovat. Uživatel vytvoří na základě svého jména a hesla účet, pod kterým bude v aplikaci vystupovat. Aplikace komunikuje pouze přes zabezpečenou komunikaci HTTPS. Aby nebylo možné heslo a jméno odposlechnout technikou man-in-the-middle. Jakmile je uživatel na základě hesla a jména ověřen, je mu zaslán JWT token, se kterým se identifikuje v hlavičce s každým dalším dotazem. Generování a ověřování JWT tokenu je popsané v kapitole \ref{jwt}.
 
     \subsection{Vývojové prostředí}
-        Pro vývoj SPA je důležitá správná konfigurace vývojového prostředí, jelikož dokáže hodně ovlivnit produktivnost programátora. Základními požadavky na vývojové prostředí je předzpracování kódu, automatické obnovení stránky po uložení editovaného souboru, vytvoření jednotného JS bundle souboru, který obsahuje všechny potřebné zdrojové kódy rozdělené do logických celků. Dále je vhodná pro produkční verzi aplikace například komprimace zdrojových kódů.
+        Pro vývoj SPA je důležitá správná konfigurace vývojového prostředí, jelikož dokáže hodně ovlivnit produktivnost programátora. Základními požadavky na vývojové prostředí je předzpracování kódu, automatické obnovení stránky po uložení editovaného souboru, vytvoření jednotného JS bundle souboru, který obsahuje všechny potřebné zdrojové kódy rozdělené do logických celků a poskytnutí HTTP serveru. Dále je vhodná pro produkční verzi aplikace například komprimace zdrojových kódů.
 
         \subsubsection{Webpack}
             % css injections, production vlastní css soubor
             % - rychlejší načítání (solo js solo css)
-            
+            Webpack je nástroj napsaný pro NodeJS, který umožňuje vytvořit požadované vývojové prostředí. Pro vývoj klientské aplikace jsou vytvořeny dvě webpack konfigurace - vývojová a produkční. Pro kompilaci JS souborů je využíván Babel kompilátor, který je popsán v následující kapitole. CSS soubory jsou v vývojové konfiguraci vkládány přímo jako inline styly do index.html souboru, aby bylo možné v reálném čase sledovat změny designu a nečekat na obnovení stránky, popřípadě emulovat určitý stav aplikace. V produkční verzi je vytvořen zvláštní CSS soubor, protože při načítání aplikace dochází k paralelnímu načítání CSS a JS souborů a dochází díky tomu k urychlení úvodního načtení aplikace. Pro vytvoření produkční verze je využívána pro kompilaci řada webpackových modulů jako například \textit{favicons-webpack-plugin} k tvorbě ikon pro řadu různých prohlížečů nebo \textit{html-webpack-plugin} pro minifikaci (kompresi) a znemožnění přečtení vytvořeného JS souboru, aby nebylo úplně jednoduché pročítat si přehledný JS kód\cite{bib:webpack}.
 
+        \subsubsection{Babel}
+            Babel je kompilátor, který transformuje rozšířený JavaScript do standardu, který většina prohlížečů podporuje - aktuálně ES5. Důvod využití tohoto kompilátoru je vysoká podpora EcmaScript2015 (ES6) a integrace JSX popsaných v následujících kapitolách. Babel je mimo jiné také doporučován komunitou zabývající se knihovnou React a používají ho společnosti jako Facebook nebo Evernote. Výhodou je, že Babel pouze rozšiřuje současnou verzi JavaScriptu a snaží se zachovat jeho dopřednou kompatibilitu.
 
-        \subsubsection{Babel}       
-        \subsubsection{JSX}
         \subsubsection{Podpora ES6}
+            Díky kompilátoru Babel lze využít novinky ze specifikace ES6, i když ještě není implementována do prohlížečů. Při vývoji nedílnou součástí bylo klíčové slovo \textit{export}, které umožňovalo rozdělení kódů do mnoha modulů a souboru. V aplikaci je také hojně využívána nová syntaxe tříd, která umožňuje přehlednější dědičnost, tvorbu konstruktorů a statických metod. Novinek, které jsou využívány v aplikaci, je celá řada, za zmínku stojí zkrácená šipková syntaxe \textit{=>}, která umožňuje sdílet klíčové slovo \textit{this} uvnitř logického bloku. 
+
+        \subsubsection{JSX}
+
 
     \subsection{Knihovna React}
         \label{react}
+        % abstraktní DOM
+        % imutabilita 
+        % \subsubsection{Imutabilita}
 
-        \subsubsection{Abstraktní DOM}
-        \subsubsection{Mobx}
-            % knihovna React se stává frameworkem
-        \subsubsection{Imutabilita}
-        \subsubsection{Směrování}
-        \subsubsection{Historie}
+        % \subsubsection{Abstraktní DOM}
+        
         \subsubsection{Komponenty}
 
+        \subsubsection{Mobx}
+            % knihovna React se stává frameworkem
+        
+        \subsubsection{Směrování a historie}
 
     \subsection{Implementace technologií}
         % layout komponenta
