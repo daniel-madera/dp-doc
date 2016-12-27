@@ -10,35 +10,86 @@
 \usepackage{cite}
 \usepackage{fancyhdr}
 \usepackage{afterpage}
-\usepackage[hidelinks,unicode,hyperfootnotes]{hyperref}
+\usepackage[hidelinks,unicode,hyperfootnotes,breaklinks=true]{hyperref}
 \usepackage{footnote}
 \usepackage{parskip}
 \usepackage{setspace} 
+
+\usepackage{upquote}
 \usepackage{listings}
 \usepackage{pdfpages}
 \usepackage{dirtree}
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{nccmath}
-%\usepackage[T1]{fontenc}
-%\usepackage[bottom]{footmisc}
-%\usepackage{fancyvrb}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\renewcommand{\lstlistingname}{Ukázka zdrojového kódu}
+\renewcommand*{\lstlistlistingname}{Seznam ukázek zdrojových kódů}
+
+\lstdefinelanguage{JS}{
+    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{darkgray}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{purple}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    morestring=[b]',
+    morestring=[b]"
+}
 
 \lstset{
-    language=PHP,
-    basicstyle=\ttfamily\small,
-    breaklines=true,
-    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    frame=lines,
-    showtabs=false,
-    showspaces=false,
+    language=JS,
+    extendedchars=true,
+    basicstyle=\footnotesize\ttfamily,
     showstringspaces=false,
-    keywordstyle=\color{red}\bfseries,
-    stringstyle=\color{green!50!black},
-    commentstyle=\color{gray}\itshape,
+    showspaces=false,
     numbers=left,
-    captionpos=t,
-    escapeinside={\%*}{*)}
+    numberstyle=\footnotesize,
+    numbersep=9pt,
+    tabsize=2,
+    breaklines=true,
+    showtabs=false,
+    captionpos=b,
+    inputencoding=utf8,    
+    literate=%
+         {á}{{\'a}}1
+         {í}{{\'i}}1
+         {é}{{\'e}}1
+         {ý}{{\'y}}1
+         {ú}{{\'u}}1
+         {ó}{{\'o}}1
+         {ě}{{\v{e}}}1
+         {š}{{\v{s}}}1
+         {č}{{\v{c}}}1
+         {ř}{{\v{r}}}1
+         {ž}{{\v{z}}}1
+         {ď}{{\v{d}}}1
+         {ť}{{\v{t}}}1
+         {ň}{{\v{n}}}1                
+         {ů}{{\r{u}}}1
+         {Á}{{\'A}}1
+         {Í}{{\'I}}1
+         {É}{{\'E}}1
+         {Ý}{{\'Y}}1
+         {Ú}{{\'U}}1
+         {Ó}{{\'O}}1
+         {Ě}{{\v{E}}}1
+         {Š}{{\v{S}}}1
+         {Č}{{\v{C}}}1
+         {Ř}{{\v{R}}}1
+         {Ž}{{\v{Z}}}1
+         {Ď}{{\v{D}}}1
+         {Ť}{{\v{T}}}1
+         {Ň}{{\v{N}}}1                
+         {Ů}{{\r{U}}}1
 }
 
 \renewcommand{\lstlistingname}{Ukázka kódu}
@@ -569,7 +620,7 @@
     \subsection{Architektura aplikace}
         % architektura celé aplikace
         % 2 části, ve zkratce popsat, která je za co zodpovědná
-        Aplikace je implementovaná v podobě webové služby a skládá se z dvou částí - klientská a serverová. 
+        Aplikace je implementovaná v podobě webové služby a skládá se z dvou částí - klientská a serverová. V návrhu aplikace dochází k vysokému sdílení dat mezi uživateli, proto je vhodné aplikaci implementovat jako webovou. Základní myšlenkou návrhu bylo oddělit klientskou a serverovou část, aby bylo možné do budoucna aplikaci rozšířit implementací například pro chytrý telefon.
 
         Serverová část je zodpovědná za servírování klientské aplikace, rovněž aplikace poskytuje aplikační rozhraní, kde na základě dotazů lze získat data ve formátu JSON. V serverové části je implementovaný Supermemo algoritmus pro připomínání slov. Dále je server zodpovědný za získání zvukové nahrávky z Google Text to Speech API, ukládání její kopie a její poskytnutí pro klienta. V neposlední řadě se server zabývá problematikou autorizace a autentizace uživatelů v podobě JavaScript Web Tokens (JWT). 
 
@@ -577,57 +628,120 @@
 
 
 \newpage
-\section{Klientská aplikace}
+\section{Klientská část}
+    
+    Tato kapitola se zbývá klientskou částí aplikace od technologického návrhu aplikace, přes vývojové prostředí a vlastní implementaci, až po testování. Aplikace je napsána v jazyce JavaScript za podpory kódovacího jazyka HTML a kaskádovými styly CSS. Základní specifikace jazyků jsou doplněny o knihovny React s využitím MOBX rozšíření a o knihovnu pouze s CSS styly z Bootstrap frameworku.
 
     \subsection{Návrh aplikace}
-        % nutnost použití webové aplikace - více uživatelů, sdílení dat, výhody žádná instalace apod
         % respoznivnost uživatelského rozhraní
+        % využití single page applikace - nutnost vysoké responzivity mezi uživatelem a aplikací - nahrazení desktopové
+        % vývoj několik možností - standadní webová aplikace a single-page
+        Využití webových technologií bylo jasnou volbou v návrhu aplikace ihned po specifikování požadavků, protože hlavním požadavkem bylo vytvořit portál pro žáky a učitele, kteří si budou moci sdílet mezi sebou učebnice se slovíčky, budou se moci přihlašovat do svých tříd a společně pracovat na zvýšení slovní zásoby. 
+
+        Jelikož se mělo jednat o aplikaci, která do jisté míry měla nahrazovat desktopové aplikace, bylo nutné zvolit takovou technologii, která se nejeví úplně staticky a kde se nemusí čekat na obnovení celé stránky, ale kde dochází k okamžitým reakcím na uživatelské podněty. Na základě tohoto požadavku je využita technologie Single Page aplikace (SPA).   
+
 
         \subsubsection{Single-page}
             % definice
             % výhody
             Single page application (SPA) je jedna webová stránka, která poskytuje celou aplikaci. Při prvním načtení je přenesen veškerý kód pro aplikační běh, tj. HTML šablony, JavaScript i kaskádové styly (CSS). Na základě akcí prováděných uživatelem jsou poté dynamicky načítány ostatní zdroje jako data, obrázky apod. Celá stránka se nikdy neobnovuje jako tomu je v klasické webové aplikaci. Veškerá aplikační logika je přenesena ze serveru na klienta za účelem server odlehčit. V případě SPA server většinou po načtení aplikace poskytuje pouze data a to nejčastěji ve formátech JavaScript Object Notation (JSON) nebo Extensible Markup Language (XML).
 
-            SPA komunikuje se serverem obvykle dvěma způsoby - web sokety nebo AJAX (asynchronous JavaScript and XML) dotazy. Další technologií pro komunikaci, která by mohla být využita je Server-sent events (SSEs), která umožňuje serveru zasílat data klientovi přes HTTP protokol. Pro účely aplikace bude omezenou pouze na AJAX komunikaci, jelikož pro web sokety a tudíž obousměrnou komunikaci v aplikaci využití není.
+            Hlavní výhoda SPA je kromě úvodního načítání dat rychlá odezva. Jelikož se ze serveru nestahuje celý HTML kód, nýbrž jen čistá data. Dochází tedy hlavně k datové i výkonové úspoře, protože prohlížeč nemusí renderovat celou stránku, ale pouze tu část, kde dochází ke změně. Výhodou je také možnost implementace tzv. lazy-loadingu, kdy dojde k rychlému vykreslení obsahu a náročnější operace se mohou být načteny nezávisle později. SPA má i řadu nevýhod. Například v prohlížeči pro chod aplikace je nutné mít zapnutý JavaScript, další nevýhodou je obtížné zpracování obsahu pro roboty vyhledávačů. Ale zařazení do vyhledávání je nepodstatné pro aktuální potřeby aplikace.
+
+        \subsubsection{Komunikace se serverem}
+            Klient komunikuje se serverem obvykle dvěma způsoby - web sokety nebo AJAX (Asynchronous JavaScript and XML) dotazy. Další technologií pro komunikaci, která by mohla být využita je Server-sent events (SSEs), která umožňuje serveru zasílat data klientovi přes HTTP protokol. Pro účely aplikace bude omezenou pouze na AJAX komunikaci, jelikož pro web sokety a tudíž obousměrnou komunikaci v aplikaci využití není.
+
 
         \subsubsection{Model aplikace}
+            % komunikace se serverem
             % url diagram
             % mock api
+            Před začátkem vývoje klientské aplikace bylo vytvořeno prozatímní aplikační rozhraní pomocí platformy Anypoint od firmy Mulesoft. Je to volně dostupná služba, kde lze velmi jednoduše, staticky a poměrně variabilně popsat serverové API v podobě souborů se syntaxí RAML (RESTful API Modeling Language). Díky této službě lze namodelovat klientskou aplikaci pomocí URL mapy a následně toto API zveřejnit a umožnit testování klienta. Na zdrojový kód s RAML syntaxí lze nahlédnout v příloze. 
+
+            \begin{figure}[ht!]
+                \dirtree{%
+                    .0 https://mocksvc.mulesoft.com/mocks/cf7fb1db-04da-474f-b31c-c2636de07113/.
+                    .1 api\_token\_auth/\DTcomment{získání autorizačního tokenu}.
+                    .1 api\_token\_refresh/\DTcomment{obnovení autorizačního tokenu}.
+                    .1 word\_classes/\DTcomment{list slovních druhů}.
+                    .1 statistics/\DTcomment{objekt se statistikami o uživateli}.
+                    .1 groups/.
+                    .2 \dots.
+                    .2 owned/\DTcomment{přidání nové třídy}.
+                    .2 owned/<group\_id>/\DTcomment{editace, smazání vlastní třídy}.
+                    .1 tests/<test\_id>/\DTcomment{editace, smazání testu (skupiny slovíček)}.
+                    .2 words/\DTcomment{editace slovíček v testu}.
+                    .2 \dots.
+                    .1 textbooks/<textbook\_id>/\DTcomment{editace, smazání učebnice}.
+                    .2 modules/<module\_id>/\DTcomment{editace, smazání modulu}.
+                    .2 \dots.
+                    .3 words/\DTcomment{tvorba slovíček v učebnici}.
+                    .3 \dots.
+                    .1 \dots.
+                }
+                \caption{Ukázka struktury URL}
+                \label{url-model}
+            \end{figure}
 
         \subsubsection{Editovatelné seznamy}
             % editace dat v podobě autosave editovatelných seznamů
+            Pro jednotnost aplikace všechny data lze editovat přímo prostřednictvím seznamů. Vazba M:1 je v řádcích editovatelná prostřednictvím výběrových listů, vazby M:N a 1:M jsou editovatelné skrz vyskakovací okna s možnými návrhy. K získání potřebných dat dochází před načtením editovatelného seznamu. Obsah seznamu je vkládán přímo do editovatelného pole, v případě, že uživatel změní jeho obsah a odejde z buňky, obsah se automaticky uloží. Ukládaný obsah na server je omezen pouze na změněnou položku a identifikátor pro optimalizaci přenášeného obsahu. 
 
         \subsubsection{Design}
             % wireframes
-            % responzivnost      
-
-        \subsubsection{Implementace algoritmů}
+            % responzivnost
+            % bootstrap, pouze css styly žádné JS, vše implementováno v Reactu, pomocné rozšíření react-bootstrap
+            Pro design aplikace byla využita čistá CSS knihovna z frameworku Bootstrap. Původní verze aplikace byla vyvíjena pod tématickou šablonou Yeti Bootswatch. Na základě konzultace bylo od této šablony opuštěno, jelikož působila příliš hranatě. Téma bylo vyměněno za Cerulean, které disponuje oblejšími prvky a výraznějšími barvami, aby žáky více zaujalo. Design aplikace je responsivní a připraven pro testování na tabletech a chytrých telefonech.
 
         \subsubsection{Adaptovaná Levenshteinova vzdálenost}
             % Levenstein a Leitner jsou implementovány na klientské straně
+            Pro vyhodnocování odpovědi a určení podobnosti mezi referenčním slovem a jeho překladem se využívá Levenshteinovy vzdálenosti popsané v kapitole \ref{levenshtein}. Tato vzdálenost pro určení podobnosti slov musela být v jisté míře upravena, aby lépe vyhodnocovala podobnost slov mezi jazyky. Standardní Levenshtein, který měl parametry dva řetězce byl rozšířen o další nepovinné atributy - možnost odebrat diakritiku u znaků a možnost předat funkci slovník, kde klíč ve slovníku je písmeno v mateřském jazyce a hodnota ve slovníku je písmeno v cizím jazyce. 
 
-        \subsubsection{Google API}
+            Pro příklad v anglickém jazyce písmeno $c$ odpovídá písmenu $k$ v českém. Po předání slovníku do funkce pro výpočet Levenshteinovy vzdálenosti dojde k porovnání znaků na daných pozicích a v případě, že nesouhlasí, funkce se pokusí porovnat s odpovídajícím písmenem ve slovníku.
+
+\begin{lstlisting}[language=JS, caption={Příklady použití Levenshteinovy vzdálenosti},label=code:levenshtein]
+let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
+"šance".levenshtein("chance", dictionary) // === 0
+"šance".levenshtein("chance") // === 2
+"korektní".levenshtein("correct", dictionary) // === 3
+"korektní".levenshtein("correct") // === 5
+\end{lstlisting}
+
+        \subsubsection{Google Search API}
             % api console key
             % images
+            Pro získání obrázků se využívá Google Search API. Obrázky jsou získány v podobě odkazů. Uživatel si může vybrat z deseti obrázků, pokud žádný z nich nevyhovuje, vytvoří se nový dotaz s další stránkou. Pro možnost tvorby dotazů je nutné v Google API Console vytvořit vlastní API klíč, který se přidává jako atribut k URL. K API klíči je také nutné vytvořit vlastní Google vyhledávač se svým identifikátorem. Tento atribut je rovněž přidáván jako value-key parametr dotazu. URL vlastního dotazu vypadá takto:
+
+            ~\url{https://www.googleapis.com/customsearch/v1?q=<slovo>&searchType=image&cx=
+            <id_vyhledavace>&key=<api_klic>}
+
+            Odpověď na dotaz je JSON soubor s odkazy na jednotlivé obrázky. K dispozici jsou jak náhledové, malé obrázky (řádově několik desítek kB), tak obrázky v plné velikosti. Jelikož nelze zaručit permanentní přístup k souboru, po vybrání obrázku se na serveru vytvoří komprimovaná kopie obrázku s jednotnou šířkou. 
 
         \subsubsection{Zabezpečení}
+            Pro všechny funkce v aplikaci je nutné se přihlásit popřípadě registrovat. Uživatel vytvoří na základě svého jména a hesla účet, pod kterým bude v aplikaci vystupovat. Aplikace komunikuje pouze přes zabezpečenou komunikaci HTTPS. Aby nebylo možné heslo a jméno odposlechnout technikou man-in-the-middle. Jakmile je uživatel na základě hesla a jména ověřen, je mu zaslán JWT token, se kterým se identifikuje v hlavičce s každým dalším dotazem. Generování a ověřování JWT tokenu je popsané v kapitole \ref{jwt}.
 
     \subsection{Vývojové prostředí}
+        Pro vývoj SPA je důležitá správná konfigurace vývojového prostředí, jelikož dokáže hodně ovlivnit produktivnost programátora. Základními požadavky na vývojové prostředí je předzpracování kódu, automatické obnovení stránky po uložení editovaného souboru, vytvoření jednotného JS bundle souboru, který obsahuje všechny potřebné zdrojové kódy rozdělené do logických celků. Dále je vhodná pro produkční verzi aplikace například komprimace zdrojových kódů.
+
         \subsubsection{Webpack}
             % css injections, production vlastní css soubor
             % - rychlejší načítání (solo js solo css)
+            
 
-        \subsubsection{Babel}
+
+        \subsubsection{Babel}       
         \subsubsection{JSX}
-
+        \subsubsection{Podpora ES6}
 
     \subsection{Knihovna React}
-        
+        \label{react}
+
         \subsubsection{Abstraktní DOM}
         \subsubsection{Mobx}
             % knihovna React se stává frameworkem
         \subsubsection{Imutabilita}
         \subsubsection{Směrování}
+        \subsubsection{Historie}
         \subsubsection{Komponenty}
 
 
@@ -644,7 +758,7 @@
 
 
 \newpage
-\section{Serverová aplikace}
+\section{Serverová část}
     
     \subsection{Technologie}
         \subsubsection{Webová aplikace}
@@ -675,6 +789,7 @@
         \subsubsection{OAuth2}
 
         \subsubsection{JavaScript Web Tokens}
+            \label{jwt}
 
         \subsubsection{CORS}
 
@@ -724,6 +839,9 @@
 
     \bibitem{bib:supermemo}
         WOZNIAK Piotr A. \textit{Repetition spacing algorithm used in SuperMemo 2002 through SuperMemo 2006} [online] 2006-04-02. [cit. 2016-12-26]. Dostupné z: \url{https://www.supermemo.com/english/algsm11.htm}
+
+    \bibitem{bib:webpack}
+        KOPPERS Tobias a ostatní. \textit{Webpack 2 Documentation} [online] 2016. [cit. 2016-12-26]. Dostupné z: \url{https://webpack.js.org/configuration/}
 
 \end{thebibliography}
 \end{document}
