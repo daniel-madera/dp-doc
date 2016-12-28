@@ -14,7 +14,6 @@
 \usepackage{footnote}
 \usepackage{parskip}
 \usepackage{setspace} 
-
 \usepackage{upquote}
 \usepackage{listings}
 \usepackage{pdfpages}
@@ -27,14 +26,11 @@
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 
-\renewcommand{\lstlistingname}{Ukázka zdrojového kódu}
-\renewcommand*{\lstlistlistingname}{Seznam ukázek zdrojových kódů}
-
 \lstdefinelanguage{JS}{
     keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let},
     keywordstyle=\color{blue}\bfseries,
-    ndkeywords={class, export, boolean, throw, implements, import, this},
-    ndkeywordstyle=\color{darkgray}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this, extends},
+    ndkeywordstyle=\color{purple}\bfseries,
     identifierstyle=\color{black},
     sensitive=false,
     comment=[l]{//},
@@ -92,9 +88,6 @@
          {Ů}{{\r{U}}}1
 }
 
-\renewcommand{\lstlistingname}{Ukázka kódu}
-\renewcommand*{\lstlistlistingname}{Seznam zdrojových kódů}
-
 \makeglossaries
 \renewcommand*{\glsgroupskip}{}
 
@@ -107,19 +100,22 @@
 \linespread{1.3}
 \setlength{\headheight}{15pt}
 
-\newglossaryentry{tulg}{
-    name={Technická univerzita v~Liberci},
-    description={Technická univerzita v~Liberci}
-}
-\newglossaryentry{dp}{
-    type=\acronymtype,
-    name={DP},
-    description={Diplomová práce},
-    first={DP}
+\newglossaryentry{ajax}{
+    name={AJAX},
+    description={Asynchronous JavaScript and \gls{xml}},
+    first={AJAX (Asynchronous JavaScript and \gls{xml})}
 }
 
+\newglossaryentry{xml}{
+    name={XML},
+    description={Extensible Markup Language},
+    first={XML}
+}
+
+
 \begin{document}
-\includepdf[pages={1,2,3}]{dp-titlepage.pdf}
+\includepdf[pages={1,2}]{dp-titlepage.pdf}
+\includepdf[pages={1,2}]{zadani.pdf}
 \includepdf{prohlaseni.pdf}
 \setcounter{page}{3}
 
@@ -143,19 +139,23 @@
 \thispagestyle{empty}
 
 \newpage
+\thispagestyle{empty}
 \setcounter{tocdepth}{2}
 \tableofcontents
 
+
 \newpage
+\thispagestyle{empty}
 \listoffigures
 \listoftables
+\renewcommand{\lstlistingname}{Ukázka kódu}
+\renewcommand{\lstlistlistingname}{Seznam ukázek zdrojových kódů}
 \lstlistoflistings
 
 \newpage
-\printglossary[type=\acronymtype,title=Seznam zkratek]
-%\printglossary[style=altlist,title=Slovník]
+\thispagestyle{empty}
+\printglossary[title=Seznam zkratek]
 \cleardoublepage
-
 
 \section{Úvod}
     % proč se zaobývat tímto tématem
@@ -649,7 +649,7 @@
             Hlavní výhoda SPA je kromě úvodního načítání dat rychlá odezva. Jelikož se ze serveru nestahuje celý HTML kód, nýbrž jen čistá data. Dochází tedy hlavně k datové i výkonové úspoře, protože prohlížeč nemusí renderovat celou stránku, ale pouze tu část, kde dochází ke změně. Výhodou je také možnost implementace tzv. lazy-loadingu, kdy dojde k rychlému vykreslení obsahu a náročnější operace se mohou být načteny nezávisle později. SPA má i řadu nevýhod. Například v prohlížeči pro chod aplikace je nutné mít zapnutý JavaScript, další nevýhodou je obtížné zpracování obsahu pro roboty vyhledávačů. Ale zařazení do vyhledávání je nepodstatné pro aktuální potřeby aplikace.
 
         \subsubsection{Komunikace se serverem}
-            Klient komunikuje se serverem obvykle dvěma způsoby - web sokety nebo AJAX (Asynchronous JavaScript and XML) dotazy. Další technologií pro komunikaci, která by mohla být využita je Server-sent events (SSEs), která umožňuje serveru zasílat data klientovi přes HTTP protokol. Pro účely aplikace bude omezenou pouze na AJAX komunikaci, jelikož pro web sokety a tudíž obousměrnou komunikaci v aplikaci využití není.
+            Klient komunikuje se serverem obvykle dvěma způsoby - web sokety nebo \gls{ajax} dotazy. Další technologií pro komunikaci, která by mohla být využita je Server-sent events (SSEs), která umožňuje serveru zasílat data klientovi přes HTTP protokol. Pro účely aplikace bude omezenou pouze na \gls{ajax} komunikaci, jelikož pro web sokety a tudíž obousměrnou komunikaci v aplikaci využití není.
 
 
         \subsubsection{Model aplikace}
@@ -729,35 +729,86 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
             Webpack je nástroj napsaný pro NodeJS, který umožňuje vytvořit požadované vývojové prostředí. Pro vývoj klientské aplikace jsou vytvořeny dvě webpack konfigurace - vývojová a produkční. Pro kompilaci JS souborů je využíván Babel kompilátor, který je popsán v následující kapitole. CSS soubory jsou v vývojové konfiguraci vkládány přímo jako inline styly do index.html souboru, aby bylo možné v reálném čase sledovat změny designu a nečekat na obnovení stránky, popřípadě emulovat určitý stav aplikace. V produkční verzi je vytvořen zvláštní CSS soubor, protože při načítání aplikace dochází k paralelnímu načítání CSS a JS souborů a dochází díky tomu k urychlení úvodního načtení aplikace. Pro vytvoření produkční verze je využívána pro kompilaci řada webpackových modulů jako například \textit{favicons-webpack-plugin} k tvorbě ikon pro řadu různých prohlížečů nebo \textit{html-webpack-plugin} pro minifikaci (kompresi) a znemožnění přečtení vytvořeného JS souboru, aby nebylo úplně jednoduché pročítat si přehledný JS kód\cite{bib:webpack}.
 
         \subsubsection{Babel}
-            Babel je kompilátor, který transformuje rozšířený JavaScript do standardu, který většina prohlížečů podporuje - aktuálně ES5. Důvod využití tohoto kompilátoru je vysoká podpora EcmaScript2015 (ES6) a integrace JSX popsaných v následujících kapitolách. Babel je mimo jiné také doporučován komunitou zabývající se knihovnou React a používají ho společnosti jako Facebook nebo Evernote. Výhodou je, že Babel pouze rozšiřuje současnou verzi JavaScriptu a snaží se zachovat jeho dopřednou kompatibilitu.
+            Babel je kompilátor, který transformuje rozšířený JavaScript do standardu, který většina prohlížečů podporuje - aktuálně ES5. Důvod využití tohoto kompilátoru je vysoká podpora EcmaScript2015 (ES6) a integrace JSX popsaných v následujících kapitolách. Babel je mimo jiné také doporučován komunitou zabývající se knihovnou React a používají ho společnosti jako Facebook nebo Evernote. Výhodou je, že Babel pouze rozšiřuje současnou verzi JavaScriptu a snaží se zachovat jeho dopřednou kompatibilitu\cite{bib:babel}.
 
         \subsubsection{Podpora ES6}
-            Díky kompilátoru Babel lze využít novinky ze specifikace ES6, i když ještě není implementována do prohlížečů. Při vývoji nedílnou součástí bylo klíčové slovo \textit{export}, které umožňovalo rozdělení kódů do mnoha modulů a souboru. V aplikaci je také hojně využívána nová syntaxe tříd, která umožňuje přehlednější dědičnost, tvorbu konstruktorů a statických metod. Novinek, které jsou využívány v aplikaci, je celá řada, za zmínku stojí zkrácená šipková syntaxe \textit{=>}, která umožňuje sdílet klíčové slovo \textit{this} uvnitř logického bloku. 
+            Díky kompilátoru Babel lze využít novinky ze specifikace ES6, i když ještě není implementována do prohlížečů. Při vývoji nedílnou součástí bylo klíčové slovo \textit{export}, které umožňovalo rozdělení kódů do mnoha modulů a souboru. V aplikaci je také hojně využívána nová syntaxe tříd, která umožňuje přehlednější dědičnost, tvorbu konstruktorů a statických metod. Novinek, které jsou využívány v aplikaci, je celá řada, za zmínku stojí zkrácená šipková syntaxe $=>$, která umožňuje sdílet klíčové slovo \textit{this} uvnitř logického bloku\cite{bib:ecma}. 
 
         \subsubsection{JSX}
-
+            JSX je specifikace, která umožňuje kompilovat stromovou strukturu podobnou XML do objektů standardu ECMAScript\cite{bib:jsx}. Jelikož má stejnou strukturu jako XML, je možné předávat značkám atributy klíč-hodnota. Díky kompilaci této struktury lze tedy uložit do JS proměnných celé šablony HTML kódu. Na základě těchto šablon je poté renderováno grafické rozhraní.
 
     \subsection{Knihovna React}
         \label{react}
         % abstraktní DOM
         % imutabilita 
-        % \subsubsection{Imutabilita}
+        React je komunitně rozšířená JavaScriptová knihovna pro vytváření webových komponent. Její předností je efektivní aktualizace a renderování pouze těch komponent, ve kterých dochází ke změnám dat. Uživatel při jejím použití neprování změny přímo na DOM (Document Object Model) dokumentu, ale na jeho abstraktní vrstvu. Výhodou je, že uzly v abstraktní vrstvě mohou uchovávat jejich vnitřní stav. V případě jeho změny React zajistí automaticky a efektivně promítne změny v DOM dokumentu. 
 
-        % \subsubsection{Abstraktní DOM}
         
         \subsubsection{Komponenty}
+            % Build encapsulated components that manage their own state, then compose them to make complex UIs.
+            % Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+            Prezentační vrstva aplikace lze rozdělit na jednotlivé logické celky v podobě jednoduchých a složitých komponent. Jednotlivé komponenty lze jednoduše vnořovat do sebe a tím vytvořit složitější interaktivní uživatelské rozhraní. Každá komponenta dědí od třídy \textit{Component} v knihovně \textit{React} a obsahuje funkci \textit{render}, která vrací obsah, který bude renderovaný v dokumentu. Dále komponenty obsahují funkci \textit{setState}, která mění její vnitřní stav a atributy \textit{props} a \textit{state}. \textit{Props} obsahuje konstantní atributy předané komponentě a \textit{state} obsahuje stavové objekty komponenty. V případě, že dojde ke zavolání \textit{setState} funkce a tedy změně objektu \textit{state}, dojde k zavolání funkce \textit{render} a tudíž k překreslení obsahu komponenty\cite{bib:react}.
 
-        \subsubsection{Mobx}
+\begin{lstlisting}[language=JS, caption={Příklad komponenty pro zobrazování nápovědy při procvičování slovíček},label=code:hints]
+export default class Hint extends React.Component {
+  showHint = e => {
+    this.setState({showHint: true})
+  }
+  render() {
+    const { definition, value, examStore } = this.props
+    const { showHint } = this.state
+    let firstLetter = value.substring(0, 1)
+    return <div className="hints">
+        <Button onClick={this.showHint}>Zobrazit nápovědu</Button>
+          {definition && <p>Definice: {definition}</p>}
+          {showHint && <p>První písmeno odpovědi: {firstLetter}</p>}
+      </div>
+  }
+}
+\end{lstlisting}
+
+        \subsubsection{MobX}
             % knihovna React se stává frameworkem
+            MobX poskytuje mechanismus k ukládání a aktualizaci dat a tudíž i stavů aplikace\cite{bib:mobx}. Lze si ho představit jako oddělené úložiště dat, které zároveň obsahuje veškeré možné manipulace s daty. V případě, že v úložišti jsou data označená jako \textit{@obsevable} a uživatel jejich obsah změní, dojde k překreslení všech komponent, ve kterých se daná \textit{@obsevable} proměnná vyskytuje. To přináší React aplikaci možnost zcela oddělit datovou vrstvu aplikace od zobrazovací vrstvy a přiblížit se tak MVC modelu. V aplikaci je využitý MobX společně s dekorátory a anotacemi z ES.Next. 
+
+            Všechny komponenty, které mění data MobX úložiště, musí být anotovány \textit{@observer}. Aby bylo možné v komponentě data získat z úložiště, je využívána anotace \textit{@inject}. V aplikaci jsou využívány i doplňkové funkce MobX jako například \textit{@computed} atribut nebo \textit{@action} funkce. 
+
+            V úložištích se rovněž provádí veškeré \gls{ajax} dotazy prostřednictvím externí knihovny \textit{Axios}, která umožňuje mimo jiné generické nastavení hlaviček u jednotlivých HTTP dotazů. 
         
         \subsubsection{Směrování a historie}
+            % 'mobx-react-router'
+            % 'react-router'
+            % využití browser history (možnost tlačítka zpět) 
+            % manipulace historie pomocí pushState
 
-    \subsection{Implementace technologií}
-        % layout komponenta
-        % využití Mobx - MVC (stores, components)
 
-        \subsubsection{Adresářová struktura}
-        
+        % \subsubsection{Adresářová struktura}
+        %     JavaSript klientské aplikace je rozdělen do tří adresářů - components, data a pages. V adresáři pages jsou umístěné hlavní strany aplikace. V adresáři data jsou umístěny MobX úložitě rozdělené do logických celků. V adresáři components jsou umístěny podadresáře s názvy 
+
+        %     \begin{figure}[ht!]
+        %         \dirtree{%
+        %             .0 .
+        %             .1 css.
+        %             .1 fonts.
+        %             .1 js.
+        %             .2 components.
+        %             .3 layout.
+        %             .4 \dots.
+        %             .3 \dots.
+        %             .2 data.
+        %             .3 user-store.js.
+        %             .3 \dots.
+        %             .2 pages.
+        %             .3 layout.js.
+        %             .3 \dots.
+        %             .2 global-functions.js.
+        %             .2 index.js/.
+        %             .1 index.html.
+        %             .1 favicon.svg.
+        %         }
+        %         \caption{Adresářové struktury klientské aplikace}
+        %         \label{dir-structure-client}
+        %     \end{figure}
 
     \subsection{Testování}
         % Karma, NPM spouštění
@@ -809,6 +860,8 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
 \newpage
 \section{Závěr}
     %% Možné rozšíření - přidat možnost více významů slova
+    % členy
+
 
 \newpage
 \begin{thebibliography}{99}
@@ -848,7 +901,24 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
         WOZNIAK Piotr A. \textit{Repetition spacing algorithm used in SuperMemo 2002 through SuperMemo 2006} [online] 2006-04-02. [cit. 2016-12-26]. Dostupné z: \url{https://www.supermemo.com/english/algsm11.htm}
 
     \bibitem{bib:webpack}
-        KOPPERS Tobias a ostatní. \textit{Webpack 2 Documentation} [online] 2016. [cit. 2016-12-26]. Dostupné z: \url{https://webpack.js.org/configuration/}
+        KOPPERS Tobias a spol. \textit{Webpack 2 Documentation} [online] 2016. [cit. 2016-12-26]. Dostupné z: \url{https://webpack.js.org/configuration/}
 
+    \bibitem{bib:babel}
+        SUSCAK Marek a spol. \textit{Learn ES2015} [online] 2016. [cit. 2016-12-27]. Dostupné z: \url{https://babeljs.io/learn-es2015/}
+        
+    \bibitem{bib:ecma}
+        Ecma International. \textit{ECMAScript® 2015 Language Specification} [online] 2015 [cit. 2016-12-27]. Dostupné z: \url{http://www.ecma-international.org/ecma-262/6.0/index.html}.
+
+    \bibitem{bib:jsx}
+        Facebook Inc. \textit{JSX In Depth} [online] 2016 [cit. 2016-12-28]
+        Dostupné z: \url{https://facebook.github.io/react/docs/jsx-in-depth.html}.
+
+    \bibitem{bib:react}
+        Facebook Inc. \textit{React Components and Props} [online] 2016 [cit. 2016-12-28]
+        Dostupné z: \url{https://facebook.github.io/react/docs/components-and-props.html}.
+        
+    \bibitem{bib:mobx}
+        WESTSTRATE Michel a spol. \textit{MobX Core Concepts} [online] 2016 [cit. 2016-12-28]
+        Dostupné z: \url{https://mobxjs.github.io/mobx/index.html}.
 \end{thebibliography}
 \end{document}
