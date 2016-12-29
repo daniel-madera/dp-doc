@@ -106,6 +106,12 @@
     first={AJAX (Asynchronous JavaScript and \gls{xml})}
 }
 
+\newglossaryentry{odbc}{
+    name={ODBC},
+    description={Open Database Connectivity},
+    first={ODBC (Open Database Connectivity)}
+}
+
 \newglossaryentry{xml}{
     name={XML},
     description={Extensible Markup Language},
@@ -700,6 +706,7 @@
 
             Pro příklad v anglickém jazyce písmeno $c$ odpovídá písmenu $k$ v českém. Po předání slovníku do funkce pro výpočet Levenshteinovy vzdálenosti dojde k porovnání znaků na daných pozicích a v případě, že nesouhlasí, funkce se pokusí porovnat s odpovídajícím písmenem ve slovníku.
 
+\begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=JS, caption={Příklady použití Levenshteinovy vzdálenosti},label=code:levenshtein]
 let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
 "šance".levenshtein("chance", dictionary) // === 0
@@ -707,6 +714,7 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
 "korektní".levenshtein("correct", dictionary) // === 3
 "korektní".levenshtein("correct") // === 5
 \end{lstlisting}
+\end{minipage}
 
         \subsubsection{Google Search API}
             % api console key
@@ -750,6 +758,7 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
             % Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
             Prezentační vrstva aplikace lze rozdělit na jednotlivé logické celky v podobě jednoduchých a složitých komponent. Jednotlivé komponenty lze jednoduše vnořovat do sebe a tím vytvořit složitější interaktivní uživatelské rozhraní. Každá komponenta dědí od třídy \textit{Component} v knihovně \textit{React} a obsahuje funkci \textit{render}, která vrací obsah, který bude renderovaný v dokumentu. Dále komponenty obsahují funkci \textit{setState}, která mění její vnitřní stav a atributy \textit{props} a \textit{state}. \textit{Props} obsahuje konstantní atributy předané komponentě a \textit{state} obsahuje stavové objekty komponenty. V případě, že dojde ke zavolání \textit{setState} funkce a tedy změně objektu \textit{state}, dojde k zavolání funkce \textit{render} a tudíž k překreslení obsahu komponenty\cite{bib:react}.
 
+\begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=JS, caption={Příklad komponenty pro zobrazování nápovědy při procvičování slovíček},label=code:hints]
 export default class Hint extends React.Component {
   showHint = e => {
@@ -767,6 +776,7 @@ export default class Hint extends React.Component {
   }
 }
 \end{lstlisting}
+\end{minipage}
 
         \subsubsection{MobX}
             \label{mobx}
@@ -786,6 +796,7 @@ export default class Hint extends React.Component {
 
             Směrování v aplikaci umožňuje modul \textit{Router} z knihovny \textit{react-router}. Tento modul lze do sebe nesčetněkrát vnořovat a umožňuje lépe oddělit logické části aplikace. \textit{Router} mimo jiné disponuje nepovinným atributem \textit{onEnter}, ve kterém lze zajistit oprávnění pro různé sekce aplikace. Dalším důležitým modulem je \textit{Provider} z knihovny \textit{react-router}, která poskytuje pro komponenty Reactu úložiště popsané v \ref{mobx}. Následující ukázka zdrojového kódu \ref{code:main-render} představuje hlavní vykreslovací funkci aplikace, jejíž první atribut je obsah a druhý je element, kam se má obsah vložit.
 
+\begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=JS, caption={Hlavní renderovací funkce aplikace},label=code:main-render]
 ReactDOM.render(
     <Provider {...stores}>
@@ -801,35 +812,37 @@ ReactDOM.render(
     </Provider>,
 document.getElementById('app'));
 \end{lstlisting}
+\end{minipage}
 
 
-        % \subsubsection{Adresářová struktura}
-        %     JavaSript klientské aplikace je rozdělen do tří adresářů - components, data a pages. V adresáři pages jsou umístěné hlavní strany aplikace. V adresáři data jsou umístěny MobX úložitě rozdělené do logických celků. V adresáři components jsou umístěny podadresáře s názvy 
+        \subsubsection{Adresářová struktura}
+        %     JavaSript klientské aplikace je rozdělen do tří adresářů - components, data a pages. V adresáři \textit{pages} jsou umístěné hlavní strany aplikace. V adresáři data jsou umístěny MobX úložitě rozdělené do logických celků. Jednotlivé komponenty Adresář \textit{components} je rozděleny do podadresářů s názvy stránek. 
 
-        %     \begin{figure}[ht!]
-        %         \dirtree{%
-        %             .0 .
-        %             .1 css.
-        %             .1 fonts.
-        %             .1 js.
-        %             .2 components.
-        %             .3 layout.
-        %             .4 \dots.
-        %             .3 \dots.
-        %             .2 data.
-        %             .3 user-store.js.
-        %             .3 \dots.
-        %             .2 pages.
-        %             .3 layout.js.
-        %             .3 \dots.
-        %             .2 global-functions.js.
-        %             .2 index.js/.
-        %             .1 index.html.
-        %             .1 favicon.svg.
-        %         }
-        %         \caption{Adresářové struktury klientské aplikace}
-        %         \label{dir-structure-client}
-        %     \end{figure}
+            \begin{figure}[ht!]
+                \dirtree{%
+                    .0 .
+                    .1 css.
+                    .1 fonts.
+                    .1 js.
+                    .2 components \DTcomment{obsahuje všechny komponenty}.
+                    .3 layout \DTcomment{komponenty ke modulu Layout}.
+                    .4 menu.js.
+                    .4 \dots.
+                    .3 \dots.
+                    .2 data \DTcomment{adresář s MobX úložišti}.
+                    .3 user-store.js.
+                    .3 \dots.
+                    .2 pages \DTcomment{obsahuje jednotlivé stránky aplikace}.
+                    .3 layout.js.
+                    .3 \dots.
+                    .2 global-functions.js\DTcomment{soubor s funkcemi používané skrz celou aplikaci}.
+                    .2 index.js \DTcomment{hlavní uzel aplikace}.
+                    .1 index.html\DTcomment{šablona s HTML hlavičkou}.
+                    .1 favicon.svg.
+                }
+                \caption{Adresářové struktury klientské aplikace}
+                \label{dir-structure-client}
+            \end{figure}
 
     \subsection{Testování}
         % Enzyme, NPM spouštění
@@ -875,6 +888,7 @@ document.getElementById('app'));
 
             V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových data-typů tak, aby je bylo možné zapsat do formátu JSON nebo XML \cite{bib:django-rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě definice \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
 
+\begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=Python, caption={Serializační třída k transformaci dat o učebnici},label=code:serializers]
 class OwnerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -889,6 +903,7 @@ class TextbookSerializer(serializers.ModelSerializer):
         model = models.Textbook
         fields = ('id', 'title', 'language', 'owner')
 \end{lstlisting}
+\end{minipage}
 
         \subsubsection{Implementace Supermemo algoritmu}
             % Supermemo implementace na serveru
@@ -899,6 +914,7 @@ class TextbookSerializer(serializers.ModelSerializer):
         \subsubsection{Získání zvukové nahrávky}
             Pro získání zvukové nahrávky slova je využitý Python modul s názvem gTTS. Stažení nahrávky je velmi jednoduché. Nahrávky se identifikují jazykem a názvem omezeným na ASCII znaky, což v ukázce \ref{code:sound} představuje funkce \textit{slugify}. K uložení nahrávky dochází pouze v případě, že stejné slovo již stejné slovo není v adresáři uložené. Klientovi se následně zasílají odkazy na nahrávku, kde si uživatel může slovo přehrát.
 
+\begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=Python, caption={Uložení zvukové nahrávky},label=code:sound]
 from gtts import gTTS
 def save_sound(text, lang):
@@ -908,20 +924,82 @@ def save_sound(text, lang):
         tts = gTTS(text=text, lang=lang)
         tts.save(filename)
 \end{lstlisting}
+\end{minipage}
 
     \subsection{Zabezpečení}
         % HTTPS
         % OAuth2
-
+        % zajištění vkládaných řetězců
+        % https nepomůže proti CSRF
+        Serverová a klientská aplikace spolu komunikují skrz zabezpečený protokol HTTPS. Pro autorizaci uživatelů v rozhraní slouží standard JWT popsaný v následující kapitole. Kapitola dále rozvíjí, jak jsou uživatelé autorizování k jednotlivým operacím a jaké bezpečnostní mechanismy jsou použity proti internetovým útokům.
 
         \subsubsection{JavaScript Web Tokens}
             \label{jwt}
+            % zajišťuje validnost přenášené informace
+            % časová expirace tokenu, možnost obnovení 
+            % JWT 
+
+            JSON Web Token (JWT) je otevřený standard (RFC 7519) definující způsob posílání zabezpečené informace ve formě zakódovaného JSON objektu. Tyto informace jsou zabezpečeny buď s využitím tajného klíče a algoritmu HMAC a nebo pomocí páru privátní/veřejný klíč a algoritmu RSA. Zašifrovaný obsah JWT tokenu obsahuje důležité informace o uživateli a klient tedy nemusí dotazovat server pro tyto informace, což vede k snížení režie serveru \cite{bib:jwt}.
+
+            Způsob přihlášení uživatele probíhá následovně. Uživatel zadá do klientské aplikace jméno a heslo, které je dále interpretováno pouze jako MD5 hash. Tyto informace jsou zaslány na server. Server na základě ověření hesla a jména vygeneruje nový JWT token, který zašle zpět klientské části. Ta si token uloží do lokálního úložiště a přidává token ke každému HTTP dotazu v hlavičce se strukturou \textbf{Authorization: JWT $<$token$>$}.
+
+            Na serveru generování JWT obstarává knihovna \textit{djangorestframework-jwt}. Expirace tokenu je 3 hodiny, knihovna ale poskytuje možnost obnovení tokenu s novou expirační dobou. Na klientské části je obnovení řešeno Timeout callback funkcí, která obnoví token ještě než vyprší jeho expirace. Společně s tokenem se klientské části zasílají i statistické informace o uživateli. To zajišťuje vlastní implementace funkce \textit{jwt\_response\_payload\_handler} na následující ukázce \ref{code:jwt}.
+
+\begin{minipage}[c]{0.95\textwidth}
+\begin{lstlisting}[language=Python, caption={Obsah metody \textit{jwt\_response\_payload\_handler}},label=code:jwt]
+def jwt_response_payload_handler(token, user=None, request=None):
+    user_info = models.UserInfo.objects.get(user=user)
+    return {
+        'token': token,
+        'statistics': UserInfoSerializer(user_info, context={'request': request}).data
+    }
+\end{lstlisting}
+\end{minipage}
+
+        \subsubsection{CSRF a XSS}
+            Cross Site Request Forgery (CSRF) je útok, kdy útočník donutí oběť odeslat upravený požadavek na server. V podstatě se jedná o nějaký podvržený odkaz na jiné doméně a jelikož uživatel je do aplikace přihlášen, má práva provést například změnu emailové adresy\cite{bib:csrf}. Proti tomuto typu útoku je aplikace chráněná díky JWT, jelikož s každým požadavkem na server je v hlavičce dotazu zaslán token. JWT nelze z jiné domény zjistit, jelikož prohlížeč pro každé okno vytváří samostatnou instanci pro provoz JavaScriptu, které mezi sebou data nesdílí.
+
+            Cross-site scripting (XSS) je případ, kdy útočník pomocí vstupního formulářového prvku zapíše JS kód do stránky, který se následně vykoná\cite{bib:xss}. XSS je mnohem závažnější útok, jelikož útočník může získat například Cookie dokumentu, které může obsahovat například JWT. Jelikož klientská část funguje jako SPA, nedochází k obnovení stránky a tudíž nedochází k resetování JavaScriptové instance. JWT token je uložen pouze v JS objektu. Proto v případě, že uživatel z aplikace odejde, musí znovu projít autentizačním cyklem.
+
+
+        \subsubsection{CORS}
+            Pro testovací účely bylo nutné v serverové aplikaci a Django REST frameworku povolit CORS, jelikož server a klient nesdílely stejnou doménu. CORS (Cross-Origin Resource Sharing) je mechanismus, který spočívá v povolení klientům dotazovat rozhraní, které je poskytováno na jiné doméně. Pro povolení CORS v serverové aplikaci byl využit další middleware s názvem \textit{corsheaders.middleware.CorsMiddleware}, ve kterém lze nastavit parametrem \textit{CORS\_ORIGIN\_WHITELIST} soupis klientů, kteří mohou dotazovat server. V produkční verzi aplikace tento problém nenastává, jelikož serverová a klientská část sdílí servírovanou doménu.
+
+        \subsubsection{Autorizace}
+            % povolené metody a zdroje
+            % nunté autorizovat metody editace a mazání pouze pro vlastníka 
+            % 'rest_framework.permissions.IsAuthenticated', pro celou aplikaci platí pravidlo.isAuthenticated, vlastní třída s opravněním k vlasníkovi
+            Autorizace ke zdrojům je v aplikaci jednoduchá. Jelikož došlo ke sloučení rolí učitele a žáka, není nutné role v aplikaci rozdělovat. Proto všichni uživatelé mají přístup do všech sekcí aplikace. Aby ale uživatel měl možnost vůbec dotazovat API, musí být identifikováván a přihlášen. K nastavení a zprovoznění tohoto základního oprávnění posloužila třída, která je součástí REST frameworku \textit{rest\_framework.permissions.IsAuthenticated}, kterou je nutné uvést v nastavení pod atributem \textit{DEFAULT\_PERMISSION\_CLASSES}. 
+
+            Tato autorizace nestačí, jelikož je nutné také omezit editační a mazací metody pouze na vlastníky dat. Následující ukázka \ref{code:permissions} představuje třídu oprávnění, která kontroluje, zda vlastník záznamu je přihlášený uživatel v případě, že se snaží provést nějakou úpravu. Pro správnou funkčnost je samozřejmě nutné, aby daný záznam přesněji objekt modelové třídy měl definovaný atribut \textit{owner}.
+
+\begin{minipage}[c]{0.95\textwidth}
+\begin{lstlisting}[language=Python, caption={Ukázka třídy s přizpůsobeným oprávněním},label=code:permissions]
+class IsOwnerOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return obj.owner == request.user
+\end{lstlisting}
+\end{minipage}
 
     \subsection{Databáze}
         \label{db}
-        % Postgres
-        % migrace
-        % zapsané do modelových tříd
+        K ukládání dat v aplikaci je využita open-sourcová databáze PostgreSQL. Django podporuje celou řadu databázových backendů jako například MySQL, SQLite nebo lze nalézt i obecný konektor \gls{odbc}. Ale největší podporu ve vývoji frameworku dostává právě zmíněná databáze PostgreSQL\cite{bib:django}. 
+
+        Django jak už bylo zmíněno nepovoluje přímý přístup k databáze. Ve frameworku existuje abstraktní vrstva ORM, která mapuje objekty v Pythonu na databázové dotazy. To přináší spoustu výhod, jedna z nich je vysoká optimalizace dotazů prováděné na databázi, další může být například podpora databázových migrací. Django si sám spravuje strukturu tabulek v databázi. Potom co se implementují modelové třídy, je ve frameworku připraven nástroj, který vytvoří v databázi tabulky s atributy, indexy a se vším, co se v modelových třídách definuje. Django rovněž podporuje propagaci změn na databázi v případě, že dojde k editaci modelových tříd\cite{bib:django}.
+
+        \subsubsection{Model}
+
+        Následující obrázek \ref{fig:db-model} znázorňuje část modelu databáze, která je zodpovědná za správu učebnice, slovíček a uživatelů. Za zmínku stojí tabulka \textit{words}, která ukládá informace od slovu - překlad, význam, definice, odkazy na náhledový obrázek i ten v plné velikosti, globální obtížnost atd. Tabulka \textit{users\_words} slouží k ukládání informací o slovu ke každému uživateli. V případě, že uživatel se v procvičování potká s daném slovem, vytvoří se záznam v této tabulce. S každou další interakcí se změní obtížnost slova interpretovaná atributem \textit{adaptive\_difficulty}. Tato tabulka rovněž ukládá informace o připomenutí slov. Atribut \textit{memory\_lapses} představuje počet, kolikrát uživatel zapomněl slovo, \textit{success\_repetitions} značí, kolikrát uživatel byl schopný si úspěšně vzpomenout na slovo a textit{following\_reminder} představuje čas, kdy by mělo dojít k dalšímu připomenutí.
+
+        \begin{figure}[ht!]
+            \centering
+            \includegraphics[scale=0.9]{../diagrams/db-model.pdf}
+            \caption{Ukázka části databázového modelu zodpovědné za správu slovíček}
+            \label{fig:db-model}
+        \end{figure}
 
     \subsection{Testování}
         % APITestCase Django REST
@@ -1004,6 +1082,12 @@ def save_sound(text, lang):
 
     \bibitem{bib:csrf}
        Open Web Application Security Project. \textit{Cross-Site Request Forgery} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29}
-        
+
+    \bibitem{bib:xss}
+       Open Web Application Security Project. \textit{Cross-site Scripting (XSS)} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/XSS}
+
+    \bibitem{bib:jwt}
+       Auth0 Inc. \textit{Introduction to JSON Web Tokens} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://jwt.io/introduction/}
+       
 \end{thebibliography}
 \end{document}
