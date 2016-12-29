@@ -414,7 +414,7 @@
             % z Google API importovat zvukové nahrávky
             % shrnout omezení, problematiku
             % 60 minut měsíčně je zdarma
-            Do aplikace by měla být implementována i zvuková interpretace slovíčka v cizím jazyce. Zvukové nahrávky mohou být zařazeny do aplikace dvěma způsoby - manuálně vlastními nahrávkami nebo využít Google Text to Speech API, které poskytuje zdarma, pokus se měsíční využití zvukových nahrávek obsáhne do 60 minut\cite{bib:google-api}. V případě jedno nebo dvouslovných spojení, které zaberou přibližně 4—8 vteřin, je dostačující pro cca 600 slovíček za měsíc. Aplikace bude záznam lokálně ukládat, aby bylo se co nejvíce omezilo využívání API. Zvuková nahrávka bude získána při importu slovíček do učebnice. Zadávající uživatel si bude moci zvolit, k jakému slovu chce zvukovou interpretaci.
+            Do aplikace by měla být implementována i zvuková interpretace slovíčka v cizím jazyce. Zvukové nahrávky mohou být zařazeny do aplikace dvěma způsoby - manuálně vlastními nahrávkami nebo využít Google Text to Speech API, které poskytuje zdarma. Aplikace bude záznam lokálně ukládat, aby bylo se co nejvíce omezilo využívání API. Zvuková nahrávka bude získána při importu slovíček do učebnice. Zadávající uživatel si bude moci zvolit, k jakému slovu chce zvukovou interpretaci.
 
         \subsubsection{Obrazová forma}
             % vyhledání z Google Images API na základě cizojazyčného slova
@@ -545,6 +545,7 @@
         Připomínání slov je důležitou součástí aplikace. Funkce slouží k tomu, aby studenti nezapomněli na již naučená a zvládnutá slova z procvičování. Jelikož se jedná o webovou aplikaci, není úplně možné připomínat slova v přesných intervalech přímo v aplikaci. Způsob implementace připomínání slov je závislý na tom, aby se uživatel sám přihlásil a spustil funkci připomínání slov. Je možné na základě softwarového démonu Cron v určitých intervalech ze serveru odesílat emailová upozornění se slovy, které by si měl uživatel připomenout.
 
         \subsubsection{Supermemo algoritmus}
+            \label{supermemo}
             Supermemo algoritmus je rovněž další implementace metody rozloženého opakování popsané v kapitole \ref{spaced-repetition}. První implementace Supermemo algoritmu v papírové podobě byla vytvořena již v roce 1985. V aplikaci je využívání aktuální verze 11, poprvé implementována v roce 2005. 
 
             Algoritmus má dvě možnosti implementace - optimální interval a pokročilé opakování \cite{bib:supermemo}. Verze s optimálním interval je pro účely aplikace dostačující, jelikož pro implementaci s pokročilým opakováním by bylo nutné ukládat ke každému uživateli nepřeberné množství dat. Pro správnou funkci je nutné ukládat každou odpověď ke každému ze slovíček, na základě nichž se aplikace adaptuje na schopnosti uživatele. Oba algoritmy je možné si vyzkoušet v podobě desktopové aplikace popsané v kapitole \ref{supermemo-app}. V aplikaci lze pozorovat změny na uživateli v podobě křivky zapomínání a dalších statistických informacích. 
@@ -872,7 +873,7 @@ document.getElementById('app'));
 
             Z důvodu optimalizace počtu dotazů na server z určité části klientské aplikace bylo nutné nahradit relačně vztahové identifikátory vlastními daty, aby nedocházelo k několika násobným dotazům s velikostně velmi nízkou odpovědí. Například v případě získání listu učebnic, je klientovi zaslán list objektů, které obsahují atributy jako název učebnice, datum vytvoření, jazyk, identifikátor vlastníka atd. Aby klient nemusel dotazovat server několika násobně další informace o vlastníkovi, jsou základní data o vlastníkovi vnořena přímo do listu učebnice.
 
-            V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových data-typů tak, aby je bylo možné zapsat do formátu JSON nebo XML \cite{bib:rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě definice \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
+            V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových data-typů tak, aby je bylo možné zapsat do formátu JSON nebo XML \cite{bib:django-rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě definice \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
 
 \begin{lstlisting}[language=Python, caption={Serializační třída k transformaci dat o učebnici},label=code:serializers]
 class OwnerSerializer(serializers.ModelSerializer):
@@ -891,11 +892,23 @@ class TextbookSerializer(serializers.ModelSerializer):
 
         \subsubsection{Implementace Supermemo algoritmu}
             % Supermemo implementace na serveru
-            
+            Algoritmus Supermemo popsaný v kapitole \ref{supermemo}. pro výpočet optimálních intervalů je implementovaný na serverové části aplikace. V okamžiku, kdy uživatel dokončí neboli ovládne slovo v procvičování, se ukládá na server informace o tom, že slovo bylo pro daného uživatele dokončeno. V tomto okamžiku se spočítá absolutní obtížnost slova na základě adaptované obtížnosti a zjistí se první interval v podobě data, kdy má slovo být připomenuto. Tento datum společně s hodnotou 0 představující počet, kolikrát si uživatel nemohl vzpomenout na slovo, uloží do databáze. Pro uložení matice optimálních faktorů je v Pythonu vyžit standardní list listů.
 
+            Následně v okamžiku znovu přihlášení uživatele do aplikace, server společně s informacemi o statistikách uživatele odešle list slov, kde aktuální datum je vyšší než datum připomenutí. V aplikaci si uživatel může spustit mód připomenutí již naučených slov. V případě, že si uživatel nevzpomene na slovo, při ukládání informací o připomínání, se přičte jednička do hodnoty s počtem, kolikrát uživatel nemohl vzpomenout na slovo a pro každé slovo se přepočítá další datum připomenutí. 
 
         \subsubsection{Získání zvukové nahrávky}
-    
+            Pro získání zvukové nahrávky slova je využitý Python modul s názvem gTTS. Stažení nahrávky je velmi jednoduché. Nahrávky se identifikují jazykem a názvem omezeným na ASCII znaky, což v ukázce \ref{code:sound} představuje funkce \textit{slugify}. K uložení nahrávky dochází pouze v případě, že stejné slovo již stejné slovo není v adresáři uložené. Klientovi se následně zasílají odkazy na nahrávku, kde si uživatel může slovo přehrát.
+
+\begin{lstlisting}[language=Python, caption={Uložení zvukové nahrávky},label=code:sound]
+from gtts import gTTS
+def save_sound(text, lang):
+    fname = slugify(text)
+    filename = 'static/sounds/%s/%s.mp3' % (lang, fname)
+    if not os.path.exists(filename):
+        tts = gTTS(text=text, lang=lang)
+        tts.save(filename)
+\end{lstlisting}
+
     \subsection{Zabezpečení}
         % HTTPS
         % OAuth2
@@ -904,10 +917,6 @@ class TextbookSerializer(serializers.ModelSerializer):
 
         \subsubsection{JavaScript Web Tokens}
             \label{jwt}
-
-        \subsubsection{Autorizace}
-
-        \subsubsection{Autentizace}
 
     \subsection{Databáze}
         \label{db}
@@ -918,7 +927,6 @@ class TextbookSerializer(serializers.ModelSerializer):
     \subsection{Testování}
         % APITestCase Django REST
         % fixtures
-
 
 \newpage
 \section{Závěr}
