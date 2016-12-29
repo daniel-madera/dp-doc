@@ -768,6 +768,7 @@ export default class Hint extends React.Component {
 \end{lstlisting}
 
         \subsubsection{MobX}
+            \label{mobx}
             % knihovna React se stává frameworkem
             MobX poskytuje mechanismus k ukládání a aktualizaci dat a tudíž i stavů aplikace\cite{bib:mobx}. Lze si ho představit jako oddělené úložiště dat, které zároveň obsahuje veškeré možné manipulace s daty. V případě, že v úložišti jsou data označená jako \textit{@obsevable} a uživatel jejich obsah změní, dojde k překreslení všech komponent, ve kterých se daná \textit{@obsevable} proměnná vyskytuje. To přináší React aplikaci možnost zcela oddělit datovou vrstvu aplikace od zobrazovací vrstvy a přiblížit se tak MVC modelu. V aplikaci je využitý MobX společně s dekorátory a anotacemi z ES.Next. 
 
@@ -780,6 +781,25 @@ export default class Hint extends React.Component {
             % 'react-router'
             % využití browser history (možnost tlačítka zpět) 
             % manipulace historie pomocí pushState
+            Pro směrování a historii v SPA jsou využity externí knihovny z NPM (Node Package Manager) - \textit{react-router} a \textit{mobx-react-router}. Používat navigační tlačítka a historii prohlížeče umožňuje modul \textit{syncHistoryWithStore}, který synchronizuje historii v podobě JS objektu s historií prohlížeče. K manipulaci historie prohlížeče se využívá JS funkcí \textit{pushState} a \textit{replaceState}, definovaných ve standardu HTML5.
+
+            Směrování v aplikaci umožňuje modul \textit{Router} z knihovny \textit{react-router}. Tento modul lze do sebe nesčetněkrát vnořovat a umožňuje lépe oddělit logické části aplikace. \textit{Router} mimo jiné disponuje nepovinným atributem \textit{onEnter}, ve kterém lze zajistit oprávnění pro různé sekce aplikace. Dalším důležitým modulem je \textit{Provider} z knihovny \textit{react-router}, která poskytuje pro komponenty Reactu úložiště popsané v \ref{mobx}. Následující ukázka zdrojového kódu \ref{code:main-render} představuje hlavní vykreslovací funkci aplikace, jejíž první atribut je obsah a druhý je element, kam se má obsah vložit.
+
+\begin{lstlisting}[language=JS, caption={Hlavní renderovací funkce aplikace},label=code:main-render]
+ReactDOM.render(
+    <Provider {...stores}>
+        <Router history={history}>
+          <Route path='/' component={Layout}>
+            <IndexRoute component={Welcome}/>
+            <Route path='/auth' component={Authentication}></Route>
+            ...
+            <Route path='/textbooks/:textbookId' component={TextbookEditor} onEnter={requireAuth}></Route>
+            ...
+          </Route>
+        </Router>
+    </Provider>,
+document.getElementById('app'));
+\end{lstlisting}
 
 
         % \subsubsection{Adresářová struktura}
@@ -811,56 +831,100 @@ export default class Hint extends React.Component {
         %     \end{figure}
 
     \subsection{Testování}
-        % Karma, NPM spouštění
+        % Enzyme, NPM spouštění
         % využití MOBX data injections v daném stavu aplikace
+        Pro testování  klientské části byl využity nástroje Enzyme a Jest. Enzyme je testovací nástroj, který umožní testovat React komponent. Jeho syntaxe je velmi podobná známé knihovně JQuery. Jest je nástroj, který tyto testy spouští a vyhodnocuje. Pro kompilaci ES6 kódů byl využit balíček \textit{babel-jest}. 
 
+        \subsubsection{Unit testování}
+            Díky MobX úložišti je velmi jednoduché otestovat jednotlivé funkce, které manipulují s daty. MobX úložiště je JS objekt, který lze v jakémkoliv stavu aplikace uložit a pro potřeby testů znovu načíst. Díky této vlastnosti jsou jednotkové testy zcela odděleny od aplikace a lze je spouštět nezávisle. Enzyme umožňuje simulovat i JS události zavoláním funkce \textit{simulate} na daný React element. První atribut je typ události a druhý atribut je objekt, který simuluje objekt události.
+
+            Ke každému úložišti byl vytvořen soubor s příponou .test.js, tyto testy jsou umístěny v adresáři v podadresáři \url{./data/__tests__/}. Pro testování jsou k dispozici funkce \textit{describe}, \textit{it} a \textit{expect}. Enzyme je doplněn i o další standardní funkce jednotkového testování jako například \textit{beforeEach}, která umožňuje načíst stejná data do úložiště pro každý test zvlášť.
+
+        \subsubsection{Integrační testování}
+            Pro testování, zda komponenty společně správně pracují, slouží integrační testování. Článek, který komponenty spojuje, je právě již zmiňované MobX úložiště. Každý z integračních testů obsahuje úložiště, do kterého jsou vložena data představující určitý stav v aplikaci. Toto úložiště je poté předloženo daným komponentám. Test následně provede sadu operací nad komponentami a na závěr zkontroluje, zda výsledná komponenta vrací požadovaný obsah.
+
+            Důležitou součástí v kontrole obsahu je funkce \textit{shallow}, která obalí JS objekt představující uzel v dokumentu funkcemi, které umožní jednoduché prohledávání jednotlivých elementů, jejich obsahu a atributů.
 
 \newpage
 \section{Serverová část}
+    Serverová část aplikace je v podstatě aplikační rozhraní, které poskytuje data ve formátu JSON pro klientskou aplikaci. API je napsané v programovacím jazyce Python s využitím Django webového frameworku a Django REST frameworku.
     
     \subsection{Technologie}
-        \subsubsection{Webová aplikace}
-            % výhody webových aplikací
+        Důvod, proč bylo zvnoleno Django a Dajngo REST framework jako platforma pro aplikační rozhraní, je převážně z dřívějších zkušeností s variabilitou a rychlostí vývoje. Pro potřeby aplikace se jedná možná o zbytečně komplexní framework, jelikož aplikace jako celek stojí převážně na zpracování klientské části.
 
-        \subsubsection{Architektura}
-            % architektura klient + server
-            % možnost více klientů (mobilní aplikace apod.)
+        \subsubsection{Django}
+            Django je open-source webový framework, který využívá vlastní implementaci MVC modelu a označuje ho jako MTV (Model Teplate View)\cite{bib:django}. Z databázového modelu se získávají data, které jsou interpretovány v případě aplikace skrz Serializéry a následně jsou data podstrčeny podhledům, které v našem případě odešle uživateli JSON soubor s daty. Dajngo je velmi variabilní a lze ho použít pro tvorbu standardní webové aplikace, tak za pomocí REST frameworku i tvorbu API.
 
-        \subsubsection{HTTP a REST API}
+            Z čitého Django projektu je v aplikaci využívána hlavně modelová vrstva, která je implementována přes ORM (Object-Relational Mapping) přístup. U přístupu do databáze se nepíšou SQL dotazy, nýbrž se provádí operace nad objekty za pomocí definovaných funkcí v Pythonu. ORM implementované v Djangu transformuje objekty na dotazy, snaží se o jejich optimalizaci, a poskytuje nám vyšší abstrakci\cite{bib:django}. Využití Django ORM v aplikace se detailněji zabývá kapitola \ref{db}. 
 
-        \subsubsection{Implementace algoritmů}
+        \subsubsection{Django REST framework}
+            Webový framework Django je v aplikaci rozšířen o nadstavbu jménem Django REST framework. Jeho přínosy jsou rychlá tvorba vlastního HTTP nebo i RESTful API, připravené bezpečnostní principy s možností využití OAuth2. Dále obsahuje připravené serializační, parsovací a pohledové komponenty s možností generické a automatické validace dat a dalších užitečných funkcí\cite{bib:django-rest}.
+
+        \subsubsection{HTTP a RESTful API}
+            Klientská aplikace se dotazuje serveru pomocí požadavků metod GET, POST, PUT a DELETE. Jelikož je klient úzce svázaný se serverem, API nemusí nést principy HATEOAS (Hypermedia as the Engine of Application State) ani RESTful rozhraní. Tedy takové, které mimo jiné poskytuje dynamicky vytvářené hypertextové odkazy pro manipulaci stavů aplikace. Toto rozhraní je vhodnější pro aplikace, kde veškeré logické části aplikace jsou prováděny na serveru a klient slouží pouze jako prohlížeč dat. Ve slovníkové aplikaci je naopak veškerá logika a stavovost přesunuta na klienta a API slouží pouze jako vrstva pro ukládání dat. Rozhraní neposkytuje ani odkazy pro navigaci mezi daty a to z důvodu optimalizace velikosti přenášených dat a jak bylo zmíněno klient je úzce svázaný se serverovým rozhraním. Z těchto důvodů by se dalo rozhraní klasifikovat spíše jako HTTP API.
+
+    \subsection{API}
+        Tato sekce poskytuje náhled na vnitřní strukturu a principy serverové části aplikace. 
+
+        \subsubsection{Struktura dat}
+            % json identifikace shrz ID
+            Data odesílané klientovi jsou čité reprezentace atributů v modelové vrstvě. Každý z objektů je identifikován svým číslem datového typu \textit{integer}. Co se týče relačních vztahů mezi modely, ty jsou reprezentovány pomocí zaslaného identifikátoru, popřípadě listu identifikátorů, pokud se jedná o násobný vztah. Pro získání doplňujících informací k zaslanému identifikátoru, je nutné vytvořit nový dotaz typu GET a v uvést identifikátor v parametru URL. 
+
+            Z důvodu optimalizace počtu dotazů na server z určité části klientské aplikace bylo nutné nahradit relačně vztahové identifikátory vlastními daty, aby nedocházelo k několika násobným dotazům s velikostně velmi nízkou odpovědí. Například v případě získání listu učebnic, je klientovi zaslán list objektů, které obsahují atributy jako název učebnice, datum vytvoření, jazyk, identifikátor vlastníka atd. Aby klient nemusel dotazovat server několika násobně další informace o vlastníkovi, jsou základní data o vlastníkovi vnořena přímo do listu učebnice.
+
+            V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových data-typů tak, aby je bylo možné zapsat do formátu JSON nebo XML \cite{bib:rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě definice \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
+
+\begin{lstlisting}[language=Python, caption={Serializační třída k transformaci dat o učebnici},label=code:serializers]
+class OwnerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name')
+
+class TextbookSerializer(serializers.ModelSerializer):
+    owner = OwnerSerializer()
+    language = serializers.PrimaryKeyRelatedField(
+                queryset=models.Language.objects.all())
+    class Meta:
+        model = models.Textbook
+        fields = ('id', 'title', 'language', 'owner')
+\end{lstlisting}
+
+        \subsubsection{Implementace Supermemo algoritmu}
             % Supermemo implementace na serveru
-            % CRON připomínací emaily pouze v případě, že stihneš dodělat do APP
+            
 
-    \subsection{Django a REST framework}
-        
-        \subsubsection{Autorizace}
 
-        \subsubsection{Autentizace}
-
-        \subsubsection{Optimalizace API}
-
+        \subsubsection{Získání zvukové nahrávky}
+    
     \subsection{Zabezpečení}
-
-        \subsubsection{HTTP/2}
-
-        \subsubsection{OAuth2}
+        % HTTPS
+        % OAuth2
+        % CORS
+        % CSRF je zkratka z Cross site request forgery. Zranitelnost spočívá ve vytvoření podvrženého formuláře, kterého útočník přiměje legitimního uživatele odeslat. V minulosti bylo navrženo a implementováno několik obranných opatření. Mezi těmi, které byly uvažovány jako vhodní kandidáti pro aplikaci vyvinutou v rámci této práce byly: • Vyžadování tajného, unikátního tokenu (řetězce náhodných znaků) ve všech odeslaných formulářích. Takto je docíleno toho, že útočník není schopen tento token vložit do svých podvržených formulářů[9]. • Zkontrolovat, že hlavička každého požadavku obsahuje X-Requested-With nebo kontrola HTTP Referer, a nebo HTTP Origin[10]. Tato obranná strategie byly prokázaná jako nespolehlivá
 
         \subsubsection{JavaScript Web Tokens}
             \label{jwt}
 
-        \subsubsection{CORS}
+        \subsubsection{Autorizace}
 
-    \subsection{PostgreSQL}
+        \subsubsection{Autentizace}
+
+    \subsection{Databáze}
+        \label{db}
+        % Postgres
+        % migrace
+        % zapsané do modelových tříd
 
     \subsection{Testování}
         % APITestCase Django REST
+        % fixtures
 
 
 \newpage
 \section{Závěr}
     %% Možné rozšíření - přidat možnost více významů slova
-    % členy
+    % členy)
+    % WYSIWYG
 
 
 \newpage
@@ -910,15 +974,23 @@ export default class Hint extends React.Component {
         Ecma International. \textit{ECMAScript® 2015 Language Specification} [online] 2015 [cit. 2016-12-27]. Dostupné z: \url{http://www.ecma-international.org/ecma-262/6.0/index.html}.
 
     \bibitem{bib:jsx}
-        Facebook Inc. \textit{JSX In Depth} [online] 2016 [cit. 2016-12-28]
-        Dostupné z: \url{https://facebook.github.io/react/docs/jsx-in-depth.html}.
+        Facebook Inc. \textit{JSX In Depth} [online] 2016 [cit. 2016-12-28]. Dostupné z: \url{https://facebook.github.io/react/docs/jsx-in-depth.html}.
 
     \bibitem{bib:react}
-        Facebook Inc. \textit{React Components and Props} [online] 2016 [cit. 2016-12-28]
-        Dostupné z: \url{https://facebook.github.io/react/docs/components-and-props.html}.
+        Facebook Inc. \textit{React Components and Props} [online] 2016 [cit. 2016-12-28]. Dostupné z: \url{https://facebook.github.io/react/docs/components-and-props.html}.
         
     \bibitem{bib:mobx}
-        WESTSTRATE Michel a spol. \textit{MobX Core Concepts} [online] 2016 [cit. 2016-12-28]
+        WESTSTRATE Michel a spol. \textit{MobX Core Concepts} [online] 2016 [cit. 2016-12-28].
         Dostupné z: \url{https://mobxjs.github.io/mobx/index.html}.
+
+    \bibitem{bib:django}
+        Django Software Foundation. \textit{Django documentation} [online] 2015 [cit. 2016-12-28]. Dostupné z: \url{http://www.docs.djangoproject.com/en/}.
+
+    \bibitem{bib:django-rest}
+        CHRISTIE Tom. \textit{Django REST framework} [online] 2015 [cit. 2016-12-28]. Dostupné z: \url{http://www.django-rest-framework.org/}.
+
+    \bibitem{bib:csrf}
+       Open Web Application Security Project. \textit{Cross-Site Request Forgery} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29}
+        
 \end{thebibliography}
 \end{document}
