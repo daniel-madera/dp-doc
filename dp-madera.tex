@@ -912,8 +912,7 @@ def save_sound(text, lang):
     \subsection{Zabezpečení}
         % HTTPS
         % OAuth2
-        % CORS
-        % CSRF je zkratka z Cross site request forgery. Zranitelnost spočívá ve vytvoření podvrženého formuláře, kterého útočník přiměje legitimního uživatele odeslat. V minulosti bylo navrženo a implementováno několik obranných opatření. Mezi těmi, které byly uvažovány jako vhodní kandidáti pro aplikaci vyvinutou v rámci této práce byly: • Vyžadování tajného, unikátního tokenu (řetězce náhodných znaků) ve všech odeslaných formulářích. Takto je docíleno toho, že útočník není schopen tento token vložit do svých podvržených formulářů[9]. • Zkontrolovat, že hlavička každého požadavku obsahuje X-Requested-With nebo kontrola HTTP Referer, a nebo HTTP Origin[10]. Tato obranná strategie byly prokázaná jako nespolehlivá
+
 
         \subsubsection{JavaScript Web Tokens}
             \label{jwt}
@@ -927,6 +926,12 @@ def save_sound(text, lang):
     \subsection{Testování}
         % APITestCase Django REST
         % fixtures
+        Testování rozhraní bylo zaměřené pouze na správnou funkčnost API, tzn. kontrola, zda jednotlivé dotazy vracejí správná data. Jednotkové testování krátkých logických funkcí nemělo příliš význam, jelikož v REST frameworku jde spíše o nastavení součástí a spojení je do jednotného celku než implementace nízkoúrovňových logických bloků.
+        
+        Pro testování správné funkčnosti API byla využita třída APITestCase poskytovaná REST frameworkem. Testy jsou napsány na každou metodu každé URL. Kontrola jedné metody URL spočívala v ověření stavového kódu HTTP, dále v počtu vrácených dat, pokud se jednalo o listy objektů a náhodná kontrola hodnot objektu. K provádění dotazů posloužil objekt třídy \textit{APIClient}, který umožňoval jednoduše editovat hlavičky dotazu pro celou testovací sadu. 
+
+        Užitečným nástrojem pro testování jsou tzv. \textit{fixtures}. Jsou to soubory ve formátu JSON, které obsahují databázová data. Na začátku každé testovací sady je vytvořena nové dočasné schéma v databázi, které má identickou strukturu s produkčním schématem v databázi. Dále jsou na začátku testu předány jednotlivé \textit{fixtures}, které pro účely testování naplní databázi požadovanými daty.
+
 
 \newpage
 \section{Závěr}
