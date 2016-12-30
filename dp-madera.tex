@@ -106,16 +106,40 @@
     first={AJAX (Asynchronous JavaScript and \gls{xml})}
 }
 
+\newglossaryentry{css}{
+    name={CSS},
+    description={Kaskádové styly},
+    first={kaskádovými styly CSS}
+}
+
+\newglossaryentry{json}{
+    name={JSON},
+    description={JavaScript Object Notation},
+    first={JavaScript Object Notation (JSON)}
+}
+
+\newglossaryentry{jwt}{
+    name={JWT},
+    description={JavaScript Web Token},
+    first={JavaScript Web Token (JWT)}
+}
+
 \newglossaryentry{odbc}{
     name={ODBC},
     description={Open Database Connectivity},
     first={ODBC (Open Database Connectivity)}
 }
 
+\newglossaryentry{spa}{
+    name={\gls{spa}},
+    description={Single Page Application},
+    first={Single Page Application (SPA)}
+}
+
 \newglossaryentry{xml}{
     name={XML},
     description={Extensible Markup Language},
-    first={XML}
+    first={Extensible Markup Language (XML)}
 }
 
 
@@ -438,14 +462,14 @@
 
     \subsection{Obtížnost slovíček}
         % vygenerovaná obtížnost na základě délky slova, podobnosti s českým jazykem, přizpůsobena vyučujícím
-        Při zadávání slova do učebnice bude automaticky vyhodnocena jeho obtížnost, která je rozdělena do čtyř kategorií - snadné, střední, těžké a nemožné. Vyhodnocení obtížnosti je založeno na kombinaci několika parametrů slova - jeho délky, podobnosti s českým ekvivalentem a další atributy jako počet přehlasovaných písmen nebo počet výskytů dvojitých písem. V případě nevhodně vygenerované obtížnosti slova, uživatel ji bude moci opravit dle vlastního uvážení. Délka slova je prahově rozdělena do kategorií obtížnosti, následně bude vyhodnocena podobnost s významem pomocí Levensteinovy vzdálenosti popsané v podkapitole \ref{levenstein}. Poté následuje vyhodnocení přehlasování a dvojitých hlásek, které ale ovlivňují obtížnost už minimálně.
+        Při zadávání slova do učebnice bude automaticky vyhodnocena jeho obtížnost, která je rozdělena do čtyř kategorií - snadné, střední, těžké a nemožné. Vyhodnocení obtížnosti je založeno na kombinaci několika parametrů slova - jeho délky, podobnosti s českým ekvivalentem a dalšími atributy jako počet přehlasovaných písmen nebo počet výskytů dvojitých písem. V případě nevhodně vygenerované obtížnosti slova, uživatel ji bude moci opravit dle vlastního uvážení. Délka slova je prahově rozdělena do kategorií obtížnosti, následně bude vyhodnocena podobnost s významem pomocí Levensteinovy vzdálenosti popsané v podkapitole \ref{levenstein}. Poté následuje vyhodnocení přehlasování a dvojitých hlásek, které ale ovlivňují obtížnost už jen minimálně.
 
         \subsubsection{Výběr algoritmu}       
             Levenshteinova vzdálenost je velmi podobná známe Hammingově vzdálenosti s tím rozdílem, že Hammingova vzdálenost uvádí počet pozic se stejným symbolem v obou řetězcích. Kdežto Levenshteinova uvádí počet jednoznakových editací. Pro určení míry podobnosti mezi slovem v cizím jazyce a jeho překladem je vhodnější Levenshteinova vzdálenost, jelikož akceptuje řetězce s různou délkou a v případě, že písmeno chybí, je to vyhodnoceno pouze jako odstraněné písmeno a algoritmus pokračuje dál. V případě Hammingovy vzdálenosti, vynechané písmeno naruší porovnávání zbytku řetězce.
 
         \subsubsection{Levenshteinova vzdálenost}
             \label{levenstein}
-            Levenshteinova vzdálenost v informatice je míra rozdílu mezi dvěma řetězci. Pro výpočet vzdálenosti se využívá matice s rozměry velikostí délek řetězců. V podstatě vzdálenost je minimální počet jednoznakových úprav ve slově, aby vzniklo slovo referenční. Za jednoznakovou úpravu se považuje smazání, záměna nebo vložení písmene na dané místo.
+            Levenshteinova vzdálenost v informatice je míra rozdílu mezi dvěma řetězci. Pro výpočet vzdálenosti se využívá matice s rozměry velikostí délek řetězců. V podstatě vzdálenost je minimální počet jednoznakových úprav ve slově, aby vzniklo slovo referenční. Za jednoznakovou úpravu se považuje smazání, záměna nebo vložení písmene na dané místo\cite{bib:levensthtein}.
 
             Vzorec \ref{levenshtein} je matematický zápis Levenshteinovy vzdálenosti, kde $a$ a $b$ jsou řetězce $a(i)$ a $b(j)$ jsou indexované znaky v řetězcích. Výsledná vzdálenost je rovna hodnotě v matici $dist_{a,b}$ na pozici $dist_{a,b}(|a|,|b|)$, kde $|a|$ a $|b|$ jsou délky řetězců \cite{bib:levenshtein}.
 
@@ -465,7 +489,7 @@
             \end{align}
             \end{ceqn}
 
-            V případě, že se pohybujeme v matici v prvním sloupci a prvním řádku přiřazujeme hodnoty 1 až délka řetězce $a$ do sloupce a 1 až délka řetězce $b$ do řádku. Tedy první sloupec a první řádek v matici slouží jako referenční inicializace. V generování matice se následně pokračuje a porovnávají se jednotlivé znaky. První položka v minimu je případ, kdy písmeno bylo odstraněno z $a$. Druhá položka je případ, kdy došlo k vložení znaku do a na základě znaku v $b$ řetězci. A poslední položka je případ porovnání znaků. V okamžiku, kdy znaky se rovnají, hodnota vzdálenosti na diagonále zůstává, v opačném případě se přičítá jednička.
+            V případě, že se pohybujeme v matici v prvním sloupci a prvním řádku, přiřazujeme hodnoty 1 až délka řetězce $a$ do sloupce a 1 až délka řetězce $b$ do řádku. Tedy první sloupec a první řádek v matici slouží jako referenční inicializace. V generování matice se následně pokračuje a porovnávají se jednotlivé znaky. První položka v minimu je případ, kdy písmeno bylo odstraněno z $a$. Druhá položka je případ, kdy došlo k vložení znaku do $a$ na základě znaku v $b$ řetězci. A poslední položka je případ porovnání znaků. V okamžiku, kdy znaky se rovnají, hodnota vzdálenosti na diagonále zůstává, v opačném případě se přičítá jednička.
 
             Výpočet Levenshteinovy vzdálenosti dvou slov znázorňuje matice \ref{leven-matice}, kde dochází k porovnání českého slova \textit{cyklus} a anglického výrazu \textit{cycle}. Tučně je znázorněna cesta výpočtu. Prováděné jednoznakové operace jsou žádná, žádná, žádná, záměna, záměna a vložení.
 
@@ -502,15 +526,15 @@
             \label{init-faze}
             % setřídění slov nejlehčí, nejtěžší atd.
             % na základě odpovědi určení počet nutných správných opakování
-            Na začátku testování jsou k dispozici slova s přiřazenou obtížností. Tato obtížnost je buď globální v případě, že se uživatel nesetkal ještě s daným slovem v aplikaci nebo uživatelská v případě, že uživatel dané slovo již procvičoval. Dle této obtížnosti se slovíčka seřadí tak, aby se střídala nejnižší a nejvyšší obtížnost. Na prvním místě tedy je slovo s nejnižší obtížností, následuje slovo s nejvyšší, dále slovo s druhou nejnižší atd. Důvodem tohoto seřazení je zvýšení motivace dětí. V případě, že by žák dostal na začátku nejtěžší slova, mohlo by si vytvořit odpor k procvičování v domnění, že slova jsou příliš složitá pro něj. 
+            Na začátku testování jsou k dispozici slova s přiřazenou obtížností. Tato obtížnost je buď globální v případě, že se uživatel nesetkal ještě s daným slovem v aplikaci nebo uživatelská v případě, že uživatel dané slovo již procvičoval. Dle této obtížnosti se slovíčka seřadí tak, aby se střídala nejnižší a nejvyšší obtížnost. Na prvním místě tedy je slovo s nejnižší obtížností, následuje slovo s nejvyšší, dále slovo s druhou nejnižší atd. Důvodem tohoto seřazení je zvýšení motivace dětí. V případě, že by žák dostal na začátku nejtěžší slova, mohlo by si vytvořit odpor k procvičování v domnění, že slova jsou pro něj příliš složitá. 
 
-            Uživatel tedy postupně odpovídá na slovíčka. Jeho odpověď je vyhodnocena buď správně, špatně nebo neúplně. Na základě vyhodnocené odpovědi a globální nebo uživatelské obtížnosti je ke slovu přiřazen počet správných opakování pro dokončení slova.
+            Uživatel tedy postupně odpovídá na slovíčka. Jeho odpověď je vyhodnocena buď správně, špatně nebo neúplně. Na základě vyhodnocené odpovědi a obtížnosti je ke slovu přiřazen počet nutných správných opakování pro dokončení slova.
 
         \subsubsection{Testovací fáze}
             % výběr slov na základě Leitnerova algoritmu
-            Po inicializační fázi následuje fáze testovací. V této fázi již je známo, jaká slova dělají uživateli problém. Oproti standardnímu Leitnerovu systému popsaném v kapitole \ref{leitner}, kde na začátku jsou všechny otázky zařazeny do první kategorie, zde se otázky rozdělují do třech kategorií na základě inicializační fáze. Následuje první fáze, kde dochází postupnému procházení otázek v první Leitnerově kategorii od nejtěžší pro uživatele po nejlehčí. V případě správně nebo neúplně zodpovězené otázky, slovo je přesunuto do vyšší kategorie. Následuje druhá fáze, kde se prochází otázky z první a druhé Leitnerovy kategorie. I zde platí, na základě odpovědi dochází k přesouvání otázek mezi kategoriemi, jak už tomu je ve standardním provedení Leitnerova systému. Ve třetí fázi jsou nabízeny otázky z první, druhé a třetí Leitnerovy kategorie. Po průchodu třetí fáze následuje znovu fáze první. Takto algoritmus cykluje do doby, dokud uživatel nepřeruší test nebo nezůstanou žádná slova, které by uživatel nedokončil. 
+            Po inicializační fázi následuje fáze testovací. V této fázi již je známo, jaká slova dělají uživateli problém. Oproti standardnímu Leitnerovu systému popsaném v kapitole \ref{leitner}, kde na začátku jsou všechny otázky zařazeny do první kategorie, zde se otázky rozdělují do třech kategorií na základě inicializační fáze. Následuje první fáze, kde dochází postupnému procházení otázek v první Leitnerově kategorii od nejtěžší po nejlehčí. V případě správně nebo neúplně zodpovězené otázky, slovo je přesunuto do vyšší kategorie. Následuje druhá fáze, kde se prochází otázky z první a druhé Leitnerovy kategorie. I zde platí, na základě odpovědi dochází k přesouvání otázek mezi kategoriemi, jak už tomu je ve standardním provedení Leitnerova systému. Ve třetí fázi jsou nabízeny otázky z první, druhé a třetí Leitnerovy kategorie. Po průchodu třetí fáze následuje znovu fáze první. Takto algoritmus cykluje do doby, dokud uživatel nepřeruší test nebo nezůstanou žádná slova, které by uživatel nedokončil. 
 
-            Za dokončené slovo se považuje takové, kde uživatel odpověděl správně nebo neúplně tolikrát, kolik má slovo přiřazených nutných správných opakovaní, a zároveň poslední odpověď nesmí být neúplná, ale pouze správná. Je to z důvodu, aby bylo ověřeno, že uživatel má správně zapamatovanou informaci.
+            Za dokončené slovo se považuje takové, kde uživatel odpověděl správně nebo neúplně tolikrát, kolik má slovo přiřazených nutných správných opakovaní a zároveň poslední odpověď nesmí být neúplná, ale pouze správná. Je to z důvodu, aby bylo ověřeno, že uživatel má správně zapamatovanou informaci.
 
             % možná nějaký obrázek 
 
@@ -518,30 +542,30 @@
             % ukládání Leitnerovy kategorie jako adaptivní obtížnost
             V případě přerušení testu dochází k ukládání aktuální Leitnerovy kategorie k danému uživateli. Díky tomu lze znovu navázat v případě, že uživatel se bude chtít k testování dané skupiny slov vrátit. Leitnerova kategorie vypovídá, jak problematické je slovo pro uživatele. V případě, že se slovo nachází v první kategorii je problematické a v případě, že se nachází ve třetí, uživatel ho zvládá bez obtíží. Díky této informaci dochází k adaptivnímu generování obtížnosti. V případě, že není u daného slova a uživatele uložená Leitnerova kategorie, je v inicializační části brána globální obtížnost.
 
-            Například se může stát, že globální obtížnost slova je v kategorii těžkých, ale uživatel se s tímto slovem už několikrát setkal a dobře se mu pamatuje. Je proto zbytečné slovo mu opakovat vícekrát, jelikož na základě obtížnosti a správnosti odpovědi se generuje počet opakování. 
+            Například se může stát, že globální obtížnost slova je v kategorii těžkých, ale uživatel se s tímto slovem už několikrát setkal a dobře se mu pamatuje. Je proto zbytečné slovo mu opakovat vícekrát, jelikož na základě obtížnosti a správnosti odpovědi se generuje právě i počet opakování. 
 
     \subsection{Procvičování slovíček}
         % učitel nevidí statistiky dětí, pouze celé třídy
         % aplikace nemá sloužit na zkoušení dětí učitelem
         % testing to learn, not testing to assess 
-        Základní myšlenkou procvičování a testování slovíček je pomoci se žákům efektivně naučit slovíčka, nikoliv poskytnou vyučujícím možnost posuzovat, jak na tom žáci jsou. Následující podkapitoly popisují, jakým způsobem probíhá testování, napovídání, vyhodnocování odpovědí a kontrola podvádění.
+        Základní myšlenkou procvičování a testování slovíček je pomoci se žákům efektivně naučit slovíčka, nikoliv poskytnou vyučujícím možnost posuzovat, jak na tom žáci jsou. Následující podkapitoly popisují, jakým způsobem v aplikaci probíhá testování, napovídání, vyhodnocování odpovědí a kontrola podvádění.
 
         \subsubsection{Metody testování}
             % aktivní rozpoznání a aktivní vzpomenutí
             % algoritmus na záměnu vzpomenutí a rozpoznání (možná obrázek)
-            Pro procvičování slovíček je zvolen pouze aktivní přístup a to v metodách aktivního rozpoznání a aktivního vzpomenutí. Tyto metody se automaticky střídají v závislosti na odpovídání uživatele. V případě inicializační fáze procvičování, popsané v kapitole \ref{init-faze}, se metoda testování nemění, aby uživatel měl stejné podmínky pro vyhodnocení úvodní obtížnosti slova. V následující fázi, kde probíhá samotné procvičování se metody střídají. Když uživatel odpoví špatně na vzpomenutí a u slova má více než jednu nutnou správnou odpověď pro dokončení slova, následující procvičení stejného slova je metodou rozpoznání. Je to z důvodu zvýšení motivace, aby procvičování uživatele neodradilo, když si nevzpomene na cizojazyčný výraz. 
+            Pro procvičování slovíček je zvolen pouze aktivní přístup a to v metodách aktivního rozpoznání a aktivního vzpomenutí. Tyto metody se automaticky střídají v závislosti na odpovídání uživatele. V případě inicializační fáze procvičování, popsané v kapitole \ref{init-faze}, se metoda testování nemění, aby uživatel měl stejné podmínky pro vyhodnocení úvodní obtížnosti slova. V následující fázi, kde probíhá samotné procvičování se metody střídají. Když uživatel odpoví špatně na vzpomenutí a u slova má více než jednu nutnou správnou odpověď pro dokončení slova, následuje metoda rozpoznání. Je to z důvodu zvýšení motivace, aby procvičování uživatele neodradilo, když si nevzpomene na cizojazyčný výraz. 
 
-            Jelikož vzpomenutí je paměťově náročnější úkol pro uživatele, je nutné, aby metoda potencionálně poslední odpovědi byla vzpomenutí. Jinak není možné ověřit, zda uživatel opravdu se slovo naučil i v cizojazyčném výraze. Tzn. V případě, že počet nutných správných odpovědí byl vyhodnocen na číslo 2, první metoda testování bude rozpoznání - uživatel napíše význam slova v mateřském jazyce. Pokud odpoví správně následuje metoda vzpomenutí. Pokud ale odpoví špatně, následuje znovu metoda rozpoznání.
+            Jelikož vzpomenutí je paměťově náročnější úkol, je nutné, aby metoda poslední odpovědi byla vzpomenutí. Jinak není možné ověřit, zda uživatel si dobře pamatuje cizojazyčný výraz slova. Tzn. V případě, že počet nutných správných odpovědí byl vyhodnocen na číslo 2, první metoda testování bude rozpoznání - uživatel napíše význam slova v mateřském jazyce. Pokud odpoví správně, následuje metoda vzpomenutí. Pokud ale odpoví špatně, následuje znovu metoda rozpoznání.
     
         \subsubsection{Nápovědy}
             % definice se zobrazuje ihned, kontext slova ve větě z učebnice, první písmeno
             % možnost vyplnění definice slova - (automaticky předvyplnit - volně dostupné definice)
-            V procvičování slovíček uživatel má k dispozici i nápovědy, v případě, že vlastník učebnice vyplní ke slovům i doplňující informace jako definici a použití ve větě z fyzické učebnice. Tyto nápovědy jsou použity pouze v případě, že se testuje metodou vzpomenutí. Další nápovědou je zobrazení prvního písmene odpovědi. Definice je nápověda, kterou uživatelé vidí jako doplňující atribut otázky. V případě, že uživatel klikne na tlačítko "Použít nápovědu", zobrazí se mu první písmeno odpovědi. Pokud klikne na tlačítko znovu, zobrazí se mu použití slova ve větě.
+            V procvičování slovíček uživatel má k dispozici i nápovědy. V případě, že vlastník učebnice vyplní ke slovům i doplňující informace jako definici a použití ve větě. Tyto nápovědy jsou použity pouze v případě, že se testuje metodou vzpomenutí. Další nápovědou je zobrazení prvního písmene odpovědi. Definice je nápověda, kterou uživatelé vidí jako doplňující atribut otázky. V případě, že uživatel klikne na tlačítko "Použít nápovědu", zobrazí se mu první písmeno odpovědi. Pokud klikne na tlačítko znovu, zobrazí se mu použití slova ve větě.
 
         \subsubsection{Vyhodnocování odpovědí}
             % určení vzdálenosti slov - více úrovní odpovědí
             % využívá se Levenshteina
-            K vyhodnocování odpovědi se využívá znovu Levenshteinovy vzdálenosti popsané v kapitole \ref{levenshtein}. Odpověď je vyhodnocena do tří kategorií - správně, špatně a neúplně. Před porovnáváním slova, je z odpovědi odstraněné mezery, tabulátory a další speciální znaky. Správně je vyhodnocena pouze odpověď, která se plně shoduje s referenčním slovem. Jako neúplná je vyhodnocena v případě, že na 5 písmen je pouze jedna jednoznaková editace - tedy chybovost 20\%. V ostatních případech je odpověď vyhodnocená jako špatná. Pokud uživatel využije alespoň jednu z nápověd, automaticky se vyhodnocuje odpověď jako neúplná i v případě zcela správné odpovědi. 
+            K vyhodnocování odpovědi se využívá znovu Levenshteinovy vzdálenosti popsané v kapitole \ref{levenshtein}. Odpověď je vyhodnocena do tří kategorií - správně, špatně a neúplně. Před porovnáváním slova, jsou z odpovědi odstraněné i násobné mezery, tabulátory a další speciální znaky. Správně je vyhodnocena pouze odpověď, která se plně shoduje s referenčním slovem. Jako neúplná je vyhodnocena v případě, že na 5 písmen je pouze jedna jednoznaková editace - tedy chybovost 20\%. V ostatních případech je odpověď vyhodnocená jako špatná. Pokud uživatel využije alespoň jednu z nápověd, automaticky se vyhodnocuje odpověď jako neúplná i v případě zcela správné odpovědi. 
 
         \subsubsection{Kontrola podvádění}
             % problém, není možné kontrolovat, zda si uživatelé nevyhledávají
@@ -553,15 +577,15 @@
 
     \subsection{Připomínání slov}
         % shrnout supermemo aplogritmus
-        Připomínání slov je důležitou součástí aplikace. Funkce slouží k tomu, aby studenti nezapomněli na již naučená a zvládnutá slova z procvičování. Jelikož se jedná o webovou aplikaci, není úplně možné připomínat slova v přesných intervalech přímo v aplikaci. Způsob implementace připomínání slov je závislý na tom, aby se uživatel sám přihlásil a spustil funkci připomínání slov. Je možné na základě softwarového démonu Cron v určitých intervalech ze serveru odesílat emailová upozornění se slovy, které by si měl uživatel připomenout.
+        Připomínání slov je důležitou součástí aplikace. Funkce slouží k tomu, aby studenti nezapomněli na již naučená a zvládnutá slova z procvičování. Jelikož se jedná o webovou aplikaci, není úplně možné připomínat slova v přesných intervalech přímo. Způsob implementace připomínání slov je závislý na tom, aby se uživatel sám přihlásil a spustil funkci připomínání slov. Je ale možné například na základě softwarového démonu Cron v určitých intervalech ze serveru odesílat emailová upozornění se slovy, které by si měl uživatel připomenout.
 
         \subsubsection{Supermemo algoritmus}
             \label{supermemo}
-            Supermemo algoritmus je rovněž další implementace metody rozloženého opakování popsané v kapitole \ref{spaced-repetition}. První implementace Supermemo algoritmu v papírové podobě byla vytvořena již v roce 1985. V aplikaci je využívání aktuální verze 11, poprvé implementována v roce 2005. 
+            Supermemo algoritmus je rovněž další implementace metody rozloženého opakování popsané v kapitole \ref{spaced-repetition}. První implementace Supermemo algoritmu v papírové podobě byla vytvořena již v roce 1985. V aplikaci je využívání aktuální verze 11, poprvé implementována v roce 2005 \cite{bib:supermemo}. 
 
-            Algoritmus má dvě možnosti implementace - optimální interval a pokročilé opakování \cite{bib:supermemo}. Verze s optimálním interval je pro účely aplikace dostačující, jelikož pro implementaci s pokročilým opakováním by bylo nutné ukládat ke každému uživateli nepřeberné množství dat. Pro správnou funkci je nutné ukládat každou odpověď ke každému ze slovíček, na základě nichž se aplikace adaptuje na schopnosti uživatele. Oba algoritmy je možné si vyzkoušet v podobě desktopové aplikace popsané v kapitole \ref{supermemo-app}. V aplikaci lze pozorovat změny na uživateli v podobě křivky zapomínání a dalších statistických informacích. 
+            Algoritmus má dvě možnosti implementace - optimální interval a pokročilé opakování \cite{bib:supermemo}. Verze s optimálním interval je pro účely aplikace dostačující, jelikož pro implementaci s pokročilým opakováním by bylo nutné ukládat ke každému uživateli nepřeberné množství dat - každá odpověď ke každému ze slovíček, na základě nichž se algoritmus adaptuje na schopnosti uživatele. Oba algoritmy je možné si vyzkoušet v podobě desktopové aplikace popsané v kapitole \ref{supermemo-app}. V aplikaci lze pozorovat změny na uživateli v podobě křivky zapomínání a dalších statistických informacích. 
 
-            Definice spočtení optimálního interval\cite{bib:supermemo}: 
+            Definice spočtení optimálního interval \cite{bib:supermemo}: 
 
                 \begin{gather}
                     I(1)=OF[1,L+1]\label{eq:2}\\
@@ -608,57 +632,58 @@
         % třídních zvládnutých slov
         % cinknutí při zvládnutém slově
         % motivace je důležitou součástí, jelikož aplikace apeluje na vlastní iniciativu a nenutí žáky si procvičovat slovíčka
-        Motivace je důležitou součástí, jelikož aplikace apeluje na vlastní iniciativu, popřípadě mohou být nuceni externě (mimo aplikaci) například vyučujícím. Aby se žáci rádi vraceli k aplikaci, je nutné zaujmout je designem nebo nějakou vnitřní psychologickou motivací. Další možností motivace je zařadit do aplikace nějakou formu hry. Například za milník naučených slov žáky odměnit například jednoduchou hrou. To by ale vyžadovalo složitější návrh aplikace.
+        Motivace je důležitou součástí, jelikož aplikace apeluje na vlastní iniciativu. Aby se žáci rádi vraceli k aplikaci, je nutné zaujmout je designem nebo nějakou vnitřní psychologickou motivací. Další možností motivace je zařadit do aplikace nějakou formu hry. Například za milník naučených slov žáky odměnit například jednoduchou hrou. To by ale vyžadovalo složitější implementaci aplikace.
 
         \subsubsection{Třídní počet zvládnutých slov}
             % zobrazeno neustále v panelu s přihlášeným uživatelem
             % cinknutí a zobrazení upozornění v podobě výrazného prvku
-            Jednou z vnitřních psychologických motivací je ukázání uživateli, že nějakým způsobem přispívá do kolektivu. Pokud je uživatel přihlášen do nějaké třídy nebo skupiny uživatelů, vidí v horním panelu počet zvládnutých slov v rámci třídy. Tento způsob má za následek to, že může dojít k předháněním mezi třídami, přičemž přispívání zvládnutými slovy na úrovní uživatelů je anonymní. V případě, že uživatel dokončí slovo v rámci dané třídy, aplikace ho upozorní v podobě zvukové signalizace a zvýrazní sekci, kde se nachází tyto statistické údaje.
+            Jednou z vnitřních psychologických motivací je ukázání uživateli, že nějakým způsobem přispívá do kolektivu. Pokud je uživatel přihlášen do třídy nebo skupiny uživatelů, vidí v horním panelu počet zvládnutých slov v rámci třídy. Tento způsob má za následek to, že může dojít k předháněním mezi třídami, přičemž přispívání zvládnutými slovy na úrovní uživatelů je anonymní. V případě, že uživatel dokončí slovo v rámci dané třídy, aplikace ho upozorní v podobě zvukové signalizace a zvýrazní sekci, kde se nachází tyto statistické údaje.
 
         \subsubsection{Vlastní počet zvládnutých slov}
             % skryté, až na rozkliknutí se zobrazí počet zvládnutých slov
             % problém výskytu stejných slov v různých učebnicích
-            Další vnitřní psychologickou motivací je zobrazení uživateli, kolik slov doposud v aplikaci zvládl procvičit. Tato informace je uživateli skryta ve výchozím stavu, pokud uživatel chce vidět jeho pokrok, musí kliknout na doplňující statistické informace. Důvodem skrytého výchozího stavu je to, aby uživatel neviděl, kolik úsilí je nutné vynaložit, aby slovo bylo korektně dokončeno. Mohlo by se totiž zdát, že slova do dokončených se načítají příliš pomalu, jelikož procvičení slova vyžaduje několika násobné opakování. 
+            Další vnitřní psychologickou motivací je zobrazení uživateli, kolik slov doposud v aplikaci zvládl procvičit. Tato informace je uživateli skryta ve výchozím stavu, pokud uživatel chce vidět jeho pokrok, musí kliknout na doplňující statistické informace. Důvodem skrytého výchozího stavu je to, aby uživatel neviděl, kolik úsilí je nutné vynaložit, aby slovo bylo korektně dokončeno. Mohlo by se totiž zdát, že se slova do dokončených načítají příliš pomalu, jelikož procvičení slova vyžaduje několika násobné opakování. 
 
             Dalším problémem je unikátnost slov, protože učebnice jsou editovatelné prostřednictvím různých vlastníků a do každé z nich lze zapsat identické slovo. Nelze proto počet zvládnutých slov vyhodnocovat pouze na základě úspěšně dokončených slov, ale na základě unikátních úspěšně dokončených slov. Unikátnost se provádí na referenčním slově v cizím jazyce. Problém ale vzniká, pokud nějaký uživatel při tvorbě slovíček zadává slovo včetně členu a jiný ne. Tato slova se posuzují jako dvě různá.
 
         \subsubsection{Design aplikace}
             % spíše, aby 
             % nechat na profesionálním grafikovi
-            Design aplikace má také velký vliv na motivaci žáků se do ní vracet. Pokud design disponuje dostatkem barev, různých designových prvků v podobě zvířat nebo jiných entit, ze kterých jsou děti odvázané. Aplikace je cílená pro děti základních škol zejména prvního stupně tedy ve věku 6 až 10 let, u nichž design hraje velkou roli. Další vlastností, kterou by měl design disponovat je responzivnost pro mobilní telefony, potažmo přímo dedikovanou aplikaci pro chytrý telefon. Aktuální trend je takový, že každý žák na první stupni ZŠ ovládá chytrý telefon.
+            Design aplikace má také velký vliv na motivaci žáků. Hlavně v případě, kdy design disponuje dostatkem barev, různých designových prvků v podobě zvířat nebo jiných entit, ze kterých jsou děti odvázané. Aplikace je cílená pro děti základních škol zejména prvního stupně tedy ve věku 6 až 10 let, u nichž design hraje velkou roli. 
 
-            Pro kvalifikovaný přístup k designu by se měla aplikace zadat profesionálnímu grafikovi, který by design přizpůsobil pro děti.
+            % Další vlastností, kterou by měl design disponovat je responzivnost pro mobilní telefony, potažmo přímo dedikovanou aplikaci pro chytrý telefon. Aktuální trend je takový, že každý žák na první stupni ZŠ ovládá chytrý telefon.
+
+            Pro kvalifikovaný přístup k designu by se měla aplikace zadat profesionálnímu grafikovi, který by design pro děti přizpůsobil.
 
     \subsection{Architektura aplikace}
         % architektura celé aplikace
         % 2 části, ve zkratce popsat, která je za co zodpovědná
-        Aplikace je implementovaná v podobě webové služby a skládá se z dvou částí - klientská a serverová. V návrhu aplikace dochází k vysokému sdílení dat mezi uživateli, proto je vhodné aplikaci implementovat jako webovou. Základní myšlenkou návrhu bylo oddělit klientskou a serverovou část, aby bylo možné do budoucna aplikaci rozšířit implementací například pro chytrý telefon.
+        Aplikace je implementovaná v podobě webové služby a skládá se z dvou částí - klientská a serverová. Základní myšlenkou návrhu bylo oddělit klientskou a serverovou část, aby bylo možné do budoucna aplikaci rozšířit implementací například aplikací pro chytrý telefon.
 
         Serverová část je zodpovědná za servírování klientské aplikace, rovněž aplikace poskytuje aplikační rozhraní, kde na základě dotazů lze získat data ve formátu JSON. V serverové části je implementovaný Supermemo algoritmus pro připomínání slov. Dále je server zodpovědný za získání zvukové nahrávky z Google Text to Speech API, ukládání její kopie a její poskytnutí pro klienta. V neposlední řadě se server zabývá problematikou autorizace a autentizace uživatelů v podobě JavaScript Web Tokens (JWT). 
 
-        Klientská aplikace je zodpovědná za zobrazení načtených dat ze serveru, poskytnutí přehledného grafického rozhraní pro tvorbu, editaci a mazání dat nutných pro procvičování a připomínání slov (slovíčka, učebnice, třídy apod.). V klientské části je implementovány algoritmy Leitnerova systému a spočtení Levenshteinovy vzdálenosti. Dále klient je zodpovědný za načítání obrázků z Google Search API.
+        Klientská aplikace je zodpovědná za zobrazení načtených dat ze serveru, poskytnutí přehledného grafického rozhraní pro tvorbu, editaci a mazání dat nutných pro procvičování a připomínání slov (slovíčka, učebnice, třídy apod.). V klientské části jsou implementovány algoritmus Leitnerova systému a spočtení Levenshteinovy vzdálenosti. Dále klient je zodpovědný za načítání obrázků z Google Search API.
 
 
 \newpage
 \section{Klientská část}
     
-    Tato kapitola se zbývá klientskou částí aplikace od technologického návrhu aplikace, přes vývojové prostředí a vlastní implementaci, až po testování. Aplikace je napsána v jazyce JavaScript za podpory kódovacího jazyka HTML a kaskádovými styly CSS. Základní specifikace jazyků jsou doplněny o knihovny React s využitím MOBX rozšíření a o knihovnu pouze s CSS styly z Bootstrap frameworku.
+    Tato kapitola se zbývá klientskou částí aplikace od technologického návrhu aplikace, přes vývojové prostředí a vlastní implementaci, až po testování. Aplikace je napsána v jazyce JavaScript za podpory kódovacího jazyka HTML a \gls{css}. Základní specifikace jazyků jsou doplněny o knihovny React s využitím MobX rozšíření a o knihovnu pouze s čistým \gls{css} z Bootstrap frameworku.
 
     \subsection{Návrh aplikace}
         % respoznivnost uživatelského rozhraní
         % využití single page applikace - nutnost vysoké responzivity mezi uživatelem a aplikací - nahrazení desktopové
         % vývoj několik možností - standadní webová aplikace a single-page
-        Využití webových technologií bylo jasnou volbou v návrhu aplikace ihned po specifikování požadavků, protože hlavním požadavkem bylo vytvořit portál pro žáky a učitele, kteří si budou moci sdílet mezi sebou učebnice se slovíčky, budou se moci přihlašovat do svých tříd a společně pracovat na zvýšení slovní zásoby. 
+        Využití webových technologií bylo jasnou volbou v návrhu aplikace ihned po specifikování požadavků, protože hlavním požadavkem bylo vytvořit portál pro žáky a učitele, kteří si budou moci sdílet mezi sebou učebnice se slovíčky. Budou se moci přihlašovat do svých tříd a společně pracovat na vylepšení slovní zásoby. 
 
-        Jelikož se mělo jednat o aplikaci, která do jisté míry měla nahrazovat desktopové aplikace, bylo nutné zvolit takovou technologii, která se nejeví úplně staticky a kde se nemusí čekat na obnovení celé stránky, ale kde dochází k okamžitým reakcím na uživatelské podněty. Na základě tohoto požadavku je využita technologie Single Page aplikace (SPA).   
+        Jelikož se mělo jednat o aplikaci, která do jisté míry měla nahrazovat desktopové aplikace, bylo nutné zvolit takovou technologii, která se nejeví úplně staticky. Kde se nemusí čekat na obnovení celé stránky, ale kde dochází k okamžitým reakcím na uživatelské podněty. Na základě tohoto požadavku je využita technologie \gls{spa}.
 
-
-        \subsubsection{Single-page}
+        \subsubsection{Single Page aplikace}
             % definice
             % výhody
-            Single page application (SPA) je jedna webová stránka, která poskytuje celou aplikaci. Při prvním načtení je přenesen veškerý kód pro aplikační běh, tj. HTML šablony, JavaScript i kaskádové styly (CSS). Na základě akcí prováděných uživatelem jsou poté dynamicky načítány ostatní zdroje jako data, obrázky apod. Celá stránka se nikdy neobnovuje jako tomu je v klasické webové aplikaci. Veškerá aplikační logika je přenesena ze serveru na klienta za účelem server odlehčit. V případě SPA server většinou po načtení aplikace poskytuje pouze data a to nejčastěji ve formátech JavaScript Object Notation (JSON) nebo Extensible Markup Language (XML).
+            \gls{spa} je jedna webová stránka, která představuje celou aplikaci. Při prvním načtení je přenesen veškerý kód pro aplikační běh, tj. HTML šablony, JavaScript i \gls{css}. Na základě akcí prováděných uživatelem jsou poté dynamicky načítány ostatní zdroje jako data, obrázky apod. Celá stránka se nikdy neobnovuje jako tomu je v klasické webové aplikaci. Veškerá aplikační logika je přenesena ze serveru na klienta za účelem server odlehčit. V případě \gls{spa} server většinou po načtení aplikace poskytuje pouze data a to nejčastěji ve formátech \gls{json} nebo \gls{xml}.
 
-            Hlavní výhoda SPA je kromě úvodního načítání dat rychlá odezva. Jelikož se ze serveru nestahuje celý HTML kód, nýbrž jen čistá data. Dochází tedy hlavně k datové i výkonové úspoře, protože prohlížeč nemusí renderovat celou stránku, ale pouze tu část, kde dochází ke změně. Výhodou je také možnost implementace tzv. lazy-loadingu, kdy dojde k rychlému vykreslení obsahu a náročnější operace se mohou být načteny nezávisle později. SPA má i řadu nevýhod. Například v prohlížeči pro chod aplikace je nutné mít zapnutý JavaScript, další nevýhodou je obtížné zpracování obsahu pro roboty vyhledávačů. Ale zařazení do vyhledávání je nepodstatné pro aktuální potřeby aplikace.
+            Hlavní výhoda \gls{spa} je kromě úvodního načítání dat rychlá odezva. Jelikož se ze serveru nestahuje celý HTML kód, nýbrž jen čistá data. Dochází tedy hlavně k datové i výkonové úspoře, protože prohlížeč nemusí renderovat celou stránku, ale pouze tu část, kde dochází ke změně. Výhodou je také možnost implementace tzv. lazy-loadingu, kdy dojde k rychlému vykreslení obsahu a náročnější operace se mohou být načteny nezávisle později \cite{bib:spa}. \gls{spa} má i řadu nevýhod. Například v prohlížeči pro chod aplikace je nutné mít zapnutý JavaScript, další nevýhodou je obtížné zpracování obsahu pro roboty vyhledávačů. Ale zařazení do vyhledávání je nepodstatné pro aktuální potřeby aplikace.
 
         \subsubsection{Komunikace se serverem}
             Klient komunikuje se serverem obvykle dvěma způsoby - web sokety nebo \gls{ajax} dotazy. Další technologií pro komunikaci, která by mohla být využita je Server-sent events (SSEs), která umožňuje serveru zasílat data klientovi přes HTTP protokol. Pro účely aplikace bude omezenou pouze na \gls{ajax} komunikaci, jelikož pro web sokety a tudíž obousměrnou komunikaci v aplikaci využití není.
@@ -757,7 +782,7 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
 \end{minipage}
 
     \subsection{Vývojové prostředí}
-        Pro vývoj SPA je důležitá správná konfigurace vývojového prostředí, jelikož dokáže hodně ovlivnit produktivnost programátora. Základními požadavky na vývojové prostředí je předzpracování kódu, automatické obnovení stránky po uložení editovaného souboru, vytvoření jednotného JS bundle souboru, který obsahuje všechny potřebné zdrojové kódy rozdělené do logických celků a poskytnutí HTTP serveru. Dále je vhodná pro produkční verzi aplikace například komprimace zdrojových kódů.
+        Pro vývoj \gls{spa} je důležitá správná konfigurace vývojového prostředí, jelikož dokáže hodně ovlivnit produktivnost programátora. Základními požadavky na vývojové prostředí je předzpracování kódu, automatické obnovení stránky po uložení editovaného souboru, vytvoření jednotného JS bundle souboru, který obsahuje všechny potřebné zdrojové kódy rozdělené do logických celků a poskytnutí HTTP serveru. Dále je vhodná pro produkční verzi aplikace například komprimace zdrojových kódů.
 
         \subsubsection{Webpack}
             % css injections, production vlastní css soubor
@@ -819,7 +844,7 @@ export default class Hint extends React.Component {
             % 'react-router'
             % využití browser history (možnost tlačítka zpět) 
             % manipulace historie pomocí pushState
-            Pro směrování a historii v SPA jsou využity externí knihovny z NPM (Node Package Manager) - \textit{react-router} a \textit{mobx-react-router}. Používat navigační tlačítka a historii prohlížeče umožňuje modul \textit{syncHistoryWithStore}, který synchronizuje historii v podobě JS objektu s historií prohlížeče. K manipulaci historie prohlížeče se využívá JS funkcí \textit{pushState} a \textit{replaceState}, definovaných ve standardu HTML5.
+            Pro směrování a historii v \gls{spa} jsou využity externí knihovny z NPM (Node Package Manager) - \textit{react-router} a \textit{mobx-react-router}. Používat navigační tlačítka a historii prohlížeče umožňuje modul \textit{syncHistoryWithStore}, který synchronizuje historii v podobě JS objektu s historií prohlížeče. K manipulaci historie prohlížeče se využívá JS funkcí \textit{pushState} a \textit{replaceState}, definovaných ve standardu HTML5.
 
             Směrování v aplikaci umožňuje modul \textit{Router} z knihovny \textit{react-router}. Tento modul lze do sebe nesčetněkrát vnořovat a umožňuje lépe oddělit logické části aplikace. \textit{Router} mimo jiné disponuje nepovinným atributem \textit{onEnter}, ve kterém lze zajistit oprávnění pro různé sekce aplikace. Dalším důležitým modulem je \textit{Provider} z knihovny \textit{react-router}, která poskytuje pro komponenty Reactu úložiště popsané v \ref{mobx}. Následující ukázka zdrojového kódu \ref{code:main-render} představuje hlavní vykreslovací funkci aplikace, jejíž první atribut je obsah a druhý je element, kam se má obsah vložit.
 
@@ -987,7 +1012,7 @@ def jwt_response_payload_handler(token, user=None, request=None):
         \subsubsection{CSRF a XSS}
             Cross Site Request Forgery (CSRF) je útok, kdy útočník donutí oběť odeslat upravený požadavek na server. V podstatě se jedná o nějaký podvržený odkaz na jiné doméně a jelikož uživatel je do aplikace přihlášen, má práva provést například změnu emailové adresy\cite{bib:csrf}. Proti tomuto typu útoku je aplikace chráněná díky JWT, jelikož s každým požadavkem na server je v hlavičce dotazu zaslán token. JWT nelze z jiné domény zjistit, jelikož prohlížeč pro každé okno vytváří samostatnou instanci pro provoz JavaScriptu, které mezi sebou data nesdílí.
 
-            Cross-site scripting (XSS) je případ, kdy útočník pomocí vstupního formulářového prvku zapíše JS kód do stránky, který se následně vykoná\cite{bib:xss}. XSS je mnohem závažnější útok, jelikož útočník může získat například Cookie dokumentu, které může obsahovat například JWT. Jelikož klientská část funguje jako SPA, nedochází k obnovení stránky a tudíž nedochází k resetování JavaScriptové instance. JWT token je uložen pouze v JS objektu. Proto v případě, že uživatel z aplikace odejde, musí znovu projít autentizačním cyklem.
+            Cross-site scripting (XSS) je případ, kdy útočník pomocí vstupního formulářového prvku zapíše JS kód do stránky, který se následně vykoná\cite{bib:xss}. XSS je mnohem závažnější útok, jelikož útočník může získat například Cookie dokumentu, které může obsahovat například JWT. Jelikož klientská část funguje jako \gls{spa}, nedochází k obnovení stránky a tudíž nedochází k resetování JavaScriptové instance. JWT token je uložen pouze v JS objektu. Proto v případě, že uživatel z aplikace odejde, musí znovu projít autentizačním cyklem.
 
 
         \subsubsection{CORS}
@@ -1064,10 +1089,10 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     \addcontentsline{toc}{section}{\refname}
 
     \bibitem{bib:terasoft}
-        Terasoft a.s. \textit{Terasoft - Výukové programy} [online] 2002-10-07. [cit. 2016-12-15]. Dostupné z: \url{http://www.terasoft.cz/czpages/cd_aj15.htm}
+        Terasoft a.s. \textit{Terasoft - Výukové programy} [online] 2002-10-07. [cit. 2016-12-15]. Dostupné z: \url{http://www.terasoft.cz/czpages/cd_aj15.htm}.
     
     \bibitem{bib:langsoft}
-        LangSoft s.r.o. \textit{Language Teacher} [online]. [cit. 2016-12-07]. Dostupné z: \url{http://www.langsoft.cz/teacher.htm}
+        LangSoft s.r.o. \textit{Language Teacher} [online]. [cit. 2016-12-07]. Dostupné z: \url{http://www.langsoft.cz/teacher.htm}.
 
     \bibitem{bib:motivace}
         KREJČOVÁ Lenka. \textit{Psychologické aspekty vzdělávání dospívajících}. 1. vyd. Praha: Grada Publishing, 2011 [cit 2016-12-18]. ISBN 978-80-247-3474-3.
@@ -1082,27 +1107,31 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         I. S. P. Nation \textit{Learning Vocabulary in Another Language}. Cambridge University Press, 2001 [cit 2016-12-18]. ISBN 0-521-800927.
 
     \bibitem{bib:spaced-rep}
-        Kwantlen Polytechnic University. \textit{Spaced Repetition: Remembering What You Learn} [online] 2003. [cit. 2016-12-19]. Dostupné z: \url{https://www.kpu.ca/sites/default/files/Learning%20Centres/Think_SpacedRepetition_LA.pdf}
+        Kwantlen Polytechnic University. \textit{Spaced Repetition: Remembering What You Learn} [online] 2003. [cit. 2016-12-19]. Dostupné z: \url{https://www.kpu.ca/sites/default/files/Learning%20Centres/Think_SpacedRepetition_LA.pdf}.
 
     \bibitem{bib:lexikologie}
-        SVOBODOVÁ Jana, SVOBODOVÁ Diana, KULDANOVÁ Pavlína, GEJGUŠOVÁ Ivana, ROSOVÁ Milena, NOVÁK Radomil. \textit{Lexikologie} [online] 2003. [cit. 2016-12-19]. Dostupné z: \url{http://www.osu.cz/fpd/kcd/dokumenty/cestinapositi/lexikologie.htm}
+        SVOBODOVÁ Jana, SVOBODOVÁ Diana, KULDANOVÁ Pavlína, GEJGUŠOVÁ Ivana, ROSOVÁ Milena, NOVÁK Radomil. \textit{Lexikologie} [online] 2003. [cit. 2016-12-19]. Dostupné z: \url{http://www.osu.cz/fpd/kcd/dokumenty/cestinapositi/lexikologie.htm}.
 
     \bibitem{bib:levenshtein}
-         Wikimedia Foundation, Inc. \textit{Levenshtein distance} [online] 2016-12-20. [cit. 2016-12-21]. Dostupné z: \url{https://en.wikipedia.org/wiki/Levenshtein_distance}
+         Wikimedia Foundation, Inc. \textit{Levenshtein distance} [online] 2016-12-20. [cit. 2016-12-21]. Dostupné z: \url{https://en.wikipedia.org/wiki/Levenshtein_distance}.
         
     \bibitem{bib:google-api}
-        Google, Inc. \textit{Google Cloud Platform} [online]. [cit 2016-12-21]. Dostupné z: \url{https://cloud.google.com/}
+        Google, Inc. \textit{Google Cloud Platform} [online]. [cit 2016-12-21]. Dostupné z: \url{https://cloud.google.com/}.
+
 	\bibitem{bib:ebbinghaus}
 		Hermann Ebbinghaus \textit{Memory: A Contribution to Experimental Psychology}. New York, 1913 [cit 25-12-2016]. ISBN 978-16-142-7166-6.
 
     \bibitem{bib:supermemo}
-        WOZNIAK Piotr A. \textit{Repetition spacing algorithm used in SuperMemo 2002 through SuperMemo 2006} [online] 2006-04-02. [cit. 2016-12-26]. Dostupné z: \url{https://www.supermemo.com/english/algsm11.htm}
+        WOZNIAK Piotr A. \textit{Repetition spacing algorithm used in SuperMemo 2002 through SuperMemo 2006} [online] 2006-04-02. [cit. 2016-12-26]. Dostupné z: \url{https://www.supermemo.com/english/algsm11.htm}.
+
+    \bibitem{bib:spa}
+        TAKADA Mikito. \textit{Single page apps in depth} [online] 2014. [cit. 2016-12-27]. Dostupné z: \url{http://singlepageappbook.com/}.
 
     \bibitem{bib:webpack}
-        KOPPERS Tobias a spol. \textit{Webpack 2 Documentation} [online] 2016. [cit. 2016-12-26]. Dostupné z: \url{https://webpack.js.org/configuration/}
+        KOPPERS Tobias a spol. \textit{Webpack 2 Documentation} [online] 2016. [cit. 2016-12-26]. Dostupné z: \url{https://webpack.js.org/configuration/}.
 
     \bibitem{bib:babel}
-        SUSCAK Marek a spol. \textit{Learn ES2015} [online] 2016. [cit. 2016-12-27]. Dostupné z: \url{https://babeljs.io/learn-es2015/}
+        SUSCAK Marek a spol. \textit{Learn ES2015} [online] 2016. [cit. 2016-12-27]. Dostupné z: \url{https://babeljs.io/learn-es2015/}.
         
     \bibitem{bib:ecma}
         Ecma International. \textit{ECMAScript® 2015 Language Specification} [online] 2015 [cit. 2016-12-27]. Dostupné z: \url{http://www.ecma-international.org/ecma-262/6.0/index.html}.
@@ -1124,13 +1153,13 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         CHRISTIE Tom. \textit{Django REST framework} [online] 2015 [cit. 2016-12-28]. Dostupné z: \url{http://www.django-rest-framework.org/}.
 
     \bibitem{bib:csrf}
-       Open Web Application Security Project. \textit{Cross-Site Request Forgery} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29}
+       Open Web Application Security Project. \textit{Cross-Site Request Forgery} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29}.
 
     \bibitem{bib:xss}
-       Open Web Application Security Project. \textit{Cross-site Scripting (XSS)} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/XSS}
+       Open Web Application Security Project. \textit{Cross-site Scripting (XSS)} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/XSS}.
 
     \bibitem{bib:jwt}
-       Auth0 Inc. \textit{Introduction to JSON Web Tokens} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://jwt.io/introduction/}
+       Auth0 Inc. \textit{Introduction to JSON Web Tokens} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://jwt.io/introduction/}.
        
 \end{thebibliography}
 \end{document}
