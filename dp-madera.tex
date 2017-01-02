@@ -11,6 +11,8 @@
 \usepackage{fancyhdr}
 \usepackage{afterpage}
 \usepackage[hidelinks,unicode,hyperfootnotes,breaklinks=true]{hyperref}
+\usepackage{breakurl}
+% \usepackage{url}
 \usepackage{footnote}
 \usepackage{parskip}
 \usepackage{setspace} 
@@ -27,7 +29,7 @@
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 
 \lstdefinelanguage{JS}{
-    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let},
+    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let, const},
     keywordstyle=\color{blue}\bfseries,
     ndkeywords={class, export, boolean, throw, implements, import, this, extends},
     ndkeywordstyle=\color{purple}\bfseries,
@@ -266,25 +268,28 @@
 \begin{document}
 \includepdf[pages={1,2}]{dp-titlepage.pdf}
 \includepdf[pages={1,2}]{zadani.pdf}
-\includepdf{prohlaseni.pdf}
-\setcounter{page}{3}
+\includepdf{dp-prohlaseni-signed.pdf}
+\setcounter{page}{5}
+
+\newpage
+\thispagestyle{plain}
+\section*{Poděkování}
+Rád bych poděkoval vedoucí Ing.~Janě Vitvarové, Ph.D. za trpělivost a velice užitečné rady v průběhu tvorby této práce. Rovněž bych rád poděkoval učitelce gymnázia Mgr.~Ivaně Bucharové za cenné komentáře k aplikaci a textové části práce.
+\thispagestyle{empty}
 
 \newpage
 \thispagestyle{plain}
 \section*{Abstrakt}
-Tato práce se zabývá problematikou učení slovní zásoby cizího jazyka. V rámci práce byla vytvořena aplikace v podobě webové služby jako učební nástroj, který má za úkol pomoci žákům s procvičením slov a k jejich permanentnímu zapamatování. Práce analyzuje a implementuje metody procvičení a připomínání slovíček za použití algoritmů rozloženého opakování. Výstupem je webová aplikace typu SPA v JavaScriptu s podporou knihovny React komunikující s aplikačním rozhraním v jazyce Python za použití Django frameworku. 
+Tato práce se zabývá problematikou učení slovní zásoby cizího jazyka. V rámci práce byla vytvořena aplikace v podobě webové služby jako učební nástroj, který má za úkol pomoci žákům s procvičením slov a k jejich permanentnímu zapamatování. Práce analyzuje a implementuje metody procvičení a připomínání slovíček za použití algoritmů rozloženého opakování. Výstupem práce je aplikace typu SPA v JavaScriptu s podporou knihovny React a webové API v jazyce Python za použití Django frameworku. 
 
 \section*{Klíčová slova}
-Slovníček, učení, rozložené opakování, webová aplikace, SPA, React, Django
-
-\thispagestyle{empty}
-\newpage
+slovníček, učení, rozložené opakování, webová aplikace, SPA, React, Django
 
 \section*{Abstract}
-This thesis describes the issues of learning foreign language vocabulary. During the thesis was developed a Web application as an educational tool that aims to help students with foreign words and help them sustain permanent retention. The thesis analyzes and implements methods of practicing and recalling vocabulary using algorithms based on methods of spaced repetition. The output is the Web application composed of SPA written in JavaScript supported by React library and web application interface in Python using the Django framework. 
+This thesis describes the issues of learning foreign language vocabulary. During the thesis was developed a Web application as an educational tool that aims to help students with foreign words and help them sustain permanent retention. The thesis analyzes and implements methods of practicing and recalling vocabulary using algorithms based on methods of spaced repetition. The outputs of thesis are a SPA written in JavaScript supported by the React library and a web API in Python language using the Django framework. 
 
 \section*{Keywords}
-Vocabulary, learning, spaced repetition, web application, SPA, React, Django
+vocabulary, learning, spaced repetition, web application, SPA, React, Django
 
 \thispagestyle{empty}
 
@@ -317,7 +322,7 @@ Vocabulary, learning, spaced repetition, web application, SPA, React, Django
 
     Na základě zjištěných informací z rešerše byla provedena specifikace požadavků, které sloužily jako hlavní podklad pro návrh aplikace popsaný v kapitole 2. V této kapitole jsou rovněž detailněji popsány způsoby generování testovací sady, průběh importu slov a vybrané metody zajišťující motivaci žáků.
 
-    V kapitole 3 a 4 se práce zabývá implementací navržené slovníkové aplikace v podobě webové služby. Kapitola 3 se věnuje klientské části a kapitola 4 té serverové. V obou jsou představeny technologie, které jsou využívány pro vývoj, jejich implementaci a průběh testování. 
+    V kapitole 3 a 4 se práce zabývá implementací navržené slovníkové aplikace v podobě webové služby. Kapitola 3 se věnuje klientské části a kapitola 4 té serverové. V obou jsou představeny technologie, které jsou využívány pro vývoj, jejich implementace a průběh testování. 
 
     % neopakovat abstrakt, lehce nastínit zadání, jaká je motivace
     % popsat, jak je práce strukturovaná - rozcestník
@@ -875,8 +880,8 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
             % images
             Pro získání obrázků se využívá Google Search \gls{api}. Obrázky jsou získány v podobě odkazů. Uživatel si může vybrat z deseti obrázků. Pokud žádný z nich nevyhovuje, vytvoří se nový dotaz s další stránkou. Pro možnost tvorby dotazů bylo nutné v Google \gls{api} Console vytvořit vlastní \gls{api} klíč, který se přidává jako parametr \gls{url}. K \gls{api} klíči je také nutné vytvořit vlastní Google vyhledávač se svým identifikátorem. Tento atribut je rovněž přidáván jako parametr dotazu. \gls{api} vlastního dotazu vypadá takto:
 
-            ~\url{https://www.googleapis.com/customsearch/v1?q=<slovo>&searchType=image&cx=
-            <id_vyhledavace>&key=<api_klic>}
+            \url{https://www.googleapis.com/customsearch/v1?q=<slovo>&searchType=image&cx=
+            <id_vyhledavace>&key=<api_klic>}\sloppy
 
             Odpověď na dotaz je \gls{json} soubor s odkazy na jednotlivé obrázky. K dispozici jsou jak náhledové, malé obrázky (řádově několik desítek kB), tak obrázky v plné velikosti. Jelikož nelze zaručit permanentní přístup k souboru, po vybrání obrázku se na serveru vytvoří komprimovaná kopie obrázku s jednotnou šířkou. 
 
@@ -1168,7 +1173,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         \subsubsection{Model}
 
-        Následující obrázek \ref{fig:db-model} znázorňuje část modelu databáze, která je zodpovědná za správu učebnice, slovíček a uživatelů. Za zmínku stojí tabulka \textit{words}, která ukládá informace o slovu - překlad, význam, definice, odkazy na náhledový obrázek, i ten v plné velikosti, globální obtížnost atd. Tabulka \textit{users\_words} slouží k ukládání informací o slovu ke každému uživateli. V případě, že se uživatel v procvičování potká s daným slovem, vytvoří se záznam v této tabulce. S každou další interakcí se změní obtížnost slova interpretovaná atributem \textit{adaptive\_difficulty}. Tato tabulka rovněž ukládá informace o připomenutí slov. Atribut \textit{memory\_lapses} představuje počet, kolikrát uživatel zapomněl slovo, \textit{success\_repetitions} značí, kolikrát uživatel byl schopný si úspěšně vzpomenout na slovo a textit{following\_reminder} představuje čas, kdy by mělo dojít k dalšímu připomenutí.
+        Následující obrázek \ref{fig:db-model} znázorňuje část modelu databáze, která je zodpovědná za správu učebnice, slovíček a uživatelů. Za zmínku stojí tabulka \textit{words}, která ukládá informace o slovu - překlad, význam, definice, odkazy na náhledový obrázek, i ten v plné velikosti, globální obtížnost atd. Tabulka \textit{users\_words} slouží k ukládání informací o slovu ke každému uživateli. V případě, že se uživatel v procvičování potká s daným slovem, vytvoří se záznam v této tabulce. S každou další interakcí se změní obtížnost slova interpretovaná atributem \textit{adaptive\_difficulty}. Tato tabulka rovněž ukládá informace o připomenutí slov. Atribut \textit{memory\_lapses} představuje počet, kolikrát uživatel zapomněl slovo, \textit{success\_repetitions} značí, kolikrát uživatel byl schopný si úspěšně vzpomenout na slovo a \textit{following\_reminder} představuje čas, kdy by mělo dojít k dalšímu připomenutí.
 
         \begin{figure}[ht!]
             \centering
