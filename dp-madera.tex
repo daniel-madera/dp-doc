@@ -273,7 +273,7 @@
 \newpage
 \thispagestyle{plain}
 \section*{Poděkování}
-Rád bych poděkoval vedoucí Ing.~Janě Vitvarové, Ph.D. za trpělivost a velice užitečné rady v průběhu tvorby této práce. Rovněž bych rád poděkoval učitelce gymnázia Mgr.~Ivaně Bucharové za cenné komentáře k aplikaci a textové části práce.
+Rád bych touto cestou vyjádřil poděkování za trpělivost, užitečné rady a vedení práce Ing.~Janě Vitvarové, Ph.D. Rovněž bych rád poděkoval rodičům za podporu při psaní této práce a za umožnění studia.
 \thispagestyle{empty}
 
 \newpage
@@ -315,13 +315,13 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
     % proč se zaobývat tímto tématem
     Výuka cizích jazyků je pro aktuální společnost jedna z nejzásadnějších otázek, ať se jedná o pracovní příležitosti v zahraničí nebo o sociální problematiku světa. Žáci a studenti se často účastní různých kurzů nebo později studenti využívají Erasmus programů, kde převážně vyhledávají zlepšení komunikace v cizím jazyce. A právě slovní zásoba je pro rozvoj znalosti cizího jazyka ta nejzásadnější.
 
-    Cílem diplomové práce je provést analýzu, jak zefektivnit učení a motivovat k procvičování slovíček z cizího jazyka. Na základě zjištěných poznatků navrhnout a implementovat aplikaci, která umožní žákům základních škol rozvíjet cizojazyčnou slovní zásobu a vyučujícím poskytuje nástroj pro správu a prezentaci slovíček pro žáky.
+    Žáci si při výuce cizího jazyka obvykle vedou vlastní slovníček, do kterého zapisují nově nabytá slova. Problémem je, že slovíčka pouze zapíšou, a tím to končí. V době přípravy na test rychle slova zopakují a následně z krátkodobé paměti test napíšou, což má za následek, že pokud naučená slova dále neopakují, dojde k jejich zapomenutí. 
 
-    Úvodem se práce zabývá rešerší existujících řešení podobných aplikací. Analýza rovněž zahrnuje shrnutí informací o rozvoji slovní zásoby cizího jazyka v podobě dostupných metod a technik k motivaci učení a k efektivnímu zapamatování slov.
+    Existuje řada řešení, které pomáhají rozvíjet vědomosti cizího jazyka. Problémem ale je, že tyto řešení pro žáky neposkytují přizpůsobení úrovně ani informací. Žáci jsou tudíž nuceni se učit jinou slovní zásobu než je ta, kterou aktuálně procházejí ve škole. Pro žáka je toto neefektivní a nevýhodné.
 
-    Na základě zjištěných informací z rešerše byla provedena specifikace požadavků, které sloužily jako hlavní podklad pro návrh aplikace popsaný v kapitole 2. V této kapitole jsou rovněž detailněji popsány způsoby generování testovací sady, průběh importu slov a vybrané metody zajišťující motivaci žáků.
+    Z výše uvedených důvodů vznikl námět na tuto práci. Cílem diplomové práce je provést analýzu, jak zefektivnit učení a motivovat žáky k procvičování slovíček. Na základě zjištěných poznatků navrhnout a implementovat aplikaci, která umožní rozvíjet cizojazyčnou slovní zásobu. A vyučujícím poskytne nástroj pro správu a prezentaci slovíček pro žáky. 
 
-    V kapitole 3 a 4 se práce zabývá implementací navržené slovníkové aplikace v podobě webové služby. Kapitola 3 se věnuje klientské části a kapitola 4 té serverové. V obou jsou představeny technologie, které jsou využívány pro vývoj, jejich implementace a průběh testování. 
+    Úvodem se práce zabývá rešerší existujících řešení podobných aplikací. Analýza rovněž zahrnuje shrnutí informací o rozvoji slovní zásoby cizího jazyka v podobě dostupných metod a technik k motivaci učení a k efektivnímu zapamatování slov. Na základě zjištěných informací z rešerše byla provedena specifikace požadavků, které sloužily jako hlavní podklad pro návrh aplikace popsaný v kapitole 2. V této kapitole jsou rovněž detailněji popsány způsoby generování testovací sady, průběh importu slov a vybrané metody zajišťující motivaci žáků. V kapitole 3 a 4 se práce zabývá implementací navržené slovníkové aplikace v podobě webové služby. Kapitola 3 se věnuje klientské části a kapitola 4 té serverové. V obou jsou představeny technologie, které jsou využívány pro vývoj, jejich implementace a průběh testování. 
 
     % neopakovat abstrakt, lehce nastínit zadání, jaká je motivace
     % popsat, jak je práce strukturovaná - rozcestník
@@ -918,7 +918,7 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
             Webpack je nástroj napsaný pro Node\gls{js}, který umožňuje vytvořit požadované vývojové prostředí. Pro vývoj klientské aplikace jsou vytvořeny dvě webpack konfigurace - vývojová a produkční. Pro kompilaci \gls{js} souborů je využíván Babel kompilátor, který je popsán v následující kapitole. CSS soubory jsou ve vývojové konfiguraci vkládány přímo jako inline styly do souboru \textit{index.html}, aby bylo možné v reálném čase sledovat změny designu a nečekat na obnovení stránky. V produkční verzi je vytvořen zvláštní CSS soubor, protože při stahování aplikace do prohlížeče dochází k paralelnímu načítání CSS a \gls{js} souborů, což vede k urychlení úvodního načtení aplikace. Pro vytvoření produkční verze je využívána v kompilaci řada webpackových modulů, jako například \textit{favicons-webpack-plugin} k tvorbě ikony pro řadu různých prohlížečů nebo \textit{html-webpack-plugin} pro minifikaci (kompresi) a alespoň částečnému znemožnění přečtení vytvořeného \gls{js} souboru \cite{bib:webpack}.
 
         \subsubsection{Babel}
-            Babel je kompilátor, který transformuje rozšířený JavaScript do standardu, který většina prohlížečů podporuje - aktuálně \gls{es5}. Důvod využití tohoto kompilátoru je vysoká podpora \gls{es6} a integrace \gls{jsx} popsaných v následujících kapitolách. Babel je mimo jiné také doporučován komunitou zabývající se knihovnou React a používají ho společnosti jako Facebook nebo Evernote. Výhodou je, že Babel pouze rozšiřuje současnou verzi JavaScriptu a snaží se zachovat jeho dopřednou kompatibilitu\cite{bib:babel}.
+            Babel je kompilátor, který transformuje rozšířený JavaScript do standardu, který většina prohlížečů podporuje. Důvod využití tohoto kompilátoru je vysoká podpora \gls{es6} (standard ECMA-262) a integrace \gls{jsx} popsaných v následujících kapitolách. Babel je mimo jiné také doporučován komunitou zabývající se knihovnou React a používají ho společnosti jako Facebook nebo Evernote. Výhodou je, že Babel pouze rozšiřuje současnou verzi JavaScriptu a snaží se zachovat jeho dopřednou kompatibilitu\cite{bib:babel}.
 
         \subsubsection{Podpora ES6}
             Díky kompilátoru Babel lze využít novinky ze specifikace ES6, i když ještě není implementována do prohlížečů. Při vývoji bylo nedílnou součástí klíčové slovo \textit{export}, které umožňovalo rozdělení kódů do mnoha modulů a souboru. V aplikaci je také hojně využívána nová syntaxe tříd, která umožňuje přehlednější dědičnost, tvorbu konstruktorů a statických metod. Novinek, které jsou využívány v aplikaci, je celá řada. Za zmínku stojí zkrácená šipková syntaxe $=>$, která umožňuje sdílet klíčové slovo \textit{this} uvnitř vnořeného logického bloku \cite{bib:ecma}. 
@@ -1041,7 +1041,7 @@ document.getElementById('app'));
 
 \newpage
 \section{Serverová část}
-    Serverová část aplikace je v podstatě aplikační rozhraní, které poskytuje data ve formátu \gls{json} pro klientskou aplikaci. \gls{api} je napsané v programovacím jazyce Python s využitím Django webového frameworku a Django REST frameworku.
+    Serverová část aplikace je v podstatě aplikační rozhraní, které poskytuje data ve formátu \gls{json} se specifikací ECMA-404 pro klientskou aplikaci. \gls{api} je napsané v programovacím jazyce Python s využitím Django webového frameworku a Django REST frameworku.
     
     \subsection{Technologie}
         Důvody, proč bylo zvoleno Django a Django REST framework jako platforma pro aplikační rozhraní, jsou dřívější zkušenosti s variabilitou a rychlostí vývoje. Pro potřeby aplikace se jedná možná o zbytečně komplexní framework, jelikož aplikace jako celek stojí převážně na zpracování klientské části.
@@ -1066,7 +1066,7 @@ document.getElementById('app'));
 
             Z důvodu optimalizace počtu dotazů na server v určité části klientské aplikace bylo nutné nahradit identifikátory, představující vztah mezi objekty, vlastními daty, aby nedocházelo k několikanásobným dotazům s velikostně velmi nízkou odpovědí. Například v případě získání listu učebnic, je klientovi zaslán list objektů, které obsahují atributy, jako název učebnice, datum vytvoření, jazyk, identifikátor vlastníka atd. Aby klient nemusel dotazovat server několikanásobně o další informace, jsou základní data o vlastníkovi vnořena přímo do listu učebnice.
 
-            V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových objektů tak, aby je bylo možné zapsat do formátu \gls{json} nebo XML \cite{bib:django-rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě použití funkce \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
+            V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových objektů tak, aby je bylo možné zapsat do formátu \gls{json} nebo \gls{xml} \cite{bib:django-rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě použití funkce \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=Python, caption={Serializační třída k transformaci dat o učebnici},label=code:serializers]
@@ -1191,7 +1191,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         Užitečným nástrojem pro testování jsou tzv. \textit{fixtures}. Jsou to soubory ve formátu \gls{json}, které obsahují databázová data. Na začátku každé testovací sady je vytvořeno nové dočasné schéma v databázi, které má identickou strukturu s produkčním schématem v databázi. Dále jsou na začátku testu předány jednotlivé \textit{fixtures}, které pro účely testování naplní databázi požadovanými daty.
 
         \subsubsection{Závěrečné testování aplikace}
-            Na závěr vývoje aplikace bylo provedeno testování uživateli, kteří nebyli součástí vývoje. Aplikace pro účely testování byla spuštěna na produkčním serveru, aby imitace reálného prostředí byla autentická. Dále byla do aplikace naimportována sada slovíček z učebnice anglického jazyka s názvem Headway Intermediate. Pro testování byli zvoleni dva dobrovolníci - žákyně základní školy, která aktuálně dochází do šesté třídy základní školy Lesní v Liberci a dospělý člověk zabývající se podnikáním, který simuloval roli učitele v aplikaci. Během testování bylo objeveno několik drobných chyb, které byly ihned po testování opraveny. Z důvodu časového omezení nebylo otestováno externími uživateli připomínání naučených slov.
+            Na závěr vývoje aplikace bylo provedeno testování uživateli, kteří nebyli součástí vývoje. Aplikace pro účely testování byla spuštěna na produkčním serveru, aby imitace reálného prostředí byla autentická. Dále byla do aplikace naimportována sada slovíček z učebnice anglického jazyka s názvem Headway Intermediate. Pro testování byli zvoleni dva dobrovolníci - žákyně základní školy, která aktuálně dochází do šesté třídy Základní školy Lesní v Liberci a dospělý člověk zabývající se podnikáním, který simuloval roli učitele v aplikaci. Během testování bylo objeveno několik drobných chyb, které byly ihned po testování opraveny. Z důvodu časového omezení nebylo otestováno externími uživateli připomínání naučených slov.
 
             Žákyně ihned ze začátku testování narazila na problém, že intuitivně neporozuměla konceptu testů. Aby si mohla začít procvičovat slova, musela totiž vytvořit test. Tato funkce je ale pouze spíše doplňkovou. Standardně vyučující pro žáky vytvoří testovací sady. Po vytvoření sady neměla žákyně žádný problém se spuštěním testu ani s testováním. Uživatelské rozhraní aplikace hodnotila převážně pozitivně s  drobnými výtkami na design aplikace, který pro ni byl až příliš strohý a málo barevný.
 
@@ -1207,7 +1207,15 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     % na základě závěrečného testování by si aplikace zasloužila vylepšit vzhled aplikace
     % tvorba nápovědy
     % návrh na zrušení definic a použití v mateřském jazyce
+    V rámci této diplomové práce vznikla aplikace pro učení slovíček cizího jazyka. Jedná se o webovou službu, která umožňuje efektivně rozvíjet slovní zásobu u studentů libovolného věku. Pro zlepšení techniky učení jsou v aplikaci využity přizpůsobené algoritmy rozloženého opakování. V části zabývající se procvičování slov je využitý základ Leitnerova systému. Po procvičení slova následuje fáze připomínání slov, ve které je využit ověřený algoritmus SuperMemo. Generování slovíček v procvičování je přizpůsobováno v závislosti na úrovni uživatele, jenž je získána postupně z jeho předchozího odpovídání. 
 
+    Aplikace umožňuje každému uživateli vytvořit vlastní učebnice se slovíčky. Slova lze importovat do aplikace v podobě formátu CSV. Ke skupinám slov v jednotlivých modulech lze v aplikaci jednoduše a rychle získat zvukovou a obrázkovou interpretaci. Z důvodu možného nevhodného obsahu obrazové formy, je uživatel nucen vybrat z navržených ten vyhovující, a tudíž proces nemůže být plně automatizován. Aplikace rovněž umožňuje vytvářet skupiny uživatelů, ve kterých lze sdílet celé učebnice.
+
+    Aplikace umožňuje vytvářet seznamy slov. Tyto seznamy mohou být sdíleny vlastníkem skupiny mezi ostatní uživatele. Vyučující cizích jazyků tak mohou lépe žáky připravit na nadcházející lekci a zajistit tím její souvislejší průběh. 
+
+    Do aplikace jsou také zařazeny prvky, které by mohly žáky motivovat k procvičování. Zda splňují funkci motivace, bude ověřeno až praktickým používáním. Během testování tuto funkci nebylo možné ověřit, jelikož je třeba více statistických údajů, což vyžaduje více uživatelů používajících aplikaci. Rovněž bylo složité otestovat, zda aplikace nedovolí uživateli zapomenout slovíčko, jelikož intervaly mezi jednotlivými připomenutími postupně narůstají až k týdnům a měsícům. Pochopitelně žákyně, která testování prováděla, neměla pro tak dlouhé intervaly dostatek času.
+
+    Aplikace by si v budoucím vývoji zasloužila řadu rozšíření, zejména po designové stránce. Vzhled by bylo dobré předat profesionálnímu návrháři, který by přizpůsobil aplikaci tak, aby zaujala především mladé žáky. Aplikace by také mohla být rozšířena o další možnosti importu slovíček v podobě formátů XLS a PDF. V neposlední řadě rozšířením by mohlo být i zapracování členů přímo do struktury slovíčka, což by umožňovalo přesněji vyhodnocovat odpovědi.
 
 
 \newpage
