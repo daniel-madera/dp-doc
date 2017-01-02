@@ -106,16 +106,76 @@
     first={AJAX (Asynchronous JavaScript and \gls{xml})}
 }
 
+\newglossaryentry{api}{
+    name={API},
+    description={Application Interface},
+    first={API (Application Interface)}
+}
+
 \newglossaryentry{css}{
     name={CSS},
-    description={Kaskádové styly},
+    description={Cascading Style Sheets},
     first={kaskádovými styly CSS}
+}
+
+\newglossaryentry{cors}{
+    name={CORS},
+    description={Cross-Origin Resource Sharing},
+    first={CORS (Cross-Origin Resource Sharing)}
+}
+
+\newglossaryentry{csrf}{
+    name={CSRF},
+    description={Cross Site Request Forgery},
+    first={Cross Site Request Forgery (CSRF)}
+}
+
+\newglossaryentry{csv}{
+    name={CSV},
+    description={Comma Separated Values},
+    first={CSV}
+}
+
+\newglossaryentry{dom}{
+    name={DOM},
+    description={Document Object Model},
+    first={DOM (Document Object Model)}
+}
+
+\newglossaryentry{es5}{
+    name={ES5},
+    description={ECMAScript5},
+    first={ES5}
+}
+
+\newglossaryentry{es6}{
+    name={ES6},
+    description={ECMAScript2015},
+    first={ECMAScript2015 (ES6)}
+}
+
+\newglossaryentry{hateoas}{
+    name={HATEOAS},
+    description={Hypermedia as the Engine of Application State},
+    first={HATEOAS (Hypermedia as the Engine of Application State)}
+}
+
+\newglossaryentry{js}{
+    name={JS},
+    description={JavaScript},
+    first={JS (JavaScript)}
 }
 
 \newglossaryentry{json}{
     name={JSON},
     description={JavaScript Object Notation},
-    first={JavaScript Object Notation (JSON)}
+    first={JavaScript Object Notation (JSON}
+}
+
+\newglossaryentry{jsx}{
+    name={JSX},
+    description={\gls{xml}-Like Syntax Extension},
+    first={JSX (\gls{xml}-Like Syntax Extension)}
 }
 
 \newglossaryentry{jwt}{
@@ -124,22 +184,82 @@
     first={JavaScript Web Token (JWT)}
 }
 
+\newglossaryentry{mitm}{
+    name={MitM},
+    description={Man in the Middle},
+    first={MitM (Man in the Middle)}
+}
+
+\newglossaryentry{mtv}{
+    name={MTV},
+    description={Model Teplate View},
+    first={MTV (Model Teplate View)}
+}
+
+\newglossaryentry{mvc}{
+    name={MVC},
+    description={Model View Controller},
+    first={MVC}
+}
+
+\newglossaryentry{npm}{
+    name={NPM},
+    description={Node Package Manager},
+    first={NPM (Node Package Manager)}
+}
+
 \newglossaryentry{odbc}{
     name={ODBC},
     description={Open Database Connectivity},
     first={ODBC (Open Database Connectivity)}
 }
 
+\newglossaryentry{orm}{
+    name={ORM},
+    description={Object-Relational Mapping},
+    first={ORM (Object-Relational Mapping)}
+}
+
+\newglossaryentry{raml}{
+    name={RAML},
+    description={RESTful \gls{api} Modeling Language},
+    first={RAML (RESTful \gls{api} Modeling Language)}
+}
+
+\newglossaryentry{seo}{
+    name={SEO},
+    description={Search Engine Optimization},
+    first={Search Engine Optimization (SEO)}
+}
+
 \newglossaryentry{spa}{
-    name={\gls{spa}},
+    name={SPA},
     description={Single Page Application},
     first={Single Page Application (SPA)}
+}
+
+\newglossaryentry{uri}{
+    name={URI},
+    description={Uniform Resource Identifier},
+    first={URI}
+}
+
+\newglossaryentry{url}{
+    name={URL},
+    description={Uniform Resource Locator},
+    first={URL}
 }
 
 \newglossaryentry{xml}{
     name={XML},
     description={Extensible Markup Language},
     first={Extensible Markup Language (XML)}
+}
+
+\newglossaryentry{xss}{
+    name={XSS},
+    description={Cross-Site scripting},
+    first={Cross-Site scripting (XSS)}
 }
 
 
@@ -446,19 +566,19 @@
             Textová forma slovíčka spočívá v překladu slova a jeho významu v mateřském jazyce. Pro zjištění významu slova se může využít již hotové aplikace. Například Google Translate poskytuje aplikační rozhraní pro překlady slov i celých vět. Jelikož se aplikace bude zabývat aktivním rozpoznání a vzpomínání, je vhodné neautomatizovat významy slov. Učebnice nebo učitelé se mohou s Google Translate lišit ve významech slov. Dalším problémem je cena využívání překladů z Google Translete, která je účtovaná měsíčně a to \$20 za 1 milion znaků \cite{bib:google-api}.
 
         \subsubsection{Zvuková forma}
-            % z Google API importovat zvukové nahrávky
+            % z Google \gls{api} importovat zvukové nahrávky
             % shrnout omezení, problematiku
             % 60 minut měsíčně je zdarma
-            Do aplikace by měla být implementována i zvuková interpretace slovíčka v cizím jazyce. Zvukové nahrávky mohou být zařazeny do aplikace dvěma způsoby - manuálně vlastními nahrávkami nebo využít Google Text to Speech API, které Google poskytuje zdarma. Aplikace bude záznam lokálně ukládat, aby bylo se co nejvíce omezilo využívání API. Zvuková nahrávka bude získána při importu slovíček do učebnice. Zadávající uživatel si bude moci zvolit, k jakému slovu chce zvukovou interpretaci.
+            Do aplikace by měla být implementována i zvuková interpretace slovíčka v cizím jazyce. Zvukové nahrávky mohou být zařazeny do aplikace dvěma způsoby - manuálně vlastními nahrávkami nebo využít Google Text to Speech \gls{api}, které Google poskytuje zdarma. Aplikace bude záznam lokálně ukládat, aby bylo se co nejvíce omezilo využívání \gls{api}. Zvuková nahrávka bude získána při importu slovíček do učebnice. Zadávající uživatel si bude moci zvolit, k jakému slovu chce zvukovou interpretaci.
 
         \subsubsection{Obrazová forma}
-            % vyhledání z Google Images API na základě cizojazyčného slova
+            % vyhledání z Google Images \gls{api} na základě cizojazyčného slova
             % autor učebnice vybírá dané slovo z importovaných
             % omezení dotazů - neprovádí se plně automatiky
-            Obrazová interpretace slovíčka bude rovněž získaná z Google Custom Search API. Toto aplikační rozhraní není omezené a lze v parametrech omezit vyhledávání pouze na obrázky. Při importu si uživatel zvolí pro jaká slovíčka chce obrazovou formu. Automatizace v tomto případě není vhodná, jelikož ne všechny slovíčka lze interpretovat jako obrázek. Uživatel si také bude moci zvolit obrázek z několika možností. Po vybrání obrázku bude vytvořena komprimovaná kopie souboru a uloží se rovněž zdroj, odkud je obrázek získán. Tato forma bude v aplikaci sloužit pouze jako nápověda pro žáky, díky níž si mohou ke slovíčku vytvořit hlubší asociaci. 
+            Obrazová interpretace slovíčka bude rovněž získaná z Google Custom Search \gls{api}. Toto aplikační rozhraní není omezené a lze v parametrech omezit vyhledávání pouze na obrázky. Při importu si uživatel zvolí pro jaká slovíčka chce obrazovou formu. Automatizace v tomto případě není vhodná, jelikož ne všechny slovíčka lze interpretovat jako obrázek. Uživatel si také bude moci zvolit obrázek z několika možností. Po vybrání obrázku bude vytvořena komprimovaná kopie souboru a uloží se rovněž zdroj, odkud je obrázek získán. Tato forma bude v aplikaci sloužit pouze jako nápověda pro žáky, díky níž si mohou ke slovíčku vytvořit hlubší asociaci. 
 
             % využití možnost hledání dle "Lze volně užívat nebo sdílet". Vytvoření kopie, 
-            Díky Google Custom Search API lze vyhledávání parametrizovat. Výrazem pro vyhledávání bude referenční slovo v cizím jazyce, jelikož cílový jazyk bude nejspíš anglický, německý nebo španělský a všechny tyto jazyky jsou více rozšířené než ten český. Dalším parametrem vyhledávání je omezení pouze na obrázky s licencí a \uv{Volně užívat nebo sdílet}, která umožňuje obrázek zkopírovat a nekomerčně publikovat s uvedením zdroje. Google nezaručuje pod jakou licencí obrázek aktuálně se na stránkách prezentuje. Proto bude uživatel při výběru obrázku vyzván, aby zkontroloval licenci použití.
+            Díky Google Custom Search \gls{api} lze vyhledávání parametrizovat. Výrazem pro vyhledávání bude referenční slovo v cizím jazyce, jelikož cílový jazyk bude nejspíš anglický, německý nebo španělský a všechny tyto jazyky jsou více rozšířené než ten český. Dalším parametrem vyhledávání je omezení pouze na obrázky s licencí a \uv{Volně užívat nebo sdílet}, která umožňuje obrázek zkopírovat a nekomerčně publikovat s uvedením zdroje. Google nezaručuje pod jakou licencí obrázek aktuálně se na stránkách prezentuje. Proto bude uživatel při výběru obrázku vyzván, aby zkontroloval licenci použití.
 
     \subsection{Obtížnost slovíček}
         % vygenerovaná obtížnost na základě délky slova, podobnosti s českým jazykem, přizpůsobena vyučujícím
@@ -660,9 +780,9 @@
         % 2 části, ve zkratce popsat, která je za co zodpovědná
         Aplikace je implementovaná v podobě webové služby a skládá se z dvou částí - klientská a serverová. Základní myšlenkou návrhu bylo oddělit klientskou a serverovou část, aby bylo možné do budoucna aplikaci rozšířit implementací například aplikací pro chytrý telefon.
 
-        Serverová část je zodpovědná za servírování klientské aplikace, rovněž aplikace poskytuje aplikační rozhraní, kde na základě dotazů lze získat data ve formátu JSON. V serverové části je implementovaný Supermemo algoritmus pro připomínání slov. Dále je server zodpovědný za získání zvukové nahrávky z Google Text to Speech API, ukládání její kopie a její poskytnutí pro klienta. V neposlední řadě se server zabývá problematikou autorizace a autentizace uživatelů v podobě JavaScript Web Tokens (JWT). 
+        Serverová část je zodpovědná za servírování klientské aplikace, rovněž aplikace poskytuje aplikační rozhraní, kde na základě dotazů lze získat data ve formátu \gls{json}. V serverové části je implementovaný Supermemo algoritmus pro připomínání slov. Dále je server zodpovědný za získání zvukové nahrávky z Google Text to Speech \gls{api}, ukládání její kopie a její poskytnutí pro klienta. V neposlední řadě se server zabývá problematikou autorizace a autentizace uživatelů v podobě JavaScript Web Tokens (\gls{jwt}). 
 
-        Klientská aplikace je zodpovědná za zobrazení načtených dat ze serveru, poskytnutí přehledného grafického rozhraní pro tvorbu, editaci a mazání dat nutných pro procvičování a připomínání slov (slovíčka, učebnice, třídy apod.). V klientské části jsou implementovány algoritmus Leitnerova systému a spočtení Levenshteinovy vzdálenosti. Dále klient je zodpovědný za načítání obrázků z Google Search API.
+        Klientská aplikace je zodpovědná za zobrazení načtených dat ze serveru, poskytnutí přehledného grafického rozhraní pro tvorbu, editaci a mazání dat nutných pro procvičování a připomínání slov (slovíčka, učebnice, třídy apod.). V klientské části jsou implementovány algoritmus Leitnerova systému a spočtení Levenshteinovy vzdálenosti. Dále klient je zodpovědný za načítání obrázků z Google Search \gls{api}.
 
 
 \newpage
@@ -683,17 +803,16 @@
             % výhody
             \gls{spa} je jedna webová stránka, která představuje celou aplikaci. Při prvním načtení je přenesen veškerý kód pro aplikační běh, tj. HTML šablony, JavaScript i \gls{css}. Na základě akcí prováděných uživatelem jsou poté dynamicky načítány ostatní zdroje jako data, obrázky apod. Celá stránka se nikdy neobnovuje jako tomu je v klasické webové aplikaci. Veškerá aplikační logika je přenesena ze serveru na klienta za účelem server odlehčit. V případě \gls{spa} server většinou po načtení aplikace poskytuje pouze data a to nejčastěji ve formátech \gls{json} nebo \gls{xml}.
 
-            Hlavní výhoda \gls{spa} je kromě úvodního načítání dat rychlá odezva. Jelikož se ze serveru nestahuje celý HTML kód, nýbrž jen čistá data. Dochází tedy hlavně k datové i výkonové úspoře, protože prohlížeč nemusí renderovat celou stránku, ale pouze tu část, kde dochází ke změně. Výhodou je také možnost implementace tzv. lazy-loadingu, kdy dojde k rychlému vykreslení obsahu a náročnější operace se mohou být načteny nezávisle později \cite{bib:spa}. \gls{spa} má i řadu nevýhod. Například v prohlížeči pro chod aplikace je nutné mít zapnutý JavaScript, další nevýhodou je obtížné zpracování obsahu pro roboty vyhledávačů. Ale zařazení do vyhledávání je nepodstatné pro aktuální potřeby aplikace.
+            Hlavní výhoda \gls{spa} je kromě úvodního načítání dat rychlá odezva. Jelikož se ze serveru nestahuje celý HTML kód, nýbrž jen čistá data. Dochází tedy hlavně k datové i výkonové úspoře, protože prohlížeč nemusí renderovat celou stránku, ale pouze tu část, kde dochází ke změně. Výhodou je také možnost implementace tzv. lazy-loadingu, kdy dojde k rychlému vykreslení obsahu a náročnější operace mohou být načteny nezávisle později \cite{bib:spa}. \gls{spa} má i řadu nevýhod. Například v prohlížeči pro chod aplikace je nutné mít zapnutý JavaScript, další nevýhodou je obtížné zpracování obsahu pro roboty vyhledávačů. Ale zařazení \gls{seo} je nepodstatné pro aktuální potřeby aplikace.
 
         \subsubsection{Komunikace se serverem}
             Klient komunikuje se serverem obvykle dvěma způsoby - web sokety nebo \gls{ajax} dotazy. Další technologií pro komunikaci, která by mohla být využita je Server-sent events (SSEs), která umožňuje serveru zasílat data klientovi přes HTTP protokol. Pro účely aplikace bude omezenou pouze na \gls{ajax} komunikaci, jelikož pro web sokety a tudíž obousměrnou komunikaci v aplikaci využití není.
-
 
         \subsubsection{Model aplikace}
             % komunikace se serverem
             % url diagram
             % mock api
-            Před začátkem vývoje klientské aplikace bylo vytvořeno prozatímní aplikační rozhraní pomocí platformy Anypoint od firmy Mulesoft. Je to volně dostupná služba, kde lze velmi jednoduše, staticky a poměrně variabilně popsat serverové API v podobě souborů se syntaxí RAML (RESTful API Modeling Language). Díky této službě lze namodelovat klientskou aplikaci pomocí URL mapy a následně toto API zveřejnit a umožnit testování klienta. Na zdrojový kód s RAML syntaxí lze nahlédnout v příloze. 
+            Před začátkem vývoje klientské aplikace bylo vytvořeno prozatímní aplikační rozhraní pomocí platformy Anypoint od firmy Mulesoft. Je to volně dostupná služba, kde lze velmi jednoduše, staticky a poměrně variabilně popsat serverové \gls{api} v podobě souborů se syntaxí \gls{raml}. Na základě tohoto \gls{api} byla vytvářena klientská část aplikace. Anypoint umožňovalo \gls{api} zveřejnit a umožnit testování klienta. Na zdrojový kód s \gls{raml} syntaxí lze nahlédnout v příloze. 
 
             \begin{figure}[ht!]
                 \dirtree{%
@@ -716,25 +835,25 @@
                     .3 \dots.
                     .1 \dots.
                 }
-                \caption{Ukázka struktury URL}
+                \caption{Ukázka struktury \gls{api}}
                 \label{url-model}
             \end{figure}
 
         \subsubsection{Editovatelné seznamy}
             % editace dat v podobě autosave editovatelných seznamů
-            Pro jednotnost aplikace všechny data lze editovat přímo prostřednictvím seznamů. Vazba M:1 je v řádcích editovatelná prostřednictvím výběrových listů, vazby M:N a 1:M jsou editovatelné skrz vyskakovací okna s možnými návrhy. K získání potřebných dat dochází před načtením editovatelného seznamu. Obsah seznamu je vkládán přímo do editovatelného pole, v případě, že uživatel změní jeho obsah a odejde z buňky, obsah se automaticky uloží. Ukládaný obsah na server je omezen pouze na změněnou položku a identifikátor pro optimalizaci přenášeného obsahu. 
+            Pro jednotnost aplikace všechny data lze editovat přímo prostřednictvím seznamů. Vazba $M:1$ je v řádcích editovatelná prostřednictvím výběrových listů, vazby $M:N$ a $1:M$ jsou editovatelné skrz vyskakovací okna s možnými návrhy. K získání potřebných dat dochází před načtením editovatelného seznamu. Obsah seznamu je vkládán přímo do editovatelného pole, v případě, že uživatel změní jeho obsah a odejde z buňky, obsah se automaticky uloží. Ukládaný obsah je omezen pouze na změněnou položku a identifikátor pro optimalizaci přenášeného obsahu. 
 
         \subsubsection{Design}
             % wireframes
             % responzivnost
-            % bootstrap, pouze css styly žádné JS, vše implementováno v Reactu, pomocné rozšíření react-bootstrap
-            Pro design aplikace byla využita čistá CSS knihovna z frameworku Bootstrap. Původní verze aplikace byla vyvíjena pod tématickou šablonou Yeti Bootswatch. Na základě konzultace bylo od této šablony opuštěno, jelikož působila příliš hranatě. Téma bylo vyměněno za Cerulean, které disponuje oblejšími prvky a výraznějšími barvami, aby žáky více zaujalo. Design aplikace je responsivní a připraven pro testování na tabletech a chytrých telefonech.
+            % bootstrap, pouze css styly žádné \gls{js}, vše implementováno v Reactu, pomocné rozšíření react-bootstrap
+            Pro design aplikace byla využita čistá CSS knihovna z frameworku Bootstrap. Původní verze aplikace byla vyvíjena pod tématickou šablonou Yeti Bootswatch. Na základě konzultace bylo od této šablony opuštěno, jelikož působila příliš hranatě. Téma bylo vyměněno za Cerulean, které disponuje oblejšími prvky a výraznějšími barvami, aby žáky více zaujalo. Design aplikace je také responsivní.
 
         \subsubsection{Adaptovaná Levenshteinova vzdálenost}
             % Levenstein a Leitner jsou implementovány na klientské straně
-            Pro vyhodnocování odpovědi a určení podobnosti mezi referenčním slovem a jeho překladem se využívá Levenshteinovy vzdálenosti popsané v kapitole \ref{levenshtein}. Tato vzdálenost pro určení podobnosti slov musela být v jisté míře upravena, aby lépe vyhodnocovala podobnost slov mezi jazyky. Standardní Levenshtein, který měl parametry dva řetězce byl rozšířen o další nepovinné atributy - možnost odebrat diakritiku u znaků a možnost předat funkci slovník, kde klíč ve slovníku je písmeno v mateřském jazyce a hodnota ve slovníku je písmeno v cizím jazyce. 
+            Pro vyhodnocování odpovědi a určení podobnosti mezi referenčním slovem a jeho překladem se využívá Levenshteinovy vzdálenosti popsané v kapitole \ref{levenshtein}. Tato vzdálenost pro určení podobnosti slov musela být v jisté míře upravena, aby lépe vyhodnocovala podobnost slov mezi jazyky. Standardní Levenshtein, který měl parametry dva řetězce byl rozšířen o další nepovinné atributy - možnost odebrat diakritiku a možnost předat funkci slovník, kde klíč ve slovníku je písmeno v mateřském jazyce a hodnota ve slovníku je písmeno v cizím jazyce. 
 
-            Pro příklad v anglickém jazyce písmeno $c$ odpovídá písmenu $k$ v českém. Po předání slovníku do funkce pro výpočet Levenshteinovy vzdálenosti dojde k porovnání znaků na daných pozicích a v případě, že nesouhlasí, funkce se pokusí porovnat s odpovídajícím písmenem ve slovníku.
+            Pro příklad v anglickém jazyce písmeno $c$ odpovídá písmenu $k$ v tom českém. Po předání slovníku do funkce pro výpočet Levenshteinovy vzdálenosti dojde k porovnání znaků na daných pozicích a v případě, že nesouhlasí, funkce se pokusí porovnat s odpovídajícím písmenem ve slovníku. Implementace algoritmu pro výpočet vzdálenosti lze nalézt v příloze.
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=JS, caption={Příklady použití Levenshteinovy vzdálenosti},label=code:levenshtein]
@@ -746,21 +865,21 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
 \end{lstlisting}
 \end{minipage}
 
-        \subsubsection{Google Search API}
+        \subsubsection{Google Search \gls{api}}
             % api console key
             % images
-            Pro získání obrázků se využívá Google Search API. Obrázky jsou získány v podobě odkazů. Uživatel si může vybrat z deseti obrázků, pokud žádný z nich nevyhovuje, vytvoří se nový dotaz s další stránkou. Pro možnost tvorby dotazů je nutné v Google API Console vytvořit vlastní API klíč, který se přidává jako atribut k URL. K API klíči je také nutné vytvořit vlastní Google vyhledávač se svým identifikátorem. Tento atribut je rovněž přidáván jako value-key parametr dotazu. URL vlastního dotazu vypadá takto:
+            Pro získání obrázků se využívá Google Search \gls{api}. Obrázky jsou získány v podobě odkazů. Uživatel si může vybrat z deseti obrázků, pokud žádný z nich nevyhovuje, vytvoří se nový dotaz s další stránkou. Pro možnost tvorby dotazů bylo nutné v Google \gls{api} Console vytvořit vlastní \gls{api} klíč, který se přidává jako parametr \gls{url}. K \gls{api} klíči je také nutné vytvořit vlastní Google vyhledávač se svým identifikátorem. Tento atribut je rovněž přidáván jako parametr dotazu. \gls{api} vlastního dotazu vypadá takto:
 
             ~\url{https://www.googleapis.com/customsearch/v1?q=<slovo>&searchType=image&cx=
             <id_vyhledavace>&key=<api_klic>}
 
-            Odpověď na dotaz je JSON soubor s odkazy na jednotlivé obrázky. K dispozici jsou jak náhledové, malé obrázky (řádově několik desítek kB), tak obrázky v plné velikosti. Jelikož nelze zaručit permanentní přístup k souboru, po vybrání obrázku se na serveru vytvoří komprimovaná kopie obrázku s jednotnou šířkou. 
+            Odpověď na dotaz je \gls{json} soubor s odkazy na jednotlivé obrázky. K dispozici jsou jak náhledové, malé obrázky (řádově několik desítek kB), tak obrázky v plné velikosti. Jelikož nelze zaručit permanentní přístup k souboru, po vybrání obrázku se na serveru vytvoří komprimovaná kopie obrázku s jednotnou šířkou. 
 
         \subsubsection{Zabezpečení}
-            Pro všechny funkce v aplikaci je nutné se přihlásit popřípadě registrovat. Uživatel vytvoří na základě svého jména a hesla účet, pod kterým bude v aplikaci vystupovat. Aplikace komunikuje pouze přes zabezpečenou komunikaci HTTPS. Aby nebylo možné heslo a jméno odposlechnout technikou man-in-the-middle. Jakmile je uživatel na základě hesla a jména ověřen, je mu zaslán JWT token, se kterým se identifikuje v hlavičce s každým dalším dotazem. Generování a ověřování JWT tokenu je popsané v kapitole \ref{jwt}.
+            Pro všechny funkce v aplikaci je nutné se přihlásit popřípadě registrovat. Uživatel vytvoří na základě svého jména a hesla účet, pod kterým bude v aplikaci vystupovat. Aplikace komunikuje pouze přes zabezpečenou komunikaci HTTPS. Aby nebylo možné heslo a jméno odposlechnout technikou \gls{mitm}. Jakmile je uživatel na základě hesla a jména ověřen, je mu zaslán \gls{jwt} token, se kterým se identifikuje v hlavičce s každým dalším dotazem. Generování a ověřování \gls{jwt} tokenu je popsané v kapitole \ref{jwt}.
 
         \subsubsection{Import slovíček}
-            Import slovíček se skládá ze dvou částí, první část má za úkol zpracovat vstupní soubor například CSV, výstup z je JSON soubor s pevně danou strukturou. Ukázka \ref{code:import-json} znázorňuje, jak struktura výstupního JSON souboru vypadá. Druhá část bude mít za úkol JSON soubor rozložit na části akceptovatelné API rozhraním, se kterým klient komunikuje, a uložit je do databáze. Důvodem rozdělení importu na tyto dvě části je možnost do budoucna rozšířit aplikaci o další typy a struktury vstupního souboru. Pro parsování CSV souboru je využita aplikace třetí strany Papa Parse verze 4, která za definovaných pravidel umožňuje z CSV souboru vytvořit soubor typu JSON.
+            Import slovíček se skládá ze dvou částí, první část má za úkol zpracovat vstupní soubor (například \gls{csv}), výstup z této části je \gls{json} soubor s pevně danou strukturou. Ukázka \ref{code:import-json} znázorňuje, jak struktura výstupního \gls{json} souboru vypadá. Druhá část má za úkol \gls{json} soubor rozložit na části akceptovatelné \gls{api} rozhraním, se kterým klient komunikuje a uložit je do databáze. Důvodem rozdělení importu na tyto dvě části je možnost do budoucna rozšířit aplikaci o další typy a struktury vstupního souboru. Pro parsování \gls{csv} souboru je využita aplikace třetí strany Papa Parse verze 4, která za definovaných pravidel umožňuje z \gls{csv} souboru vytvořit soubor typu \gls{json}.
 
             Z návrhu aplikace je dané, že slovíčka musí být součástí modulu. Pokud se ve vstupním souboru nachází prázdný řádek nebo v řádku je jen jedna hodnota, parser to vyhodnotí jako nový modul. Pokud chce vyučující hromadně přidat slova pomocí importu, názvy modulů musí souhlasit s těmi aktuálními v aplikaci.
 
@@ -782,33 +901,32 @@ let dictionary = [{'k':'c'}, {'ch':'š'}, ...]
 \end{minipage}
 
     \subsection{Vývojové prostředí}
-        Pro vývoj \gls{spa} je důležitá správná konfigurace vývojového prostředí, jelikož dokáže hodně ovlivnit produktivnost programátora. Základními požadavky na vývojové prostředí je předzpracování kódu, automatické obnovení stránky po uložení editovaného souboru, vytvoření jednotného JS bundle souboru, který obsahuje všechny potřebné zdrojové kódy rozdělené do logických celků a poskytnutí HTTP serveru. Dále je vhodná pro produkční verzi aplikace například komprimace zdrojových kódů.
+        Pro vývoj \gls{spa} je důležitá správná konfigurace vývojového prostředí, jelikož dokáže hodně ovlivnit produktivnost programátora. Základními požadavky na vývojové prostředí je předzpracování kódu, automatické obnovení stránky po uložení editovaného souboru, vytvoření jednotného \gls{js} bundle souboru, který obsahuje všechny potřebné zdrojové kódy rozdělené do logických celků a poskytnutí HTTP serveru k servírování aplikace. Dále pro produkční verzi aplikace je nutná například komprimace zdrojových kódů.
 
         \subsubsection{Webpack}
             % css injections, production vlastní css soubor
             % - rychlejší načítání (solo js solo css)
-            Webpack je nástroj napsaný pro NodeJS, který umožňuje vytvořit požadované vývojové prostředí. Pro vývoj klientské aplikace jsou vytvořeny dvě webpack konfigurace - vývojová a produkční. Pro kompilaci JS souborů je využíván Babel kompilátor, který je popsán v následující kapitole. CSS soubory jsou v vývojové konfiguraci vkládány přímo jako inline styly do index.html souboru, aby bylo možné v reálném čase sledovat změny designu a nečekat na obnovení stránky, popřípadě emulovat určitý stav aplikace. V produkční verzi je vytvořen zvláštní CSS soubor, protože při načítání aplikace dochází k paralelnímu načítání CSS a JS souborů a dochází díky tomu k urychlení úvodního načtení aplikace. Pro vytvoření produkční verze je využívána pro kompilaci řada webpackových modulů jako například \textit{favicons-webpack-plugin} k tvorbě ikon pro řadu různých prohlížečů nebo \textit{html-webpack-plugin} pro minifikaci (kompresi) a znemožnění přečtení vytvořeného JS souboru, aby nebylo úplně jednoduché pročítat si přehledný JS kód\cite{bib:webpack}.
+            Webpack je nástroj napsaný pro Node\gls{js}, který umožňuje vytvořit požadované vývojové prostředí. Pro vývoj klientské aplikace jsou vytvořeny dvě webpack konfigurace - vývojová a produkční. Pro kompilaci \gls{js} souborů je využíván Babel kompilátor, který je popsán v následující kapitole. CSS soubory jsou v vývojové konfiguraci vkládány přímo jako inline styly do souboru \textit{index.html}, aby bylo možné v reálném čase sledovat změny designu a nečekat na obnovení stránky. V produkční verzi je vytvořen zvláštní CSS soubor, protože při stahování aplikace do prohlížeče dochází k paralelnímu načítání CSS a \gls{js} souborů, což vede k urychlení úvodního načtení aplikace. Pro vytvoření produkční verze je využívána v kompilaci řada webpackových modulů jako například \textit{favicons-webpack-plugin} k tvorbě ikony pro řadu různých prohlížečů nebo \textit{html-webpack-plugin} pro minifikaci (kompresi) a alespoň částečnému znemožnění přečtení vytvořeného \gls{js} souboru \cite{bib:webpack}.
 
         \subsubsection{Babel}
-            Babel je kompilátor, který transformuje rozšířený JavaScript do standardu, který většina prohlížečů podporuje - aktuálně ES5. Důvod využití tohoto kompilátoru je vysoká podpora EcmaScript2015 (ES6) a integrace JSX popsaných v následujících kapitolách. Babel je mimo jiné také doporučován komunitou zabývající se knihovnou React a používají ho společnosti jako Facebook nebo Evernote. Výhodou je, že Babel pouze rozšiřuje současnou verzi JavaScriptu a snaží se zachovat jeho dopřednou kompatibilitu\cite{bib:babel}.
+            Babel je kompilátor, který transformuje rozšířený JavaScript do standardu, který většina prohlížečů podporuje - aktuálně \gls{es5}. Důvod využití tohoto kompilátoru je vysoká podpora \gls{es6} a integrace \gls{jsx} popsaných v následujících kapitolách. Babel je mimo jiné také doporučován komunitou zabývající se knihovnou React a používají ho společnosti jako Facebook nebo Evernote. Výhodou je, že Babel pouze rozšiřuje současnou verzi JavaScriptu a snaží se zachovat jeho dopřednou kompatibilitu\cite{bib:babel}.
 
         \subsubsection{Podpora ES6}
-            Díky kompilátoru Babel lze využít novinky ze specifikace ES6, i když ještě není implementována do prohlížečů. Při vývoji nedílnou součástí bylo klíčové slovo \textit{export}, které umožňovalo rozdělení kódů do mnoha modulů a souboru. V aplikaci je také hojně využívána nová syntaxe tříd, která umožňuje přehlednější dědičnost, tvorbu konstruktorů a statických metod. Novinek, které jsou využívány v aplikaci, je celá řada, za zmínku stojí zkrácená šipková syntaxe $=>$, která umožňuje sdílet klíčové slovo \textit{this} uvnitř logického bloku\cite{bib:ecma}. 
+            Díky kompilátoru Babel lze využít novinky ze specifikace ES6, i když ještě není implementována do prohlížečů. Při vývoji nedílnou součástí bylo klíčové slovo \textit{export}, které umožňovalo rozdělení kódů do mnoha modulů a souboru. V aplikaci je také hojně využívána nová syntaxe tříd, která umožňuje přehlednější dědičnost, tvorbu konstruktorů a statických metod. Novinek, které jsou využívány v aplikaci, je celá řada, za zmínku stojí zkrácená šipková syntaxe $=>$, která umožňuje sdílet klíčové slovo \textit{this} uvnitř vnořeného logického bloku \cite{bib:ecma}. 
 
-        \subsubsection{JSX}
-            JSX je specifikace, která umožňuje kompilovat stromovou strukturu podobnou XML do objektů standardu ECMAScript\cite{bib:jsx}. Jelikož má stejnou strukturu jako XML, je možné předávat značkám atributy klíč-hodnota. Díky kompilaci této struktury lze tedy uložit do JS proměnných celé šablony HTML kódu. Na základě těchto šablon je poté renderováno grafické rozhraní.
+        \subsubsection{\gls{jsx}}
+            \gls{jsx} je specifikace, která umožňuje kompilovat stromovou strukturu podobnou XML do objektů standardu ECMAScript\cite{bib:jsx}. Jelikož má stejnou strukturu jako XML, je možné předávat značkám atributy klíč-hodnota. Díky kompilaci této struktury lze tedy uložit do \gls{js} proměnných celé šablony HTML kódu. Na základě těchto šablon je poté renderováno grafické rozhraní.
 
     \subsection{Knihovna React}
         \label{react}
         % abstraktní DOM
         % imutabilita 
-        React je komunitně rozšířená JavaScriptová knihovna pro vytváření webových komponent. Její předností je efektivní aktualizace a renderování pouze těch komponent, ve kterých dochází ke změnám dat. Uživatel při jejím použití neprování změny přímo na DOM (Document Object Model) dokumentu, ale na jeho abstraktní vrstvu. Výhodou je, že uzly v abstraktní vrstvě mohou uchovávat jejich vnitřní stav. V případě jeho změny React zajistí automaticky a efektivně promítne změny v DOM dokumentu. 
-
+        React je v \gls{js} komunitě rozšířená JavaScriptová knihovna pro vytváření webových komponent. Její předností je efektivní aktualizace a renderování pouze těch komponent, ve kterých dochází ke změnám dat. Uživatel při jejím použití neprování změny přímo na \gls{dom} dokumentu, ale na jeho abstraktní vrstvě. Výhodou je, že uzly v abstraktní vrstvě mohou uchovávat jejich vnitřní stav. V případě jeho změny React zajistí automatické a efektivní promítnutí změn v \gls{dom} dokumentu. 
         
         \subsubsection{Komponenty}
             % Build encapsulated components that manage their own state, then compose them to make complex UIs.
             % Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
-            Prezentační vrstva aplikace lze rozdělit na jednotlivé logické celky v podobě jednoduchých a složitých komponent. Jednotlivé komponenty lze jednoduše vnořovat do sebe a tím vytvořit složitější interaktivní uživatelské rozhraní. Každá komponenta dědí od třídy \textit{Component} v knihovně \textit{React} a obsahuje funkci \textit{render}, která vrací obsah, který bude renderovaný v dokumentu. Dále komponenty obsahují funkci \textit{setState}, která mění její vnitřní stav a atributy \textit{props} a \textit{state}. \textit{Props} obsahuje konstantní atributy předané komponentě a \textit{state} obsahuje stavové objekty komponenty. V případě, že dojde ke zavolání \textit{setState} funkce a tedy změně objektu \textit{state}, dojde k zavolání funkce \textit{render} a tudíž k překreslení obsahu komponenty\cite{bib:react}.
+            Prezentační vrstva aplikace lze rozdělit na jednotlivé logické celky v podobě jednoduchých a složitých komponent. Jednotlivé komponenty lze jednoduše vnořovat do sebe a tím vytvořit složitější interaktivní uživatelské rozhraní. Každá komponenta dědí od třídy \textit{Component} v knihovně \textit{React} a obsahuje funkci \textit{render} vracející obsah, který je následně vykreslený v těle dokumentu. Dále komponenty obsahují funkci \textit{setState}, která mění její vnitřní stav. Dále důležitými atributy jsou \textit{props} a \textit{state}. \textit{Props} obsahuje konstantní atributy, které jsou předané komponentě a \textit{state} obsahuje stavové objekty komponenty. V případě, že dojde ke zavolání \textit{setState} funkce a tedy změně objektu \textit{state}, dojde k zavolání funkce \textit{render} a tudíž k překreslení obsahu komponenty\cite{bib:react}.
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=JS, caption={Příklad komponenty pro zobrazování nápovědy při procvičování slovíček},label=code:hints]
@@ -833,20 +951,20 @@ export default class Hint extends React.Component {
         \subsubsection{MobX}
             \label{mobx}
             % knihovna React se stává frameworkem
-            MobX poskytuje mechanismus k ukládání a aktualizaci dat a tudíž i stavů aplikace\cite{bib:mobx}. Lze si ho představit jako oddělené úložiště dat, které zároveň obsahuje veškeré možné manipulace s daty. V případě, že v úložišti jsou data označená jako \textit{@obsevable} a uživatel jejich obsah změní, dojde k překreslení všech komponent, ve kterých se daná \textit{@obsevable} proměnná vyskytuje. To přináší React aplikaci možnost zcela oddělit datovou vrstvu aplikace od zobrazovací vrstvy a přiblížit se tak MVC modelu. V aplikaci je využitý MobX společně s dekorátory a anotacemi z ES.Next. 
+            MobX poskytuje mechanismus k ukládání a aktualizaci dat a tudíž i stavů aplikace \cite{bib:mobx}. Lze si ho představit jako oddělené úložiště dat, které zároveň obsahuje veškeré možné manipulace s daty. V případě, že v úložišti jsou data označená jako \textit{@obsevable} a uživatel jejich obsah změní, dojde k překreslení všech komponent, ve kterých se daná \textit{@obsevable} proměnná vyskytuje. To přináší React aplikaci možnost zcela oddělit datovou vrstvu aplikace od zobrazovací vrstvy a přiblížit se tak \gls{mvc} modelu. V aplikaci je využitý MobX společně s dekorátory a anotacemi z ES.Next \cite{bib:mobx}. 
 
-            Všechny komponenty, které mění data MobX úložiště, musí být anotovány \textit{@observer}. Aby bylo možné v komponentě data získat z úložiště, je využívána anotace \textit{@inject}. V aplikaci jsou využívány i doplňkové funkce MobX jako například \textit{@computed} atribut nebo \textit{@action} funkce. 
+            Všechny komponenty, které mění data MobX úložiště, musí být anotovány \textit{@observer}. Pro získání reference na data z úložiště v komponentě, je využívána anotace \textit{@inject}. V aplikaci jsou dále využívány i doplňkové funkce MobX jako například \textit{@computed} atribut nebo \textit{@action} funkce. 
 
-            V úložištích se rovněž provádí veškeré \gls{ajax} dotazy prostřednictvím externí knihovny \textit{Axios}, která umožňuje mimo jiné generické nastavení hlaviček u jednotlivých HTTP dotazů. 
+            V úložištích se rovněž provádí veškeré \gls{ajax} dotazy prostřednictvím externí knihovny Axios, která umožňuje mimo jiné generické nastavení hlaviček u jednotlivých HTTP dotazů. 
         
         \subsubsection{Směrování a historie}
             % 'mobx-react-router'
             % 'react-router'
             % využití browser history (možnost tlačítka zpět) 
             % manipulace historie pomocí pushState
-            Pro směrování a historii v \gls{spa} jsou využity externí knihovny z NPM (Node Package Manager) - \textit{react-router} a \textit{mobx-react-router}. Používat navigační tlačítka a historii prohlížeče umožňuje modul \textit{syncHistoryWithStore}, který synchronizuje historii v podobě JS objektu s historií prohlížeče. K manipulaci historie prohlížeče se využívá JS funkcí \textit{pushState} a \textit{replaceState}, definovaných ve standardu HTML5.
+            Pro směrování a historii v \gls{spa} jsou využity externí knihovny z \gls{npm} - \textit{react-router} a \textit{mobx-react-router}. Používat navigační tlačítka a historii prohlížeče umožňuje modul \textit{syncHistoryWithStore}, který synchronizuje historii v podobě \gls{js} objektu s historií prohlížeče. K manipulaci historie prohlížeče se využívá \gls{js} funkcí \textit{pushState} a \textit{replaceState}, definovaných ve standardu HTML5.
 
-            Směrování v aplikaci umožňuje modul \textit{Router} z knihovny \textit{react-router}. Tento modul lze do sebe nesčetněkrát vnořovat a umožňuje lépe oddělit logické části aplikace. \textit{Router} mimo jiné disponuje nepovinným atributem \textit{onEnter}, ve kterém lze zajistit oprávnění pro různé sekce aplikace. Dalším důležitým modulem je \textit{Provider} z knihovny \textit{react-router}, která poskytuje pro komponenty Reactu úložiště popsané v \ref{mobx}. Následující ukázka zdrojového kódu \ref{code:main-render} představuje hlavní vykreslovací funkci aplikace, jejíž první atribut je obsah a druhý je element, kam se má obsah vložit.
+            Směrování v aplikaci umožňuje modul \textit{Router} z knihovny \textit{react-router}. Tento modul lze do sebe nesčetněkrát vnořovat a umožňuje lépe oddělit logické části aplikace. \textit{Router} mimo jiné disponuje nepovinným atributem \textit{onEnter}, ve kterém lze zajistit oprávnění pro různé sekce aplikace. Dalším důležitým modulem je \textit{Provider} z knihovny \textit{react-router}, který poskytuje pro komponenty Reactu MobX úložiště. Následující ukázka zdrojového kódu \ref{code:main-render} představuje hlavní vykreslovací funkci aplikace, jejíž první atribut je obsah a druhý je element, kam se má obsah vložit. Jednotlivé \textit{Route} komponenty operují jako selektor stránek na základě \gls{url}.
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=JS, caption={Hlavní renderovací funkce aplikace},label=code:main-render]
@@ -869,7 +987,7 @@ document.getElementById('app'));
 
         \subsubsection{Adresářová struktura}
         %     JavaSript klientské aplikace je rozdělen do tří adresářů - components, data a pages. V adresáři \textit{pages} jsou umístěné hlavní strany aplikace. V adresáři data jsou umístěny MobX úložitě rozdělené do logických celků. Jednotlivé komponenty Adresář \textit{components} je rozděleny do podadresářů s názvy stránek. 
-        Následující obrázek \ref{dir-structure-client} popisuje adresářovou strukturu aplikace.
+        Následující obrázek \ref{dir-structure-client} popisuje adresářovou strukturu klientské aplikace.
 
             \begin{figure}[ht!]
                 \dirtree{%
@@ -893,53 +1011,53 @@ document.getElementById('app'));
                     .1 index.html\DTcomment{šablona s HTML hlavičkou}.
                     .1 favicon.svg.
                 }
-                \caption{Adresářové struktury klientské aplikace}
+                \caption{Adresářová struktura klientské aplikace}
                 \label{dir-structure-client}
             \end{figure}
 
     \subsection{Testování}
         % Enzyme, NPM spouštění
         % využití MOBX data injections v daném stavu aplikace
-        Pro testování  klientské části byl využity nástroje Enzyme a Jest. Enzyme je testovací nástroj, který umožní testovat React komponent. Jeho syntaxe je velmi podobná známé knihovně JQuery. Jest je nástroj, který tyto testy spouští a vyhodnocuje. Pro kompilaci ES6 kódů byl využit balíček \textit{babel-jest}. 
+        Pro testování klientské části byly využity nástroje Enzyme a Jest. Enzyme je testovací nástroj, který umožní testovat React komponenty. Jeho syntaxe je velmi podobná známé knihovně JQuery. Jest je nástroj, který tyto testy spouští a vyhodnocuje. Pro kompilaci ES6 kódů byl využit balíček \textit{babel-jest}. 
 
         \subsubsection{Unit testování}
-            Díky MobX úložišti je velmi jednoduché otestovat jednotlivé funkce, které manipulují s daty. MobX úložiště je JS objekt, který lze v jakémkoliv stavu aplikace uložit a pro potřeby testů znovu načíst. Díky této vlastnosti jsou jednotkové testy zcela odděleny od aplikace a lze je spouštět nezávisle. Enzyme umožňuje simulovat i JS události zavoláním funkce \textit{simulate} na daný React element. První atribut je typ události a druhý atribut je objekt, který simuluje objekt události.
+            Díky MobX úložišti je velmi jednoduché otestovat jednotlivé funkce, které manipulují s daty. MobX úložiště je \gls{js} objekt, který lze v jakémkoliv stavu aplikace uložit a pro potřeby testů znovu načíst. Díky této vlastnosti jsou jednotkové testy zcela odděleny od aplikace a lze je spouštět nezávisle. Enzyme umožňuje simulovat i \gls{js} události zavoláním funkce \textit{simulate} na daný React element. První atribut je typ události a druhý atribut je objekt, který simuluje objekt události.
 
-            Ke každému úložišti byl vytvořen soubor s příponou .test.js, tyto testy jsou umístěny v adresáři v podadresáři \url{./data/__tests__/}. Pro testování jsou k dispozici funkce \textit{describe}, \textit{it} a \textit{expect}. Enzyme je doplněn i o další standardní funkce jednotkového testování jako například \textit{beforeEach}, která umožňuje načíst stejná data do úložiště pro každý test zvlášť.
+            Ke každému úložišti byl vytvořen soubor s příponou \textit{.test.js}, tyto testy jsou umístěny v adresáři \url{./data/__tests__/}. Pro testování jsou k dispozici funkce \textit{describe}, \textit{it} a \textit{expect}. Enzyme je doplněn i o další standardní funkce jednotkového testování jako například \textit{beforeEach}, která umožňuje načíst stejná data do úložiště pro každý test zvlášť.
 
         \subsubsection{Integrační testování}
             Pro testování, zda komponenty společně správně pracují, slouží integrační testování. Článek, který komponenty spojuje, je právě již zmiňované MobX úložiště. Každý z integračních testů obsahuje úložiště, do kterého jsou vložena data představující určitý stav v aplikaci. Toto úložiště je poté předloženo daným komponentám. Test následně provede sadu operací nad komponentami a na závěr zkontroluje, zda výsledná komponenta vrací požadovaný obsah.
 
-            Důležitou součástí v kontrole obsahu je funkce \textit{shallow}, která obalí JS objekt představující uzel v dokumentu funkcemi, které umožní jednoduché prohledávání jednotlivých elementů, jejich obsahu a atributů.
+            Důležitou součástí v kontrole obsahu je funkce \textit{shallow}, která obalí \gls{js} objekt představující uzel v dokumentu funkcemi, které umožní jednoduché kontrolování jednotlivých elementů, jejich obsahu a atributů.
 
 \newpage
 \section{Serverová část}
-    Serverová část aplikace je v podstatě aplikační rozhraní, které poskytuje data ve formátu JSON pro klientskou aplikaci. API je napsané v programovacím jazyce Python s využitím Django webového frameworku a Django REST frameworku.
+    Serverová část aplikace je v podstatě aplikační rozhraní, které poskytuje data ve formátu \gls{json} pro klientskou aplikaci. \gls{api} je napsané v programovacím jazyce Python s využitím Django webového frameworku a Django REST frameworku.
     
     \subsection{Technologie}
-        Důvod, proč bylo zvnoleno Django a Dajngo REST framework jako platforma pro aplikační rozhraní, je převážně z dřívějších zkušeností s variabilitou a rychlostí vývoje. Pro potřeby aplikace se jedná možná o zbytečně komplexní framework, jelikož aplikace jako celek stojí převážně na zpracování klientské části.
+        Důvod, proč bylo zvoleno Django a Dajngo REST framework jako platforma pro aplikační rozhraní, je převážně z dřívějších zkušeností s variabilitou a rychlostí vývoje. Pro potřeby aplikace se jedná možná o zbytečně komplexní framework, jelikož aplikace jako celek stojí převážně na zpracování klientské části.
 
         \subsubsection{Django}
-            Django je open-source webový framework, který využívá vlastní implementaci MVC modelu a označuje ho jako MTV (Model Teplate View)\cite{bib:django}. Z databázového modelu se získávají data, které jsou interpretovány v případě aplikace skrz Serializéry a následně jsou data podstrčeny podhledům, které v našem případě odešle uživateli JSON soubor s daty. Dajngo je velmi variabilní a lze ho použít pro tvorbu standardní webové aplikace, tak za pomocí REST frameworku i tvorbu API.
+            Django je open-source webový framework, který využívá vlastní implementaci \gls{mvc} modelu, kterou označuje jako \gls{mtv} \cite{bib:django}. Z databázového modelu se získávají data, které jsou interpretovány v případě aplikace skrz serializéry. A následně jsou data podstrčeny podhledům, které odešlou uživateli data například v podobě \gls{json} souboru. Dajngo je velmi variabilní a lze ho použít pro tvorbu standardní webové aplikace, tak za pomocí REST frameworku i tvorbu \gls{api}.
 
-            Z čitého Django projektu je v aplikaci využívána hlavně modelová vrstva, která je implementována přes ORM (Object-Relational Mapping) přístup. U přístupu do databáze se nepíšou SQL dotazy, nýbrž se provádí operace nad objekty za pomocí definovaných funkcí v Pythonu. ORM implementované v Djangu transformuje objekty na dotazy, snaží se o jejich optimalizaci, a poskytuje nám vyšší abstrakci\cite{bib:django}. Využití Django ORM v aplikace se detailněji zabývá kapitola \ref{db}. 
+            Z čitého Django projektu je v aplikaci využívána hlavně modelová vrstva, která je implementována přes \gls{orm} přístup. U přístupu do databáze se nepíšou SQL dotazy, nýbrž se provádí operace nad objekty za pomocí definovaných funkcí v Pythonu. \gls{orm} implementované v Djangu transformuje objekty na dotazy, snaží se o jejich optimalizaci, a poskytuje nám vyšší abstrakci\cite{bib:django}. Využití Django \gls{orm} v aplikace se detailněji zabývá kapitola \ref{db}. 
 
         \subsubsection{Django REST framework}
-            Webový framework Django je v aplikaci rozšířen o nadstavbu jménem Django REST framework. Jeho přínosy jsou rychlá tvorba vlastního HTTP nebo i RESTful API, připravené bezpečnostní principy s možností využití OAuth2. Dále obsahuje připravené serializační, parsovací a pohledové komponenty s možností generické a automatické validace dat a dalších užitečných funkcí\cite{bib:django-rest}.
+            Webový framework Django je v aplikaci rozšířen o nadstavbu jménem Django REST framework. Jeho přínosy jsou rychlá tvorba vlastního HTTP nebo i RESTful \gls{api}, připravené bezpečnostní principy s možností využití OAuth2. Dále obsahuje připravené serializační, parsovací a pohledové komponenty s možností generické a automatické validace dat a dalších užitečných funkcí\cite{bib:django-rest}.
 
-        \subsubsection{HTTP a RESTful API}
-            Klientská aplikace se dotazuje serveru pomocí požadavků metod GET, POST, PUT a DELETE. Jelikož je klient úzce svázaný se serverem, API nemusí nést principy HATEOAS (Hypermedia as the Engine of Application State) ani RESTful rozhraní. Tedy takové, které mimo jiné poskytuje dynamicky vytvářené hypertextové odkazy pro manipulaci stavů aplikace. Toto rozhraní je vhodnější pro aplikace, kde veškeré logické části aplikace jsou prováděny na serveru a klient slouží pouze jako prohlížeč dat. Ve slovníkové aplikaci je naopak veškerá logika a stavovost přesunuta na klienta a API slouží pouze jako vrstva pro ukládání dat. Rozhraní neposkytuje ani odkazy pro navigaci mezi daty a to z důvodu optimalizace velikosti přenášených dat a jak bylo zmíněno klient je úzce svázaný se serverovým rozhraním. Z těchto důvodů by se dalo rozhraní klasifikovat spíše jako HTTP API.
+        \subsubsection{HTTP a RESTful \gls{api}}
+            Klientská aplikace se dotazuje serveru pomocí požadavků metod GET, POST, PUT a DELETE. Jelikož je klient úzce svázaný se serverem, \gls{api} nemusí nést principy \gls{hateoas} ani RESTful rozhraní. Tedy takové, které mimo jiné poskytuje dynamicky vytvářené hypertextové odkazy pro manipulaci stavů aplikace. Toto rozhraní je vhodnější pro aplikace, kde veškeré logické části aplikace jsou prováděny na serveru a klient slouží pouze jako prohlížeč dat. Ve slovníkové aplikaci je naopak veškerá logika a stavovost přesunuta na klienta a \gls{api} slouží pouze jako vrstva pro ukládání dat. Rozhraní neposkytuje ani odkazy pro navigaci mezi daty, z důvodu optimalizace velikosti přenášených dat a jak bylo zmíněno klient je úzce svázaný se serverovým rozhraním. Z těchto důvodů by se dalo rozhraní klasifikovat spíše jako HTTP \gls{api}.
 
-    \subsection{API}
+    \subsection{\gls{api}}
         Tato sekce poskytuje náhled na vnitřní strukturu a principy serverové části aplikace. 
 
         \subsubsection{Struktura dat}
             % json identifikace shrz ID
-            Data odesílané klientovi jsou čité reprezentace atributů v modelové vrstvě. Každý z objektů je identifikován svým číslem datového typu \textit{integer}. Co se týče relačních vztahů mezi modely, ty jsou reprezentovány pomocí zaslaného identifikátoru, popřípadě listu identifikátorů, pokud se jedná o násobný vztah. Pro získání doplňujících informací k zaslanému identifikátoru, je nutné vytvořit nový dotaz typu GET a v uvést identifikátor v parametru URL. 
+            Data odesílané klientovi jsou čité reprezentace atributů v modelové vrstvě. Každý z objektů je identifikován svým číslem datového typu \textit{integer}. Co se týče relačních vztahů mezi modely, ty jsou reprezentovány pomocí zaslaného identifikátoru, popřípadě listu identifikátorů, pokud se jedná o násobný vztah. Pro získání doplňujících informací k zaslanému identifikátoru, je nutné vytvořit nový dotaz typu GET a uvést identifikátor v parametru \gls{api}. 
 
-            Z důvodu optimalizace počtu dotazů na server z určité části klientské aplikace bylo nutné nahradit relačně vztahové identifikátory vlastními daty, aby nedocházelo k několika násobným dotazům s velikostně velmi nízkou odpovědí. Například v případě získání listu učebnic, je klientovi zaslán list objektů, které obsahují atributy jako název učebnice, datum vytvoření, jazyk, identifikátor vlastníka atd. Aby klient nemusel dotazovat server několika násobně další informace o vlastníkovi, jsou základní data o vlastníkovi vnořena přímo do listu učebnice.
+            Z důvodu optimalizace počtu dotazů na server v určité části klientské aplikace bylo nutné nahradit identifikátory, představující vztah mezi objekty, vlastními daty, aby nedocházelo k několika násobným dotazům s velikostně velmi nízkou odpovědí. Například v případě získání listu učebnic, je klientovi zaslán list objektů, které obsahují atributy jako název učebnice, datum vytvoření, jazyk, identifikátor vlastníka atd. Aby klient nemusel dotazovat server několika násobně o další informace, jsou základní data o vlastníkovi vnořena přímo do listu učebnice.
 
-            V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových data-typů tak, aby je bylo možné zapsat do formátu JSON nebo XML \cite{bib:django-rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě definice \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
+            V Django REST frameworku tuto funkci zajišťují serializátory. Jsou to třídy, které transformují modelové objekty a dotazové sety do Pythonových objektů tak, aby je bylo možné zapsat do formátu \gls{json} nebo XML \cite{bib:django-rest}. Následující ukázka \ref{code:serializers} představuje serializer pro transformaci informací o učebnici. Výstupní objekt bude nést atributy, které jsou uvedeny v tuplu \textit{fields}. Na základě použití funkce \textit{PrimaryKeyRelatedField} bude hodnota \textit{language} atributu pouze identifikátor. Funkce \textit{PrimaryKeyRelatedField} akceptuje atribut \textit{queryset}, který definuje list možných identifikátorů v podobě dotazu. Naproti tomu atribut \textit{owner} bude ve výstupu objekt, který obsahuje právě dodatečné informace o vlastníkovi - id, uživatelské jméno, jméno a příjmení. 
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=Python, caption={Serializační třída k transformaci dat o učebnici},label=code:serializers]
@@ -960,12 +1078,12 @@ class TextbookSerializer(serializers.ModelSerializer):
 
         \subsubsection{Implementace Supermemo algoritmu}
             % Supermemo implementace na serveru
-            Algoritmus Supermemo popsaný v kapitole \ref{supermemo}. pro výpočet optimálních intervalů je implementovaný na serverové části aplikace. V okamžiku, kdy uživatel dokončí neboli ovládne slovo v procvičování, se ukládá na server informace o tom, že slovo bylo pro daného uživatele dokončeno. V tomto okamžiku se spočítá absolutní obtížnost slova na základě adaptované obtížnosti a zjistí se první interval v podobě data, kdy má slovo být připomenuto. Tento datum společně s hodnotou 0 představující počet, kolikrát si uživatel nemohl vzpomenout na slovo, uloží do databáze. Pro uložení matice optimálních faktorů je v Pythonu vyžit standardní list listů.
+            Algoritmus Supermemo popsaný v kapitole \ref{supermemo}. pro výpočet optimálních intervalů je implementovaný na serverové části aplikace. V okamžiku, kdy uživatel dokončí neboli ovládne slovo v procvičování, se ukládá na server informace o tom, že slovo bylo pro daného uživatele dokončeno. Při ukládání se spočítá absolutní obtížnost slova na základě adaptované obtížnosti a zjistí se první interval v podobě data, kdy má slovo být připomenuto. Tento datum společně s hodnotou 0 představující počet, kolikrát si uživatel nemohl vzpomenout na slovo, uloží aplikace do databáze. Matice optimálních faktorů je v aplikaci interpretována jako standardní list listů.
 
-            Následně v okamžiku znovu přihlášení uživatele do aplikace, server společně s informacemi o statistikách uživatele odešle list slov, kde aktuální datum je vyšší než datum připomenutí. V aplikaci si uživatel může spustit mód připomenutí již naučených slov. V případě, že si uživatel nevzpomene na slovo, při ukládání informací o připomínání, se přičte jednička do hodnoty s počtem, kolikrát uživatel nemohl vzpomenout na slovo a pro každé slovo se přepočítá další datum připomenutí. 
+            Následně v okamžiku znovu přihlášení uživatele do aplikace, server společně s informacemi o statistikách uživatele odešle list slov, u kterých je aktuální datum vyšší než datum připomenutí. V aplikaci si uživatel může spustit mód připomenutí již naučených slov. V případě, že si uživatel nevzpomene na slovo, při ukládání informací o připomínání, se přičte jednička do hodnoty s počtem, kolikrát uživatel nemohl vzpomenout na slovo a pro každé slovo se přepočítá další datum připomenutí. 
 
         \subsubsection{Získání zvukové nahrávky}
-            Pro získání zvukové nahrávky slova je využitý Python modul s názvem gTTS. Stažení nahrávky je velmi jednoduché. Nahrávky se identifikují jazykem a názvem omezeným na ASCII znaky, což v ukázce \ref{code:sound} představuje funkce \textit{slugify}. K uložení nahrávky dochází pouze v případě, že stejné slovo již stejné slovo není v adresáři uložené. Klientovi se následně zasílají odkazy na nahrávku, kde si uživatel může slovo přehrát.
+            Pro získání zvukové nahrávky slova je využitý Python modul s názvem gTTS. Stažení nahrávky je velmi jednoduché. Nahrávky se v aplikaci identifikují jazykem a názvem omezeným na ASCII znaky, což v ukázce \ref{code:sound} představuje funkce \textit{slugify}. K uložení nahrávky dochází pouze v případě, že stejné slovo již není v adresáři uložené. Klientovi se následně zasílají odkazy na nahrávku, kde si uživatel může slovo přehrát.
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=Python, caption={Uložení zvukové nahrávky},label=code:sound]
@@ -984,19 +1102,19 @@ def save_sound(text, lang):
         % OAuth2
         % zajištění vkládaných řetězců
         % https nepomůže proti CSRF
-        Serverová a klientská aplikace spolu komunikují skrz zabezpečený protokol HTTPS. Pro autorizaci uživatelů v rozhraní slouží standard JWT popsaný v následující kapitole. Kapitola dále rozvíjí, jak jsou uživatelé autorizování k jednotlivým operacím a jaké bezpečnostní mechanismy jsou použity proti internetovým útokům.
+        Serverová a klientská aplikace spolu komunikují skrz zabezpečený protokol HTTPS. Pro autorizaci uživatelů v rozhraní slouží standard \gls{jwt} popsaný v následující kapitole. Kapitola dále rozvíjí, jak jsou uživatelé autorizováni k jednotlivým operacím a jaké bezpečnostní mechanismy jsou použity proti internetovým útokům.
 
         \subsubsection{JavaScript Web Tokens}
             \label{jwt}
             % zajišťuje validnost přenášené informace
             % časová expirace tokenu, možnost obnovení 
-            % JWT 
+            % \gls{jwt} 
 
-            JSON Web Token (JWT) je otevřený standard (RFC 7519) definující způsob posílání zabezpečené informace ve formě zakódovaného JSON objektu. Tyto informace jsou zabezpečeny buď s využitím tajného klíče a algoritmu HMAC a nebo pomocí páru privátní/veřejný klíč a algoritmu RSA. Zašifrovaný obsah JWT tokenu obsahuje důležité informace o uživateli a klient tedy nemusí dotazovat server pro tyto informace, což vede k snížení režie serveru \cite{bib:jwt}.
+            \gls{json} Web Token (\gls{jwt}) je standard (RFC 7519) definující způsob posílání zabezpečené informace ve formě zakódovaného \gls{json} objektu. Tyto informace jsou zabezpečeny buď s využitím tajného klíče a algoritmu HMAC a nebo pomocí páru privátní/veřejný klíč a algoritmu RSA. Zašifrovaný obsah \gls{jwt} tokenu obsahuje důležité informace o uživateli a klient tedy nemusí dotazovat server pro tyto informace, což vede k snížení režie serveru \cite{bib:jwt}.
 
-            Způsob přihlášení uživatele probíhá následovně. Uživatel zadá do klientské aplikace jméno a heslo, které je dále interpretováno pouze jako MD5 hash. Tyto informace jsou zaslány na server. Server na základě ověření hesla a jména vygeneruje nový JWT token, který zašle zpět klientské části. Ta si token uloží do lokálního úložiště a přidává token ke každému HTTP dotazu v hlavičce se strukturou \textbf{Authorization: JWT $<$token$>$}.
+            Způsob přihlášení uživatele probíhá následovně. Uživatel zadá do klientské aplikace jméno a heslo, které je dále interpretováno pouze jako MD5 hash. Tyto informace jsou zaslány na server. Server na základě ověření hesla a jména vygeneruje nový \gls{jwt} token, který zašle zpět klientské části. Ta si token uloží do lokálního úložiště a přidává token ke každému HTTP dotazu v hlavičce se strukturou \textbf{Authorization: \gls{jwt} $<$token$>$}.
 
-            Na serveru generování JWT obstarává knihovna \textit{djangorestframework-jwt}. Expirace tokenu je 3 hodiny, knihovna ale poskytuje možnost obnovení tokenu s novou expirační dobou. Na klientské části je obnovení řešeno Timeout callback funkcí, která obnoví token ještě než vyprší jeho expirace. Společně s tokenem se klientské části zasílají i statistické informace o uživateli. To zajišťuje vlastní implementace funkce \textit{jwt\_response\_payload\_handler} na následující ukázce \ref{code:jwt}.
+            Na serveru generování \gls{jwt} obstarává knihovna \textit{djangorestframework-jwt}. Expirace tokenu je nastaveno na 3 hodiny. Knihovna poskytuje možnost obnovení tokenu s novou expirační dobou. Na klientské části je obnovení řešeno Timeout callback funkcí, která obnoví token ještě než vyprší jeho expirace. Společně s tokenem se klientské části zasílají i statistické informace o uživateli. To zajišťuje vlastní implementace funkce \textit{jwt\_response\_payload\_handler} na následující ukázce \ref{code:jwt}.
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[language=Python, caption={Obsah metody \textit{jwt\_response\_payload\_handler}},label=code:jwt]
@@ -1010,19 +1128,19 @@ def jwt_response_payload_handler(token, user=None, request=None):
 \end{minipage}
 
         \subsubsection{CSRF a XSS}
-            Cross Site Request Forgery (CSRF) je útok, kdy útočník donutí oběť odeslat upravený požadavek na server. V podstatě se jedná o nějaký podvržený odkaz na jiné doméně a jelikož uživatel je do aplikace přihlášen, má práva provést například změnu emailové adresy\cite{bib:csrf}. Proti tomuto typu útoku je aplikace chráněná díky JWT, jelikož s každým požadavkem na server je v hlavičce dotazu zaslán token. JWT nelze z jiné domény zjistit, jelikož prohlížeč pro každé okno vytváří samostatnou instanci pro provoz JavaScriptu, které mezi sebou data nesdílí.
+            \gls{csrf} je útok, kdy útočník donutí oběť odeslat upravený požadavek na server. V podstatě se jedná o nějaký podvržený odkaz na jiné doméně a jelikož je uživatel stále do napadené aplikace přihlášen, má práva provést například změnu emailové adresy\cite{bib:csrf}. Proti tomuto typu útoku je aplikace chráněná díky \gls{jwt}, jelikož s každým požadavkem na server je v hlavičce dotazu zaslán token. \gls{jwt} nelze z jiné domény zjistit, jelikož prohlížeč pro každé okno vytváří samostatné instance pro provoz JavaScriptu, které mezi sebou data nesdílí.
 
-            Cross-site scripting (XSS) je případ, kdy útočník pomocí vstupního formulářového prvku zapíše JS kód do stránky, který se následně vykoná\cite{bib:xss}. XSS je mnohem závažnější útok, jelikož útočník může získat například Cookie dokumentu, které může obsahovat například JWT. Jelikož klientská část funguje jako \gls{spa}, nedochází k obnovení stránky a tudíž nedochází k resetování JavaScriptové instance. JWT token je uložen pouze v JS objektu. Proto v případě, že uživatel z aplikace odejde, musí znovu projít autentizačním cyklem.
+            \gls{xss} je případ, kdy útočník pomocí vstupního formulářového prvku zapíše \gls{js} kód do stránky, který se následně vykoná\cite{bib:xss}. XSS je mnohem závažnější útok, jelikož útočník může získat například Cookie dokumentu, které může obsahovat například \gls{jwt}. Jelikož klientská část funguje jako \gls{spa}, nedochází k obnovení stránky a tudíž nedochází k resetování JavaScriptové instance. \gls{jwt} token je uložen pouze v \gls{js} objektu. Proto v případě, že uživatel z aplikace odejde, musí znovu projít autentizačním cyklem.
 
 
         \subsubsection{CORS}
-            Pro testovací účely bylo nutné v serverové aplikaci a Django REST frameworku povolit CORS, jelikož server a klient nesdílely stejnou doménu. CORS (Cross-Origin Resource Sharing) je mechanismus, který spočívá v povolení klientům dotazovat rozhraní, které je poskytováno na jiné doméně. Pro povolení CORS v serverové aplikaci byl využit další middleware s názvem \textit{corsheaders.middleware.CorsMiddleware}, ve kterém lze nastavit parametrem \textit{CORS\_ORIGIN\_WHITELIST} soupis klientů, kteří mohou dotazovat server. V produkční verzi aplikace tento problém nenastává, jelikož serverová a klientská část sdílí servírovanou doménu.
+            Pro testovací účely bylo nutné v serverové aplikaci a Django REST frameworku povolit \gls{cors}, jelikož server a klient nesdílely stejnou doménu. \gls{cors} je mechanismus, který spočívá v povolení klientům dotazovat rozhraní, které je poskytováno na jiné doméně. Pro povolení CORS v serverové aplikaci byl využit další middleware s názvem \textit{corsheaders.middleware.CorsMiddleware}, ve kterém lze nastavit parametrem \textit{CORS\_ORIGIN\_WHITELIST} soupis klientů, kteří mohou dotazovat server. V produkční verzi aplikace tento problém nenastává, jelikož serverová a klientská část sdílí servírovanou doménu.
 
         \subsubsection{Autorizace}
             % povolené metody a zdroje
             % nunté autorizovat metody editace a mazání pouze pro vlastníka 
             % 'rest_framework.permissions.IsAuthenticated', pro celou aplikaci platí pravidlo.isAuthenticated, vlastní třída s opravněním k vlasníkovi
-            Autorizace ke zdrojům je v aplikaci jednoduchá. Jelikož došlo ke sloučení rolí učitele a žáka, není nutné role v aplikaci rozdělovat. Proto všichni uživatelé mají přístup do všech sekcí aplikace. Aby ale uživatel měl možnost vůbec dotazovat API, musí být identifikováván a přihlášen. K nastavení a zprovoznění tohoto základního oprávnění posloužila třída, která je součástí REST frameworku \textit{rest\_framework.permissions.IsAuthenticated}, kterou je nutné uvést v nastavení pod atributem \textit{DEFAULT\_PERMISSION\_CLASSES}. 
+            Autorizace ke zdrojům je v aplikaci jednoduchá. Jelikož došlo ke sloučení rolí učitele a žáka, není nutné role v aplikaci rozdělovat. Proto všichni uživatelé mají přístup do všech sekcí aplikace. Aby ale uživatel měl možnost vůbec dotazovat \gls{api}, musí být identifikováván a přihlášen. K nastavení a zprovoznění tohoto základního oprávnění posloužila třída, která je součástí REST frameworku \textit{rest\_framework.permissions.IsAuthenticated}, kterou je nutné uvést v nastavení pod atributem \textit{DEFAULT\_PERMISSION\_CLASSES}. 
 
             Tato autorizace nestačí, jelikož je nutné také omezit editační a mazací metody pouze na vlastníky dat. Následující ukázka \ref{code:permissions} představuje třídu oprávnění, která kontroluje, zda vlastník záznamu je přihlášený uživatel v případě, že se snaží provést nějakou úpravu. Pro správnou funkčnost je samozřejmě nutné, aby daný záznam přesněji objekt modelové třídy měl definovaný atribut \textit{owner}.
 
@@ -1041,7 +1159,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         \label{db}
         K ukládání dat v aplikaci je využita open-sourcová databáze PostgreSQL. Django podporuje celou řadu databázových backendů jako například MySQL, SQLite nebo lze nalézt i obecný konektor \gls{odbc}. Ale největší podporu ve vývoji frameworku dostává právě zmíněná databáze PostgreSQL\cite{bib:django}. 
 
-        Django jak už bylo zmíněno nepovoluje přímý přístup k databáze. Ve frameworku existuje abstraktní vrstva ORM, která mapuje objekty v Pythonu na databázové dotazy. To přináší spoustu výhod, jedna z nich je vysoká optimalizace dotazů prováděné na databázi, další může být například podpora databázových migrací. Django si sám spravuje strukturu tabulek v databázi. Potom co se implementují modelové třídy, je ve frameworku připraven nástroj, který vytvoří v databázi tabulky s atributy, indexy a se vším, co se v modelových třídách definuje. Django rovněž podporuje propagaci změn na databázi v případě, že dojde k editaci modelových tříd\cite{bib:django}.
+        Django jak už bylo zmíněno nepovoluje přímý přístup k databáze. Ve frameworku existuje abstraktní vrstva \gls{orm}, která mapuje objekty v Pythonu na databázové dotazy. To přináší spoustu výhod, jedna z nich je vysoká optimalizace dotazů prováděné na databázi, další může být například podpora databázových migrací. Django si sám spravuje strukturu tabulek v databázi. Potom co se implementují modelové třídy, je ve frameworku připraven nástroj, který vytvoří v databázi tabulky s atributy, indexy a se vším, co se v modelových třídách definuje. Django rovněž podporuje propagaci změn na databázi v případě, že dojde k editaci modelových tříd\cite{bib:django}.
 
         \subsubsection{Model}
 
@@ -1055,13 +1173,13 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         \end{figure}
 
     \subsection{Testování}
-        % APITestCase Django REST
+        % \gls{api}TestCase Django REST
         % fixtures
-        Testování rozhraní bylo zaměřené pouze na správnou funkčnost API, tzn. kontrola, zda jednotlivé dotazy vracejí správná data. Jednotkové testování krátkých logických funkcí nemělo příliš význam, jelikož v REST frameworku jde spíše o nastavení součástí a spojení je do jednotného celku než implementace nízkoúrovňových logických bloků.
+        Testování rozhraní bylo zaměřené pouze na správnou funkčnost \gls{api}, tzn. kontrola, zda jednotlivé dotazy vracejí správná data. Jednotkové testování krátkých logických funkcí nemělo příliš význam, jelikož v REST frameworku jde spíše o nastavení součástí a spojení je do jednotného celku než implementace nízkoúrovňových logických bloků.
         
-        Pro testování správné funkčnosti API byla využita třída APITestCase poskytovaná REST frameworkem. Testy jsou napsány na každou metodu každé URL. Kontrola jedné metody URL spočívala v ověření stavového kódu HTTP, dále v počtu vrácených dat, pokud se jednalo o listy objektů a náhodná kontrola hodnot objektu. K provádění dotazů posloužil objekt třídy \textit{APIClient}, který umožňoval jednoduše editovat hlavičky dotazu pro celou testovací sadu. 
+        Pro testování správné funkčnosti \gls{api} byla využita třída \gls{api}TestCase poskytovaná REST frameworkem. Testy jsou napsány na každou metodu každé \gls{api}. Kontrola jedné metody \gls{api} spočívala v ověření stavového kódu HTTP, dále v počtu vrácených dat, pokud se jednalo o listy objektů a náhodná kontrola hodnot objektu. K provádění dotazů posloužil objekt třídy \textit{\gls{api}Client}, který umožňoval jednoduše editovat hlavičky dotazu pro celou testovací sadu. 
 
-        Užitečným nástrojem pro testování jsou tzv. \textit{fixtures}. Jsou to soubory ve formátu JSON, které obsahují databázová data. Na začátku každé testovací sady je vytvořena nové dočasné schéma v databázi, které má identickou strukturu s produkčním schématem v databázi. Dále jsou na začátku testu předány jednotlivé \textit{fixtures}, které pro účely testování naplní databázi požadovanými daty.
+        Užitečným nástrojem pro testování jsou tzv. \textit{fixtures}. Jsou to soubory ve formátu \gls{json}, které obsahují databázová data. Na začátku každé testovací sady je vytvořena nové dočasné schéma v databázi, které má identickou strukturu s produkčním schématem v databázi. Dále jsou na začátku testu předány jednotlivé \textit{fixtures}, které pro účely testování naplní databázi požadovanými daty.
 
         \subsubsection{Závěrečné testování aplikace}
             Na závěr vývoje aplikace bylo provedeno testování uživateli, kteří nebyli součástí vývoje. Aplikace pro účely testování byla spuštěna na produkčním serveru, aby imitace reálného prostředí byla autentická. Dále bylo do aplikace naimportována sada slovíček z učebnice anglického jazyka s názvem Headway Intermediate. Pro testování byli zvoleni dva dobrovolníci - žákyně základní školy, která aktuálně dochází do šesté třídy základní školy Lesní v Liberci a dospělý člověk zabývající se podnikáním, který simuloval roli učitele v aplikaci. Během testování bylo objeveno několik drobných chyb, které byly ihned po testování opraveny. Z důvodu časového omezení nebylo otestováno externími uživateli připomínání naučených slov.
@@ -1137,7 +1255,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         Ecma International. \textit{ECMAScript® 2015 Language Specification} [online] 2015 [cit. 2016-12-27]. Dostupné z: \url{http://www.ecma-international.org/ecma-262/6.0/index.html}.
 
     \bibitem{bib:jsx}
-        Facebook Inc. \textit{JSX In Depth} [online] 2016 [cit. 2016-12-28]. Dostupné z: \url{https://facebook.github.io/react/docs/jsx-in-depth.html}.
+        Facebook Inc. \textit{\gls{js}X In Depth} [online] 2016 [cit. 2016-12-28]. Dostupné z: \url{https://facebook.github.io/react/docs/jsx-in-depth.html}.
 
     \bibitem{bib:react}
         Facebook Inc. \textit{React Components and Props} [online] 2016 [cit. 2016-12-28]. Dostupné z: \url{https://facebook.github.io/react/docs/components-and-props.html}.
@@ -1159,7 +1277,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
        Open Web Application Security Project. \textit{Cross-site Scripting (XSS)} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://www.owasp.org/index.php/XSS}.
 
     \bibitem{bib:jwt}
-       Auth0 Inc. \textit{Introduction to JSON Web Tokens} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://jwt.io/introduction/}.
+       Auth0 Inc. \textit{Introduction to \gls{json} Web Tokens} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://jwt.io/introduction/}.
        
 \end{thebibliography}
 \end{document}
