@@ -279,13 +279,18 @@ Rád bych touto cestou vyjádřil poděkování za trpělivost, užitečné rady
 \newpage
 \thispagestyle{plain}
 \section*{Abstrakt}
-Tato práce se zabývá problematikou učení slovní zásoby cizího jazyka. Práce analyzuje a implementuje metody procvičování a připomínání slovíček za použití algoritmů rozloženého opakování. V rámci práce byla vytvořena aplikace v podobě webové služby jako učební nástroj, který má za úkol pomoci žákům s procvičením slov a rovněž k jejich permanentnímu zapamatování. Aplikace je složena z JavaScriptové SPA s podporou knihovny React a webového API v jazyce Python za použití Django frameworku. 
+Tato práce se zabývá problematikou učení slovní zásoby cizího jazyka. Práce analyzuje a implementuje metody procvičování a připomínání slovíček za použití algoritmů rozloženého opakování. V rámci práce byla vytvořena aplikace v podobě webové služby jako učební nástroj, který má za úkol pomoci žákům s procvičením slov a rovněž k jejich permanentnímu zapamatování. 
+Frontend webové služby je tvořen JavaScriptovou single-page aplikací s podporou knihovny React, backend je tvořen webovým API v jazyce Python za použití Django frameworku.
+
+%Aplikace je složena z JavaScriptové SPA s podporou knihovny React a webového API v jazyce Python za použití Django frameworku. 
 
 \section*{Klíčová slova}
 učení slovíček, rozložené opakování, webové API, SPA, React, Django
 
 \section*{Abstract}
-This thesis deals with the issues of learning foreign language vocabulary. The thesis analyzes and implements methods of practicing and recalling vocabulary using spaced repetition algorithms. The thesis also describes a development of a web application as an educational tool that helps students practice foreign vocabulary. The application is designed to permanently improve recall of the vocabulary. The application is composed of a SPA written in JavaScript supported by the React library and a web API in Python using the Django framework. 
+This thesis deals with the issues of learning foreign language vocabulary. The thesis analyzes and implements methods of practicing and recalling vocabulary using spaced repetition algorithms. A web application was developed as a part of the thesis. It serves as an educational tool which helps students practice foreign vocabulary. The purpose of the application is to permanently improve recall of the vocabulary. A frontend of the web service is a JavaScript single-page application using the React library. A backend is a web API in Python using the Django framework. 
+
+% The application is composed of a SPA written in JavaScript supported by the React library and a web API in Python using the Django framework. 
 
 \section*{Keywords}
 vocabulary learning, spaced repetition, web API, SPA, React, Django
@@ -1297,4 +1302,37 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
        Auth0 Inc. \textit{Introduction to \gls{json} Web Tokens} [online] 2016-11-02 [cit. 2016-12-29]. Dostupné z: \url{https://jwt.io/introduction/}.
        
 \end{thebibliography}
+
+\newpage
+\thispagestyle{empty}
+\section*{Obsah přiloženého DVD}
+\addcontentsline{toc}{section}{Obsah přiloženého DVD}
+
+\begin{figure}[ht!]
+    \dirtree{%
+        .1 doc.
+        .2 dp-madera.pdf.
+        .2 assets.
+        .3 zadani.pdf.
+        .3 prolaseni.pdf.
+        .3 db-model.pdf.
+        .3 use-case.pdf.
+        .3 \dots.
+        .2 src.
+        .3 dp-madera.tex.
+        .3 dp-titlepage.tex.
+        .3 dp-prohlaseni.tex.
+    }
+\end{figure}
+
+\begin{itemize}
+\item {\texttt{DOC} -- podadresář \texttt{PDF} obsahuje zadání a kompletní text BP ve formátu PDF,
+    podadresář \verb|src| pak {\LaTeX}ové \uv{zdrojové kódy} a~obrázky použité
+    v~textu BP.}
+\item {\texttt{SRC} -- podadresář \texttt{APP} obsahuje zdrojové kódy webové aplikce včetně souboru \texttt{README} popisující nutná nastavení před spuštěním aplikace.
+     podadresář \texttt{SQL} obsahuje zdrojové kódy SQL dotazů pro vložení struktury databáze a výchozích dat.}
+\end{itemize}
+
+
+
 \end{document}
