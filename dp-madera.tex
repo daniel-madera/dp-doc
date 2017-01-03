@@ -288,7 +288,10 @@ Frontend webové služby je tvořen JavaScriptovou single-page aplikací s podpo
 učení slovíček, rozložené opakování, webové API, SPA, React, Django
 
 \section*{Abstract}
-This thesis deals with the issues of learning foreign language vocabulary. The thesis analyzes and implements methods of practicing and recalling vocabulary using spaced repetition algorithms. A web application was developed as a part of the thesis. It serves as an educational tool which helps students practice foreign vocabulary. The purpose of the application is to permanently improve recall of the vocabulary. A frontend of the web service is a JavaScript single-page application using the React library. A backend is a web API in Python using the Django framework. 
+This thesis deals with the issues of IT support during learning foreign language vocabulary. % The thesis analyzes and implements methods of practicing and recalling vocabulary using spaced repetition algorithms. 
+A web service was developed as a part of the thesis. It serves as an personalized and motivating vocabulary tool which helps students to learn and practice words in various forms. 
+% The purpose of the application is to permanently improve recall of the vocabulary. 
+A frontend of the web service is a JavaScript single-page application using the React library. A backend is a web API in Python using the Django framework. 
 
 % The application is composed of a SPA written in JavaScript supported by the React library and a web API in Python using the Django framework. 
 
@@ -322,7 +325,7 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
 
     Žáci si při výuce cizího jazyka obvykle vedou vlastní slovníček, do kterého si zapisují nově nabytá slova. V době přípravy na test rychle slova zopakují a následně z krátkodobé paměti test napíšou, což má za následek, že pokud naučená slova dále neopakují, dojde k jejich zapomenutí. Navíc se postupně slovíčka hromadí a není v silách žáka je opakovat. 
 
-    Existuje řada řešení, které pomáhají rozvíjet sloví zásobu cizího jazyka. Problémem ale je, že tyto řešení žákům neposkytují přizpůsobení úrovně ani obsahu. Žáci se učí jinou slovní zásobu než tu, kterou aktuálně procházejí ve škole. 
+    Existuje řada řešení, které pomáhají rozvíjet slovní zásobu cizího jazyka. Problémem ale je, že tyto řešení žákům neposkytují přizpůsobení úrovně ani obsahu. Žáci se učí jinou slovní zásobu než tu, kterou aktuálně procházejí ve škole. 
 
     Z výše uvedených důvodů vznikl námět pro tuto práci. Cílem diplomové práce je provést analýzu, jak zefektivnit učení a motivovat žáky k procvičování slovíček. Na základě zjištěných poznatků navrhnout a implementovat aplikaci, která umožní rozvíjet cizojazyčnou slovní zásobu. A vyučujícím poskytne nástroj pro správu a prezentaci slovíček pro žáky. 
 
@@ -379,14 +382,14 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             Dalším analyzovaným řešením byla aplikace Langsoft Teacher, která je dostupná nejen v podání desktopové aplikace, ale také jako mobilní aplikace pro platformy iOS a Android. Aplikace je velmi komplexní, obsahuje různé moduly pro testování například v obrazové formě pro předškolní děti. Zajímavá vlastnost, kterou aplikace disponuje, je pamatování problematických slov a nabízení těchto slov častěji než těch bezproblémových. Dále program umožňuje automaticky rozšiřovat slovní zásobu, která je v testování zahrnuta \cite{bib:langsoft}.
 
         \subsubsection{Duolingo}
-            Jedná se o mobilní aplikaci pro Android. Zahrnuje učivo cizího jazyka od základních komunikačních frází až po tvorbu gramaticky složitějších vět. V aplikaci je připravena dlouhá řada cizích jazyků - němčina, angličtina, španělština, italština a další. Chybí ale více referenčních neboli mateřských jazyků. Aktuálně lze využít pouze angličtinu. Aplikace kromě standardních funkcí zahrnuje i rozpoznávání mluvených odpovědí. Zajímavým poznatkem byl systém motivace uživatelů, kde si každý mohl pozvat své přátele, mezi kterými docházelo k sdílení dosažených výsledků. Dalším motivačním prvkem bylo udržení plánu pravidelného testování, jelikož v opačném případě docházelo k automatickému zvyšování objemu testovacích dat. Nevýhodou aplikace byla nutnost připojení k internetu. V případě použití mobilních dat, docházelo ke zpoždění zejména při rozpoznání slov.
+            Jedná se o mobilní aplikaci pro Android. Zahrnuje učivo cizího jazyka od základních komunikačních frází až po tvorbu gramaticky složitějších vět. V aplikaci je připravena dlouhá řada cizích jazyků - němčina, angličtina, španělština, italština a další. Chybí ale více referenčních neboli mateřských jazyků. Aktuálně lze využít pouze angličtinu. Aplikace kromě standardních funkcí zahrnuje i rozpoznávání mluvených odpovědí \cite{bib:duolingo}. Zajímavým poznatkem byl systém motivace uživatelů, kde si každý mohl pozvat své přátele, mezi kterými docházelo k sdílení dosažených výsledků. Dalším motivačním prvkem bylo udržení plánu pravidelného testování, jelikož v opačném případě docházelo k automatickému zvyšování objemu testovacích dat \cite{bib:duo-effectivness}. Nevýhodou aplikace byla nutnost připojení k internetu. V případě použití mobilních dat, docházelo ke zpoždění zejména při rozpoznání slov.
 
         \subsubsection{Vocabulary Trainer}
-            Vocabulary Trainer je webová aplikace zdarma, napsaná v jazyce PHP, která naučí 5000 nejvíce používaných slov daného jazyka. Aplikace umožňuje různá nastavení. K dispozici je i řada jazyků včetně češtiny a to jako referenční i jako učený jazyk. Testování spočívá nejdříve ve čtení slov. A následně uživatel vybírá odpověď z daným možností. Aktuálně překládané slovo si lze kdykoliv přehrát různou rychlostí. Jako motivační prvek aplikace využívá jednoduchý bodový systém. Součástí je i kalendář s emailovou upomínkou k dalšímu testování. Program je propracovaný, ale poměrně pomalý a dlouho trvá zejména úvodní načítání dat. Její výrobce LanguageCourse S.L. poskytuje i mobilní aplikaci pro Android k učení anglických slov a frází.
+            Vocabulary Trainer je webová aplikace zdarma, napsaná v jazyce PHP, která naučí 5000 nejvíce používaných slov daného jazyka. Aplikace umožňuje různá nastavení. K dispozici je i řada jazyků včetně češtiny a to jako referenční i jako učený jazyk. Testování spočívá nejdříve ve čtení slov. A následně uživatel vybírá odpověď z daným možností. Aktuálně překládané slovo si lze kdykoliv přehrát různou rychlostí. Jako motivační prvek aplikace využívá jednoduchý bodový systém. Součástí je i kalendář s emailovou upomínkou k dalšímu testování. Program je propracovaný, ale poměrně pomalý a dlouho trvá zejména úvodní načítání dat. Její výrobce LanguageCourse S.L. poskytuje i mobilní aplikaci pro Android k učení anglických slov a frází \cite{bib:vocab-trainer}.
 
         \subsubsection{Supermemo aplikace}
             \label{supermemo-app}
-            Za zmínku ještě stojí aplikace Supermemo. Není to aplikace s připravenými daty k testování slov cizího jazyka, ale slouží čistě jako šablona pro testování jakéhokoliv druhu otázek. Aplikace implementuje algoritmus Supermemo, který je založen na metodě postupného zvyšování intervalu dotazování na naučené informace. Při každé odpovědi program spočítá, kdy by si uživatel měl danou otázku zopakovat tak, aby odpověď na ni nezapomněl a zároveň se co nejvíce zvyšoval interval mezi aktuální a předchozí odpovědí. Aplikace se adaptuje na schopnosti uživatele, v přiměřeném měřítku buď zvyšuje nebo snižuje interval dalšího připomenutí.
+            Za zmínku ještě stojí aplikace Supermemo. Není to aplikace s připravenými daty k testování slov cizího jazyka, ale slouží čistě jako šablona pro testování jakéhokoliv druhu otázek. Aplikace implementuje algoritmus Supermemo, který je založen na metodě postupného zvyšování intervalu dotazování na naučené informace \cite{bib:supermemo}. Při každé odpovědi program spočítá, kdy by si uživatel měl danou otázku zopakovat tak, aby odpověď na ni nezapomněl a zároveň se co nejvíce zvyšoval interval mezi aktuální a předchozí odpovědí. Aplikace se adaptuje na schopnosti uživatele, v přiměřeném měřítku buď zvyšuje nebo snižuje interval dalšího připomenutí.
 
         % možné ještě rozvést aplikaci EasyWords
 
@@ -436,7 +439,7 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             Pro učení slov cizího jazyka je rovněž důležité správné zasazení významu slova do kontextu. Dle průzkumu Biemillera a Bootea z roku 2006 bylo zjištěno, že u žáků od 10—13 let docházelo k nárůstu zapamatovaných slov o 4\%, pokud byla slova předložena v kontextu vět. Důležitým poznatkem z tohoto průzkumu je, že žáci si nejen déle naučené slovo pamatovali, ale správně ho i interpretovali, když ho měli za úkol svými slovy vysvětlit \cite{bib:beimiller}. Ve stejném průzkumu rovněž docházelo ještě k vyššímu zlepšení v učení, kdy si žáci zapisovali vlastními slovy definici a použití slova.
 
         \subsubsection{Aktuální způsob učení}
-            Dle vlastního průzkumu žáci základních škol nevyužívají k učení slovíček. Většinou si udržují vlastní slovníček, do kterého si poznamenávají nově nabytá slova. Při učení zakrývají část s cizojazyčnými slovy a na základě českého ekvivalentu se snaží vybavit překlad slova. Tato metoda neposkytuje prakticky žádnou zpětnou vazbu. Žáci většinou pouze do krátkodobé paměti uloží slova, později při testu rychle zodpoví a následně během pár hodin si na slovo už ani nevzpomenou. Nevýhod má tato metoda celou řadu, ale jednou z klíčových vad je, že si žáci nevytvoří dostatečně souvislostí, aby řádně ukotvily slovo v paměti. Velice oblíbená metoda jsou kartičky s obrázky s českým a cizojazyčným překladem. Využívají i pokročilejších technologií, ale tvoří to vždy pouze doplňek k výuce.
+            Dle vlastního průzkumu žáci základních škol nevyužívají k učení slovíček. Většinou si udržují vlastní slovníček, do kterého si poznamenávají nově nabytá slova. Při učení zakrývají část s cizojazyčnými slovy a na základě českého ekvivalentu se snaží vybavit překlad slova. Tato metoda neposkytuje prakticky žádnou zpětnou vazbu. Žáci většinou pouze do krátkodobé paměti uloží slova, později při testu rychle zodpoví a následně během pár hodin si na slovo už ani nevzpomenou. Nevýhod má tato metoda celou řadu, ale jednou z klíčových vad je, že si žáci nevytvoří dostatečně souvislostí, aby řádně ukotvily slovo v paměti. Velice oblíbená metoda jsou kartičky s obrázky s českým a cizojazyčným překladem. Využívají i pokročilejších technologií, ale tvoří to vždy pouze doplněk k výuce.
         
     \subsection{Testování slovíček}
         % drive/accesing-vocabulary-in-the-language-classroom.pdf
@@ -868,7 +871,7 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             % wireframes
             % responzivnost
             % bootstrap, pouze css styly žádné \gls{js}, vše implementováno v Reactu, pomocné rozšíření react-bootstrap
-            Pro design aplikace byla využita čistá CSS knihovna z frameworku Bootstrap. Původní verze aplikace byla vyvíjena pod tématickou šablonou Yeti Bootswatch. Na základě konzultace bylo od této šablony opuštěno, jelikož působila příliš hranatě. Téma bylo vyměněno za Cerulean, které disponuje oblejšími prvky a výraznějšími barvami, aby žáky více zaujalo. Design aplikace je také responsivní.
+            Pro design aplikace byla využita čistá CSS knihovna z frameworku Bootstrap. Původní verze aplikace byla vyvíjena pod tématickou šablonou Yeti Bootswatch. Na základě konzultace bylo od této šablony opuštěno, jelikož působila příliš hranatě. Téma bylo vyměněno za Cerulean, které disponuje oblejšími prvky a výraznějšími barvami, aby žáky více zaujalo. Design aplikace je také responzivní.
 
         \subsubsection{Adaptovaná Levenshteinova vzdálenost}
             % Levenstein a Leitner jsou implementovány na klientské straně
@@ -1241,6 +1244,18 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     \bibitem{bib:langsoft}
         LangSoft s.r.o. \textit{Language Teacher} [online]. [cit. 2016-12-07]. Dostupné z: \url{http://www.langsoft.cz/teacher.htm}.
 
+    \bibitem{bib:duolingo}
+        Duolingo Inc. \textit{Duolingo} [online]. [cit. 2016-12-08]. Dostupné z: \url{https://cs.duolingo.com/info}.
+
+    \bibitem{bib:duo-effectivness}
+        VESSELINOV Roumen, GREGO John. \textit{Duolingo Effectiveness Study} [online] 2002. [cit. 2016-12-08]. Dostupné z: \url{https://s3.amazonaws.com/duolingo-papers/other/vesselinov-grego.duolingo12.pdf}.
+
+    \bibitem{bib:vocab-trainer}
+        LanguageCourse S.L. \textit{Vocabulary Trainer} [online] 2016. [cit. 2016-12-08]. Dostupné z: \url{http://vt-api.com.es/vocabulary-trainer.php}.
+
+    \bibitem{bib:supermemo}
+        WOZNIAK Piotr A. \textit{Repetition spacing algorithm used in SuperMemo 2002 through SuperMemo 2006} [online] 2006-04-02. [cit. 2016-12-26]. Dostupné z: \url{https://www.supermemo.com/english/algsm11.htm}.
+
     \bibitem{bib:motivace}
         KREJČOVÁ Lenka. \textit{Psychologické aspekty vzdělávání dospívajících}. 1. vyd. Praha: Grada Publishing, 2011 [cit 2016-12-18]. ISBN 978-80-247-3474-3.
 
@@ -1267,9 +1282,6 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
 	\bibitem{bib:ebbinghaus}
 		Hermann Ebbinghaus \textit{Memory: A Contribution to Experimental Psychology}. New York, 1913 [cit 25-12-2016]. ISBN 978-16-142-7166-6.
-
-    \bibitem{bib:supermemo}
-        WOZNIAK Piotr A. \textit{Repetition spacing algorithm used in SuperMemo 2002 through SuperMemo 2006} [online] 2006-04-02. [cit. 2016-12-26]. Dostupné z: \url{https://www.supermemo.com/english/algsm11.htm}.
 
     \bibitem{bib:spa}
         TAKADA Mikito. \textit{Single page apps in depth} [online] 2014. [cit. 2016-12-27]. Dostupné z: \url{http://singlepageappbook.com/}.
