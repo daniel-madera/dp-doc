@@ -1310,41 +1310,14 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 \section*{Přílohy}
 \addcontentsline{toc}{section}{Přílohy}
 
-\section*{A Diagramy}
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{../diagrams/init-phase.png}
-    \caption{Vyhodnocování odpovědi v procvičování slov}
-\end{figure}
-
-
-\newpage
 \thispagestyle{plain}
-\section*{B GUI}
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{../diagrams/gui-test.png}
-    \caption{GUI testovací stránky}
-\end{figure}
+\section*{A Ukázky kódů}
 
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{../diagrams/gui-vocab-select.png}
-    \caption{GUI výběr slov pro testování}
-\end{figure}
-
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{../diagrams/gui-vocab.png}
-    \caption{GUI tvorby slov v učebnici}
-\end{figure}
-
-\newpage
-\thispagestyle{plain}
-\section*{C Ukázky kódů}
+Kompletní zdrojové kódy obou aplikací jsou dostupné včetně instalačních návodů na:
+\begin{itemize}
+    \item \url{https://daniel-madera.github.io/pijs/} - \textit{frontend (klientská část)}
+    \item \url{https://github.com/daniel-madera/pijs-api/} - \textit{backend (serverová část)}
+\end{itemize}
 
 \begin{lstlisting}[language=JS, caption={Implementace algoritmu pro výpočet Levenshteinovy vzdálenosti},label=code:levenshtein-full]
 String.prototype.levenshtein = function(string, removeDiacritics = false, replace = {}) {
@@ -1384,6 +1357,38 @@ String.prototype.levenshtein = function(string, removeDiacritics = false, replac
 }
 \end{lstlisting}
 
+
+\section*{B Diagramy}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/init-phase.png}
+    \caption{Vyhodnocování odpovědi v procvičování slov}
+\end{figure}
+
+\newpage
+\thispagestyle{plain}
+\section*{C GUI}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/gui-test.png}
+    \caption{GUI testovací stránky}
+\end{figure}
+
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/gui-vocab-select.png}
+    \caption{GUI výběr slov pro testování}
+\end{figure}
+
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/gui-vocab.png}
+    \caption{GUI tvorby slov v učebnici}
+\end{figure}
+
 \newpage
 \thispagestyle{plain}
 \section*{D Obsah přiloženého média}
@@ -1391,7 +1396,7 @@ String.prototype.levenshtein = function(string, removeDiacritics = false, replac
     \dirtree{%
         .0 /.
         .1 dp-madera-2017.pdf \DTcomment{Text diplomové práce ve formátu pdf}.
-        .1 git-link.txt \DTcomment{Odkaz na Github repozitář se zdrojovými kódy}.
+        .1 git-link.txt \DTcomment{Odkazy na Github repozitáře se zdrojovými kódy aplikací}.
         .1 assets \DTcomment{Obrázky a pdf použité v diplomové práci.}.
         .2 zadani.pdf.
         .2 db-model.pdf.
