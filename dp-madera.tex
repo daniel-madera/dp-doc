@@ -279,7 +279,7 @@ Rád bych touto cestou vyjádřil poděkování za trpělivost, užitečné rady
 \newpage
 \thispagestyle{plain}
 \section*{Abstrakt}
-Tato práce se zabývá problematikou učení slovní zásoby cizího jazyka. Práce analyzuje a implementuje metody procvičování a připomínání slovíček za použití algoritmů rozloženého opakování. V rámci práce byla vytvořena aplikace v podobě webové služby jako učební nástroj, který má za úkol pomoci žákům s procvičením slov a rovněž k jejich permanentnímu zapamatování. 
+Tato práce se zabývá problematikou IT podpory učení slovní zásoby cizího jazyka. Byla vytvořena aplikace jazykového slovníčku v podobě webové služby, která má umožnit žákům třídy personalizované a motivující učení a testování školních slov v různých podobách. %Práce analyzuje a implementuje metody procvičování a připomínání slovíček za použití algoritmů rozloženého opakování. 
 Frontend webové služby je tvořen JavaScriptovou single-page aplikací s podporou knihovny React, backend je tvořen webovým API v jazyce Python za použití Django frameworku.
 
 %Aplikace je složena z JavaScriptové SPA s podporou knihovny React a webového API v jazyce Python za použití Django frameworku. 
@@ -318,15 +318,15 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
 
 \section{Úvod}
     % proč se zaobývat tímto tématem
-    Výuka cizích jazyků je pro aktuální společnost jedna z nejzásadnějších otázek, ať se jedná o pracovní příležitosti v zahraničí nebo o sociální problematiku světa. Žáci a studenti se často účastní různých kurzů nebo později studenti využívají Erasmus programů, kde převážně vyhledávají zlepšení komunikace v cizím jazyce. A právě slovní zásoba je pro rozvoj znalosti cizího jazyka ta nejzásadnější.
+    Výuka cizích jazyků je pro aktuální globální společnost jedna z nejzásadnějších otázek, ať už se jedná o pracovní příležitosti v zahraničí, získávání informací nebo sociální problematiku světa. Základním pilířem rozvoje cizího jazyka je slovní zásoba.
 
-    Žáci si při výuce cizího jazyka obvykle vedou vlastní slovníček, do kterého zapisují nově nabytá slova. Problémem je, že slovíčka pouze zapíšou, a tím to končí. V době přípravy na test rychle slova zopakují a následně z krátkodobé paměti test napíšou, což má za následek, že pokud naučená slova dále neopakují, dojde k jejich zapomenutí. 
+    Žáci si při výuce cizího jazyka obvykle vedou vlastní slovníček, do kterého si zapisují nově nabytá slova. V době přípravy na test rychle slova zopakují a následně z krátkodobé paměti test napíšou, což má za následek, že pokud naučená slova dále neopakují, dojde k jejich zapomenutí. Navíc se postupně slovíčka hromadí a není v silách žáka je opakovat. 
 
-    Existuje řada řešení, které pomáhají rozvíjet vědomosti cizího jazyka. Problémem ale je, že tyto řešení pro žáky neposkytují přizpůsobení úrovně ani informací. Žáci jsou tudíž nuceni se učit jinou slovní zásobu než je ta, kterou aktuálně procházejí ve škole. Pro žáka je toto neefektivní a nevýhodné.
+    Existuje řada řešení, které pomáhají rozvíjet sloví zásobu cizího jazyka. Problémem ale je, že tyto řešení žákům neposkytují přizpůsobení úrovně ani obsahu. Žáci se učí jinou slovní zásobu než tu, kterou aktuálně procházejí ve škole. 
 
-    Z výše uvedených důvodů vznikl námět na tuto práci. Cílem diplomové práce je provést analýzu, jak zefektivnit učení a motivovat žáky k procvičování slovíček. Na základě zjištěných poznatků navrhnout a implementovat aplikaci, která umožní rozvíjet cizojazyčnou slovní zásobu. A vyučujícím poskytne nástroj pro správu a prezentaci slovíček pro žáky. 
+    Z výše uvedených důvodů vznikl námět pro tuto práci. Cílem diplomové práce je provést analýzu, jak zefektivnit učení a motivovat žáky k procvičování slovíček. Na základě zjištěných poznatků navrhnout a implementovat aplikaci, která umožní rozvíjet cizojazyčnou slovní zásobu. A vyučujícím poskytne nástroj pro správu a prezentaci slovíček pro žáky. 
 
-    Úvodem se práce zabývá rešerší existujících řešení podobných aplikací. Analýza rovněž zahrnuje shrnutí informací o rozvoji slovní zásoby cizího jazyka v podobě dostupných metod a technik k motivaci učení a k efektivnímu zapamatování slov. Na základě zjištěných informací z rešerše byla provedena specifikace požadavků, které sloužily jako hlavní podklad pro návrh aplikace popsaný v kapitole 2. V této kapitole jsou rovněž detailněji popsány způsoby generování testovací sady, průběh importu slov a vybrané metody zajišťující motivaci žáků. V kapitole 3 a 4 se práce zabývá implementací navržené slovníkové aplikace v podobě webové služby. Kapitola 3 se věnuje klientské části a kapitola 4 té serverové. V obou jsou představeny technologie, které jsou využívány pro vývoj, jejich implementace a průběh testování. 
+    Úvodem se práce zabývá rešerší existujících řešení podobných aplikací. Analýza rovněž zahrnuje shrnutí informací o rozvoji slovní zásoby cizího jazyka v podobě vybraných metod a technik k motivaci učení a k efektivnímu zapamatování slov. Na základě zjištěných informací z rešerše byla definována specifikace požadavků, které slouží jako hlavní podklad pro návrh aplikace v kapitole 2. V této kapitole jsou rovněž detailněji popsán průběh importu slov, způsoby generování testovací sady a vybrané metody zajišťující motivaci žáků. V kapitole 3 a 4 se práce zabývá implementací navržené slovníkové aplikace v podobě webové služby. Kapitola 3 se věnuje klientské části a kapitola 4 serverové. V obou jsou představeny technologie, které jsou využívány pro vývoj, jejich implementace a průběh testování. 
 
     % neopakovat abstrakt, lehce nastínit zadání, jaká je motivace
     % popsat, jak je práce strukturovaná - rozcestník
@@ -345,10 +345,11 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
         \subsubsection{Personalizace}
             % personalizace podle potřeby konkrétní třídy - konrétní učebnice
             % personalizace podle potřeby jednotlivých žáků - generování na základě předcházejících výsledků
-            Důležitým cílem aplikace by měla být adaptace (personalizace) aplikace podle potřeb jednotlivých žáků a celých tříd. Adaptace na úrovni žáka znamená, přistupovat k němu individuálně na základě jeho úrovně, znalostí a dovedností. V případě konkrétní třídy jde o individuální přístup, a to zejména v sadě slov, které je třeba v přípravě procvičovat. 
+            Důležitým cílem aplikace by měla být adaptace (personalizace) aplikace podle potřeb jednotlivých žáků a celých tříd. Adaptace na úrovni žáka znamená, přistupovat k němu individuálně na základě jeho úrovně, znalostí a dovedností. Umožnit mu jít vlastním tempem a předkládat mu slovíčka na základě předchozích výsledků. V případě konkrétní třídy jde o individuální přístup, a to zejména ve výběru sady slov. 
+            %, které je třeba v přípravě na školní hodinu procvičovat. 
 
         \subsubsection{Motivace}
-            Důležitou součástí obecného vzdělávání je motivace. To znamená přimět žáky, aby z vlastní iniciativy chtěli rozvíjet své vědomosti. Problém ale je, že se děti přirozeně neučí z vlastní vůle, ale aby uspokojili okolí. Motivace se rozdělují do skupin - vnitřní a vnější nebo pozitivní a negativní \cite{bib:motivace}. Analýza bude zaměřena pouze na motivační prostředky, které lze zařadit do aplikace na procvičování slovíček.
+            Důležitou součástí obecného vzdělávání jsou motivace, dělí se na vnitřní a vnější nebo pozitivní a negativní \cite{bib:motivace}. Analýza bude zaměřena pouze na motivační prostředky, které lze zařadit do aplikace na procvičování slovíček.
 
             Motivace založená na základě vlastních úspěchů je důležitá pro utvrzení sebevědomí žáků. Ocenění v případě zvládnutí sady slov nebo gramatického bloku lze v případě aplikace implementovat například hláškami s projevem pochvaly nebo jiným upozorněním na dosažený výsledek. Zajímavým prvkem v aplikaci by mohlo být i herní prostředí. Žáci si rádi hrají a již J. A. Komenský poukázal na důležitost her ve vzdělávacím procesu.
 
@@ -356,12 +357,12 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             % motivace - přispění k úspěchu třídy
             % motivace - vlastní úspěchy
 
-            Jedním z dalších stěžejních faktorů motivace je kolektiv. Právě díky kolektivu, ve kterém funguje přirozená rivalita, jsou žáci schopni dosáhnout mnohem vyšších výsledků, než kdyby se vzdělávali odděleně a samostatně. Rivalita a soutěživost se může projevovat i velmi negativním způsobem. Místo kamarádských vztahů mezi dětmi mohou vznikat nepřátelské vazby, ve kterých dochází k posměchu méně nadaných dětí, a ty se potom necítí v kolektivu dobře. Zajímavější motivací pro kolektiv je například vidina společně dosažených výsledků. V případě učení slovíček by to byl počet slovíček naučených za rok v rámci celé třídy. Dochází zde k utužování kolektivu a děti by mohlo těšit to, že nějakým způsobem přispívají k úspěchům celé třídy.
+            Jedním z dalších stěžejních faktorů motivace je kolektiv. Právě díky kolektivu, ve kterém funguje přirozená rivalita, jsou žáci schopni dosáhnout mnohem vyšších výsledků, než kdyby se vzdělávali odděleně a samostatně. Rivalita a soutěživost se může projevovat i velmi negativním způsobem. Místo kamarádských vztahů mezi dětmi mohou vznikat nepřátelské vazby, ve kterých dochází k posměchu méně nadaných dětí, a ty se potom necítí v kolektivu dobře. Zajímavější motivací pro kolektiv je například vidina společně dosažených výsledků. V případě učení slovíček by to byl počet slovíček naučených v rámci celé třídy. Dochází zde k utužování kolektivu a děti by mohlo těšit to, že nějakým způsobem přispívají k úspěchům celé třídy.
 
-        \subsubsection{Využití IT pro výuku}
+        \subsubsection{IT podpora}
             Posledních několik let se společnost ubírá trendem informačních technologií. Každý ze žáků má už od útlého věku přístup k počítači nebo k chytrému telefonu. Orientace a schopnost tato zařízení používat není pro děti žádný problém. Přirozeně se tedy tato zařízení postupně stávají součástí každodenní přípravy žáka na následující školní den. V některých případech plně nahrazují klasické učebnice a jsou přímo začleněny do výuky. Použití informačních technologií má za následek i zlepšení motivace při výuce. Obecně je známo, že žáci raději studují slovíčka interaktivní formou hádanek, křížovek nebo her, než nekonečných seznamů slov.
 
-            Důležitost cizích jazyků se projevuje na míře používání například chytrých tabulí nebo tabletů při výuce. Tato zařízení umožňují interaktivní výuku, kde lze využít nejen textových, ale také obrázkových a zvukových prostředků pro lepší zasazení nově nabytých vědomostí do kontextu. 
+            Tato zařízení umožňují interaktivní výuku, kde lze využít nejen textových, ale také obrázkových a zvukových prostředků pro lepší zasazení nově nabytých vědomostí do kontextu. 
 
             % výuka cizích jazyků - smartboards            
             % vysoká motivace dětí pracovat s PC
@@ -375,17 +376,17 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             Z analyzovaných řešení se jevila desktopová aplikace TS Angličtina od firmy Terasoft ta nejlépe funkčně propracovaná. Tato firma se zabývá širokou škálou výukových nástrojů se zaměřením na základní školy. V případě cizích jazyků se zabývají výukou anglického a německého jazyka. Hlavní předností aplikace je podpora nejvíce používaných učebnic cizího jazyka. Aplikace umožňuje testování různými způsoby - psaný překlad slova, porozumění mluvenému slovu, vybírání správných významů nebo doplňování vynechaných slov \cite{bib:terasoft}. Analýza byla tvořena pouze z webových informací o produktu od vydavatele. Bohužel firma Terasoft neposkytuje DEMO nebo TRIAL verzi aplikace, která by hlubší analýzu umožňovala.
 
         \subsubsection{Langsoft Teacher}
-            Dalším analyzovaným řešením byla aplikace Langsoft Teacher, která je dostupná nejen v podání desktopové aplikace, ale také i mobilní aplikace pro platformy iOS a Android. Aplikace je velmi komplexní, obsahuje různé moduly pro testování například v obrazové formě pro předškolní děti. Zajímavá vlastnost, kterou aplikace disponuje, je pamatování problematických slov a nabízení těchto slov častěji než těch bezproblémových. Dále program umožňuje automaticky rozšiřovat slovní zásobu, která je v testování zahrnuta \cite{bib:langsoft}.
+            Dalším analyzovaným řešením byla aplikace Langsoft Teacher, která je dostupná nejen v podání desktopové aplikace, ale také jako mobilní aplikace pro platformy iOS a Android. Aplikace je velmi komplexní, obsahuje různé moduly pro testování například v obrazové formě pro předškolní děti. Zajímavá vlastnost, kterou aplikace disponuje, je pamatování problematických slov a nabízení těchto slov častěji než těch bezproblémových. Dále program umožňuje automaticky rozšiřovat slovní zásobu, která je v testování zahrnuta \cite{bib:langsoft}.
 
         \subsubsection{Duolingo}
-            Dalším v pořadí byla aplikace Duolingo. Jedná se o mobilní aplikaci pro Android. Zahrnuje učivo cizího jazyka od základních komunikačních frází až po tvorbu gramaticky složitějších vět. V aplikaci je připravena dlouhá řada cizích jazyků - němčina, angličtina, španělština, italština a další. Chybí ale více referenčních jazyků. Aktuálně lze využít pouze angličtinu. Aplikace kromě standardních funkcí zahrnuje i rozpoznávání mluvených odpovědí. Zajímavým poznatkem byl systém motivace uživatelů, kde si každý mohl pozvat své přátele, mezi kterými docházelo k sdílení dosažených výsledků. Dalším motivačním základem bylo nutkání udržení plánu pravidelného testování, jelikož v opačném případě docházelo k automatickému zvyšování objemu testovacích dat. Nevýhodou aplikace byla nutnost připojení k internetu. V případě požití mobilních dat, docházelo ke zpoždění zejména při rozpoznání slov.
+            Jedná se o mobilní aplikaci pro Android. Zahrnuje učivo cizího jazyka od základních komunikačních frází až po tvorbu gramaticky složitějších vět. V aplikaci je připravena dlouhá řada cizích jazyků - němčina, angličtina, španělština, italština a další. Chybí ale více referenčních neboli mateřských jazyků. Aktuálně lze využít pouze angličtinu. Aplikace kromě standardních funkcí zahrnuje i rozpoznávání mluvených odpovědí. Zajímavým poznatkem byl systém motivace uživatelů, kde si každý mohl pozvat své přátele, mezi kterými docházelo k sdílení dosažených výsledků. Dalším motivačním prvkem bylo udržení plánu pravidelného testování, jelikož v opačném případě docházelo k automatickému zvyšování objemu testovacích dat. Nevýhodou aplikace byla nutnost připojení k internetu. V případě použití mobilních dat, docházelo ke zpoždění zejména při rozpoznání slov.
 
         \subsubsection{Vocabulary Trainer}
-            Vocabulary Trainer je webová aplikace zdarma, napsaná v jazyce PHP, která naučí 5000 nejvíce používaných slov daného jazyka. Aplikace umožňuje hodně možného nastavení. K dispozici je i řada jazyků včetně češtiny a to jako referenční i jako učený jazyk. Testování spočívá nejdříve ve čtení slov. A následně uživatel vybírá odpověď z daným možností. Aktuálně překládané slovo si lze kdykoliv přehrát v různé rychlosti. Jako motivační základ aplikace využívá jednoduchý bodový systém. Součástí je i kalendář s emailovou upomínkou k dalšímu testování. Program je propracovaný, ale poměrně pomalý a dlouho trvá zejména úvodní načítání dat. Její výrobce LanguageCourse S.L. poskytuje i mobilní aplikaci pro Android k učení anglických slov a frází.
+            Vocabulary Trainer je webová aplikace zdarma, napsaná v jazyce PHP, která naučí 5000 nejvíce používaných slov daného jazyka. Aplikace umožňuje různá nastavení. K dispozici je i řada jazyků včetně češtiny a to jako referenční i jako učený jazyk. Testování spočívá nejdříve ve čtení slov. A následně uživatel vybírá odpověď z daným možností. Aktuálně překládané slovo si lze kdykoliv přehrát různou rychlostí. Jako motivační prvek aplikace využívá jednoduchý bodový systém. Součástí je i kalendář s emailovou upomínkou k dalšímu testování. Program je propracovaný, ale poměrně pomalý a dlouho trvá zejména úvodní načítání dat. Její výrobce LanguageCourse S.L. poskytuje i mobilní aplikaci pro Android k učení anglických slov a frází.
 
         \subsubsection{Supermemo aplikace}
             \label{supermemo-app}
-            Za zmínku ještě stojí aplikace Supermemo. Není to aplikace s připravenými daty k testování slov cizího jazyka, ale slouží čistě jako šablona pro testování jakéhokoliv druhu otázek. Aplikace implementuje algoritmus Supermemo, který je založen na metodě postupného zvyšování intervalu dotazování na naučené informace. Při každé odpovědi program spočítá, kdy by si uživatel měl danou otázku zopakovat tak, aby odpověď byla správná a zároveň se co nejvíce zvyšoval interval mezi aktuální a předchozí odpovědí. Aplikace se adaptuje na schopnosti uživatele, v přiměřeném měřítku buď zvyšuje nebo snižuje interval dalšího připomenutí.
+            Za zmínku ještě stojí aplikace Supermemo. Není to aplikace s připravenými daty k testování slov cizího jazyka, ale slouží čistě jako šablona pro testování jakéhokoliv druhu otázek. Aplikace implementuje algoritmus Supermemo, který je založen na metodě postupného zvyšování intervalu dotazování na naučené informace. Při každé odpovědi program spočítá, kdy by si uživatel měl danou otázku zopakovat tak, aby odpověď na ni nezapomněl a zároveň se co nejvíce zvyšoval interval mezi aktuální a předchozí odpovědí. Aplikace se adaptuje na schopnosti uživatele, v přiměřeném měřítku buď zvyšuje nebo snižuje interval dalšího připomenutí.
 
         % možné ještě rozvést aplikaci EasyWords
 
@@ -401,7 +402,9 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
         % ročně se dá zvládnout maximálně 400 slov u studentů 2 - 5 třídy
         % docházelo k zvýšení učenlivosti, když studenti si mohli zapsat 
         % slovo vlastní definicí
-        Standardně učení slovní zásoby cizího jazyka je založeno na častém opakování slov. Dle výzkumu Biemillera a Boote se lze ročně zvládnout až 400 slov u studentů 3.—6. tříd \cite{bib:beimiller}. Což je v případě cizího jazyka poměrně velké číslo, ale problém je, do jaké míry je slovo správně ukotveno v dlouhodobé paměti. Porovnání, kolik je potřeba slov pro ovládnutí anglického jazyka, usnadní následující tabulka \ref{tab:english-vocab-usage}, která zahrnuje procentuální využití nejvíce používaných slov v každém z odvětví \cite{bib:learning-vocab}. 
+        Standardně učení slovní zásoby cizího jazyka je založeno na častém opakování slov. Dle výzkumu Biemillera a Boote lze ročně zvládnout až 400 slov u studentů 3.—6. tříd \cite{bib:beimiller}. Což je v případě cizího jazyka poměrně velké číslo, ale problém je, do jaké míry je slovo správně ukotveno v dlouhodobé paměti. Porovnání, kolik je potřeba slov pro ovládnutí anglického jazyka, usnadní následující tabulka \ref{tab:english-vocab-usage}, která zahrnuje procentuální využití nejvíce používaných slov v každém z odvětví \cite{bib:learning-vocab}. Z uvedeného výzkumu vyplývá, že není důležitá kvalita ale kvantita slovíček. Pro naší aplikaci budeme předpokládat, že správný výběr slovíček je zaručen výběrem učebnice.
+
+        % není důležité množtví, ale učení správných, často používaných slovíček
 
         \begin{table}[ht!]
             \centering
@@ -417,11 +420,10 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             \label{tab:english-vocab-usage}
         \end{table}
 
-        \subsubsection{Zastaralý způsob učení}
-            Dle vlastního průzkumu žáci základních škol nevyužívají k učení slovíček nikterak pokročilé technologie. Většinou si udržují vlastní slovníček, do kterého si poznamenávají nově nabytá slova. Při učení zakrývají část s cizojazyčnými slovy a na základě českého ekvivalentu se snaží vybavit překlad slova. Tato metoda neposkytuje prakticky žádnou zpětnou vazbu. Žáci většinou pouze do krátkodobé paměti uloží slova, později při testu rychle zodpoví a následně během pár hodin si na slovo už ani nevzpomenou. Nevýhod má tato metoda celou řadu, ale jednou z klíčových vad je, že si žáci nevytvoří dostatečně souvislostí, aby řádně ukotvily slovo v paměti.
+        Je všeobecně známé, že informace se lépe zapamatují, pokud jsou přijímány ve více podobách. Pro učení slovíček se jedná o textovou, zvukovou a obrazovou podobu. 
 
-        \subsubsection{Zvuková interpretace}
-            Zejména v učení cizího jazyka je zvuková podoba a interpretace slov velice důležitá. Žák díky znění slova získá podvědomí o dialektu daného jazyka a zároveň dochází k lepšímu zapamatování slova. Právě díky zvukům dochází k propojení při učení i pravé mozkové hemisféry, což napomáhá k vytvoření pevnějšího ukotvení v paměti. Dle studie bulharského vědce George Lozanova, který se zabýval studiem mozku a učebních metod, byl zjištěn obrovský přínos zvukových vjemů \cite{bib:suggestology}.
+%        \subsubsection{Zvuková interpretace}
+%            Zejména v učení cizího jazyka je zvuková podoba a interpretace slov velice důležitá. Žák díky znění slova získá podvědomí o dialektu daného jazyka a zároveň dochází k lepšímu zapamatování slova. Právě díky zvukům dochází k propojení při učení i pravé mozkové hemisféry, což napomáhá k vytvoření pevnějšího ukotvení v paměti. Dle studie bulharského vědce George Lozanova, který se zabýval studiem mozku a učebních metod, byl zjištěn obrovský přínos zvukových vjemů \cite{bib:suggestology}.
 
         \subsubsection{Problematika obtížnosti}
             % každý z žáků má indiviální úroveň znalostí cizího jazyka
@@ -432,6 +434,9 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             % jak je důlžité se slova učit v kontextu - použití ve větě z učebnice
             % drive/vocab-techniques.pdf
             Pro učení slov cizího jazyka je rovněž důležité správné zasazení významu slova do kontextu. Dle průzkumu Biemillera a Bootea z roku 2006 bylo zjištěno, že u žáků od 10—13 let docházelo k nárůstu zapamatovaných slov o 4\%, pokud byla slova předložena v kontextu vět. Důležitým poznatkem z tohoto průzkumu je, že žáci si nejen déle naučené slovo pamatovali, ale správně ho i interpretovali, když ho měli za úkol svými slovy vysvětlit \cite{bib:beimiller}. Ve stejném průzkumu rovněž docházelo ještě k vyššímu zlepšení v učení, kdy si žáci zapisovali vlastními slovy definici a použití slova.
+
+        \subsubsection{Aktuální způsob učení}
+            Dle vlastního průzkumu žáci základních škol nevyužívají k učení slovíček. Většinou si udržují vlastní slovníček, do kterého si poznamenávají nově nabytá slova. Při učení zakrývají část s cizojazyčnými slovy a na základě českého ekvivalentu se snaží vybavit překlad slova. Tato metoda neposkytuje prakticky žádnou zpětnou vazbu. Žáci většinou pouze do krátkodobé paměti uloží slova, později při testu rychle zodpoví a následně během pár hodin si na slovo už ani nevzpomenou. Nevýhod má tato metoda celou řadu, ale jednou z klíčových vad je, že si žáci nevytvoří dostatečně souvislostí, aby řádně ukotvily slovo v paměti. Velice oblíbená metoda jsou kartičky s obrázky s českým a cizojazyčným překladem. Využívají i pokročilejších technologií, ale tvoří to vždy pouze doplňek k výuce.
         
     \subsection{Testování slovíček}
         % drive/accesing-vocabulary-in-the-language-classroom.pdf
@@ -499,7 +504,7 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
                     \item hromadně slovíčka do učebnice importovat
                     \item částečně automatizovat zvukovou a obrazovou interpretaci slovíčka
                 \end{itemize} 
-            \item správa modulů a tématických okruhů v učebnici
+            \item správa modulů (lekcí) a tématických okruhů v učebnici
                 \begin{itemize}
                     \item tvořit, editovat a mazat moduly učebnice
                     \item přiřazovat slovíčka do daných modulů
@@ -519,10 +524,10 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
                 \begin{itemize}
                     \item vybrat testovací sadu slovíček
                     \item generovat slova na základě úrovně uživatele
-                    \item zahrnout obrazovou a zvukovou interpretaci do procvičování
+                    \item zahrnout textovou, obrazovou a zvukovou interpretaci do procvičování
                     \item možnost uložit stav testování a umožnit pozdější navázání
                 \end{itemize}
-            \item připomínat a procvičovat ovládnutou slovní zásobu 
+            \item připomínání a procvičování ovládnuté slovní zásoby 
             \item motivace
                 \begin{itemize}
                     \item motivovat v rámci uživatelské skupiny
@@ -533,6 +538,8 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
 
 \newpage
 \section{Návrh aplikace}
+
+    \subsection{USE-CASE diagram}
     % usecase diagram
     % jednotlivé use-case by měly být názvy jednotlivých podkapitol v návrhu aplikace
     Na základě specifikace požadavků byl vytvořen USE-CASE diagram aplikace. Diagram na obrázku \ref{fig:use-case} znázorňuje pouze obecné bloky funkčnosti aplikace. V následujících kapitolách bude každý z jednotlivých USE-CASE bloků popsán detailněji.
