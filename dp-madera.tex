@@ -171,7 +171,7 @@
 \newglossaryentry{json}{
     name={JSON},
     description={JavaScript Object Notation},
-    first={JavaScript Object Notation (JSON}
+    first={JavaScript Object Notation (JSON)}
 }
 
 \newglossaryentry{jsx}{
@@ -603,7 +603,7 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
 
     \subsection{Obtížnost slovíček}
         % vygenerovaná obtížnost na základě délky slova, podobnosti s českým jazykem, přizpůsobena vyučujícím
-        Při zadávání slova do učebnice bude automaticky vyhodnocena jeho obtížnost, která je rozdělena do čtyř kategorií - snadné, střední, těžké a nemožné. Vyhodnocení obtížnosti je založeno na kombinaci několika parametrů slova - jeho délky, podobnosti s českým ekvivalentem a dalšími atributy jako počet přehlasovaných písmen nebo počet výskytů dvojitých písem. V případě nevhodně vygenerované obtížnosti slova, uživatel ji bude moci opravit dle vlastního uvážení. Délka slova je prahově rozdělena do kategorií obtížnosti, následně bude vyhodnocena podobnost s významem pomocí Levensteinovy vzdálenosti popsané v podkapitole \ref{levenstein}. Poté následuje vyhodnocení přehlasování a dvojitých hlásek, které ale ovlivňují obtížnost už jen minimálně.
+        Při zadávání slova do učebnice bude automaticky vyhodnocena jeho obtížnost, která je rozdělena do čtyř kategorií - snadné, střední, těžké a nemožné. Vyhodnocení obtížnosti je založeno na kombinaci několika parametrů slova - jeho délky, podobnosti s českým ekvivalentem a dalšími atributy jako počet přehlasovaných písmen nebo počet výskytů dvojitých písem. V případě nevhodně vygenerované obtížnosti slova, ji uživatel bude moci opravit dle vlastního uvážení. Délka slova je prahově rozdělena do kategorií obtížnosti, následně bude vyhodnocena podobnost s významem pomocí Levensteinovy vzdálenosti popsané v podkapitole \ref{levenstein}. Poté následuje vyhodnocení přehlasování a dvojitých hlásek, které ale ovlivňují obtížnost už jen minimálně.
 
         \subsubsection{Výběr algoritmu}       
             Levenshteinova vzdálenost je velmi podobná známe Hammingově vzdálenosti s tím rozdílem, že Hammingova vzdálenost uvádí počet pozic se stejným symbolem v obou řetězcích. Kdežto Levenshteinova vzdálenost uvádí počet jednoznakových editací. Pro určení míry podobnosti mezi slovem v cizím jazyce a jeho překladem je vhodnější Levenshteinova vzdálenost, jelikož akceptuje řetězce s různou délkou a v případě, že písmeno chybí, je to vyhodnoceno pouze jako odstraněné písmeno a algoritmus pokračuje dál. V případě Hammingovy vzdálenosti vynechané písmeno naruší porovnávání zbytku řetězce.
