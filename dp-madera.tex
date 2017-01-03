@@ -279,8 +279,7 @@ Rád bych touto cestou vyjádřil poděkování za trpělivost, užitečné rady
 \newpage
 \thispagestyle{plain}
 \section*{Abstrakt}
-Tato práce se zabývá problematikou IT podpory učení slovní zásoby cizího jazyka. Byla vytvořena aplikace jazykového slovníčku v podobě webové služby, která má umožnit žákům třídy personalizované a motivující učení a testování školních slov v různých podobách. %Práce analyzuje a implementuje metody procvičování a připomínání slovíček za použití algoritmů rozloženého opakování. 
-Frontend webové služby je tvořen JavaScriptovou single-page aplikací s podporou knihovny React, backend je tvořen webovým API v jazyce Python za použití Django frameworku.
+Tato práce se zabývá problematikou IT podpory učení slovní zásoby cizího jazyka. Byla vytvořena aplikace jazykového slovníčku v podobě webové služby, která má umožnit žákům třídy personalizované a motivující učení školních slov v různých podobách. Práce analyzuje a implementuje vybrané metody procvičování a připomínání slovíček za použití algoritmů rozloženého opakování. Frontend webové služby je tvořen JavaScriptovou single-page aplikací s podporou knihovny React, backend je tvořen webovým API v jazyce Python za použití Django frameworku.
 
 %Aplikace je složena z JavaScriptové SPA s podporou knihovny React a webového API v jazyce Python za použití Django frameworku. 
 
@@ -288,10 +287,8 @@ Frontend webové služby je tvořen JavaScriptovou single-page aplikací s podpo
 učení slovíček, rozložené opakování, webové API, SPA, React, Django
 
 \section*{Abstract}
-This thesis deals with the issues of IT support during learning foreign language vocabulary. % The thesis analyzes and implements methods of practicing and recalling vocabulary using spaced repetition algorithms. 
-A web service was developed as a part of the thesis. It serves as an personalized and motivating vocabulary tool which helps students to learn and practice words in various forms. 
-% The purpose of the application is to permanently improve recall of the vocabulary. 
-A frontend of the web service is a JavaScript single-page application using the React library. A backend is a web API in Python using the Django framework. 
+This thesis discusses the possibilities of IT support for learning foreign language vocabulary. 
+Developed web service application serves as a personalized and motivating vocabulary tool which helps students to learn and practice foreign words in various forms. The thesis analyzes and implements selected methods for practicing and recalling of vocabulary using spaced repetition algorithms. A frontend of the web service is a JavaScript single-page application using the React library. A backend is a web API in Python using the Django framework. 
 
 % The application is composed of a SPA written in JavaScript supported by the React library and a web API in Python using the Django framework. 
 
@@ -458,16 +455,14 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
 
             Dalším rozdělením pasivního a aktivního testování slovíček je rozpoznávání (\textit{recognition}) a vzpomenutí (\textit{recall}). Rozpoznávání spočívá v předložení cizího slova žákovi, který pro správné zodpovězení musí najít český ekvivalent. Vzpomenutí je způsob testování opačným způsobem než rozpoznání. Uživateli je předložen výraz v jeho mateřském jazyce a on musí nalézt správný výraz v cizím. Rozpoznání je z principu jednodušší pro uživatele než vzpomenutí. Lze ho tedy využít rovněž pro zvýšení motivace při procvičování slov. Ale pro ověření, zda je slovo ovládnuté či nikoliv je metoda rozpoznání také nedostatečná.
 
-        \subsection{Typy testů}
-            % multiplechoice, matching, completion, translation
-            % vyžití her - problém je, že tento způsob většinou není ani efektivní, jelikož si procvičí například v případě doplňování písmen pouze pár slov za poměrně dlouhý čas
+            \subsubsection{Typy testů}
+                % multiplechoice, matching, completion, translation
+                % vyžití her - problém je, že tento způsob většinou není ani efektivní, jelikož si procvičí například v případě doplňování písmen pouze pár slov za poměrně dlouhý čas
 
-            V analýze existujících řešení bylo procvičování a testování slov interpretováno různými způsoby. Obecně by se typ testů dal rozdělit na tři kategorie - textové testy, multimediální a herní testy.
+                V analýze existujících řešení bylo procvičování a testování slov interpretováno různými způsoby. Obecně by se typ testů dal rozdělit na tři kategorie - textové testy, multimediální a herní testy.
 
-            \subsubsection{Textové testy}
                 Textové testy se vyskytovaly například jako výběr z více možností nebo spojováním spolu souvisejících významů, jak už ale bylo uvedeno v kapitole \ref{test-methods}, jedná se o rozvíjení pasivní slovní zásoby. Zajímavějším typem testů je doplňování slov do vět a klasický překlad slova. Tyto typy rozvíjejí žádanou aktivní slovní zásobu. V existujících řešeních textové testy byly doplněny zvukovou interpretací cizího slova.
 
-            \subsubsection{Multimediální a herní testy}
                 Zajímavým využitím multimédií by mohlo být zahrnutí otestování výslovnosti. Tedy možnost nahrání odpovědi a následně by došlo k rozpoznání. Ale analýza a rozpoznání řeči není nikterak triviální záležitost. Dalším zajímavým řešením byly herní testy. Díky nim docházelo k zvýšení motivace uživatelů. Problém je, že tento typ procvičování většinou není zas tolik efektivní, jelikož si uživatel procvičí například v případě doplňování písmen do křížovky nebo známé hry \textit{Hangman} pouze pár slov za poměrně dlouhý čas.
 
         \subsection{Metoda rozloženého opakování}
@@ -599,7 +594,7 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             % vyhledání z Google Images \gls{api} na základě cizojazyčného slova
             % autor učebnice vybírá dané slovo z importovaných
             % omezení dotazů - neprovádí se plně automatiky
-            Obrazová interpretace slovíčka bude rovněž získaná z Google Custom Search \gls{api}. Toto aplikační rozhraní není omezené a lze v parametrech omezit vyhledávání pouze na obrázky. Při importu si uživatel zvolí, pro jaká slovíčka chce obrazovou formu. Automatizace v tomto případě není vhodná, jelikož ne všechny slovíčka lze interpretovat jako obrázek. Uživatel si také bude moci zvolit obrázek z několika možností. Po vybrání obrázku bude vytvořena komprimovaná kopie souboru a uloží se rovněž zdroj, odkud je obrázek získán. Tato forma bude v aplikaci sloužit pouze jako nápověda pro žáky, díky níž si mohou ke slovíčku vytvořit hlubší asociaci. 
+            Obrazová interpretace slovíčka bude rovněž získaná z Google Custom Search \gls{api}. Toto aplikační rozhraní není omezené a lze v parametrech omezit vyhledávání pouze na obrázky. Při importu si uživatel zvolí, pro jaká slovíčka chce obrazovou formu. Automatizace v tomto případě není vhodná, jelikož ne všechny slovíčka lze interpretovat jako obrázek a vyhledávání může nabídnout nevhodný obsah. Uživatel si také bude moci zvolit obrázek z několika možností. Po vybrání obrázku bude vytvořena komprimovaná kopie souboru a uloží se rovněž zdroj, odkud je obrázek získán. Tato forma bude v aplikaci sloužit pouze jako nápověda pro žáky, díky níž si mohou ke slovíčku vytvořit hlubší asociaci. 
 
             % využití možnost hledání dle "Lze volně užívat nebo sdílet". Vytvoření kopie, 
             Díky Google Custom Search \gls{api} lze vyhledávání parametrizovat. Výrazem pro vyhledávání bude referenční slovo v cizím jazyce, jelikož cílový jazyk bude nejspíš anglický, německý nebo španělský, a všechny tyto jazyky jsou více rozšířené, než ten český. Dalším parametrem vyhledávání je omezení pouze na obrázky s licencí \uv{Volně užívat nebo sdílet}, která umožňuje obrázek zkopírovat a nekomerčně publikovat s uvedením zdroje. Google nezaručuje, pod jakou licencí se obrázek aktuálně na stránkách prezentuje. Proto je uživatel při výběru obrázku vyzván, aby zkontroloval licenci použití.
@@ -1222,16 +1217,15 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     % na základě závěrečného testování by si aplikace zasloužila vylepšit vzhled aplikace
     % tvorba nápovědy
     % návrh na zrušení definic a použití v mateřském jazyce
-    V rámci této diplomové práce vznikla aplikace pro učení slovíček cizího jazyka. Jedná se o webovou službu, která umožňuje efektivně rozvíjet slovní zásobu u studentů libovolného věku. Pro zlepšení techniky učení jsou v aplikaci využity přizpůsobené algoritmy rozloženého opakování. V části zabývající se procvičování slov je využitý základ Leitnerova systému. Po procvičení slova následuje fáze připomínání slov, ve které je využit ověřený algoritmus SuperMemo. Generování slovíček v procvičování je přizpůsobováno v závislosti na úrovni uživatele, jenž je získána postupně z jeho předchozího odpovídání. 
+    V rámci této diplomové práce vznikla aplikace jazykového slovníčku pro podporu učení slovíček cizího jazyka. Jedná se o webovou službu, která umožňuje efektivně rozvíjet slovní zásobu u studentů libovolného věku. Pro zlepšení techniky učení jsou v aplikaci využity přizpůsobené algoritmy rozloženého opakování. V části zabývající se procvičováním slov je využitý základ Leitnerova systému. Po procvičení následuje fáze připomínání slov, ve které je využit algoritmus SuperMemo. Generování slovíček při procvičování se přizpůsobuje úrovni uživatele, jenž je získávána postupně z jeho předchozích odpovědí. 
 
-    Aplikace umožňuje každému uživateli vytvořit vlastní učebnice se slovíčky. Slova lze importovat do aplikace v podobě formátu CSV. Ke skupinám slov v jednotlivých modulech lze v aplikaci jednoduše a rychle získat zvukovou a obrázkovou interpretaci. Z důvodu možného nevhodného obsahu obrazové formy, je uživatel nucen vybrat z navržených ten vyhovující, a tudíž proces nemůže být plně automatizován. Aplikace rovněž umožňuje vytvářet skupiny uživatelů, ve kterých lze sdílet celé učebnice.
+    Aplikace umožňuje každému uživateli vytvořit vlastní učebnice se slovíčky. Slova lze importovat do aplikace v podobě formátu CSV. Ke skupinám slov v jednotlivých modulech lze s využitím Google API jednoduše a rychle přidat zvukovou a obrázkovou interpretaci a tím podpořit vícesmyslové vnímání. Aplikace rovněž umožňuje vytvářet skupiny uživatelů, ve kterých lze sdílet celé učebnice. Všechny tyto funkce přispívají k rychlé a personalizováné tvorbě obsahu slovníčku.
 
-    Aplikace umožňuje vytvářet seznamy slov. Tyto seznamy mohou být sdíleny vlastníkem skupiny mezi ostatní uživatele. Vyučující cizích jazyků tak mohou lépe žáky připravit na nadcházející lekci a zajistit tím její souvislejší průběh. 
+    Aplikace umožňuje vytvářet seznamy vybraných slov. Tyto seznamy mohou být sdíleny vlastníkem skupiny mezi ostatní uživatele a využity k procvičování. Vyučující cizích jazyků tak mohou lépe žáky připravit na nadcházející lekci a zajistit tím její souvislejší průběh. Do aplikace jsou také zařazeny prvky individuální a skupinové motivace. 
 
-    Do aplikace jsou také zařazeny prvky, které by mohly žáky motivovat k procvičování. Zda splňují funkci motivace, bude ověřeno až praktickým používáním. Během testování tuto funkci nebylo možné ověřit, jelikož je třeba více statistických údajů, což vyžaduje více uživatelů používajících aplikaci. Rovněž bylo složité otestovat, zda aplikace nedovolí uživateli zapomenout slovíčko, jelikož intervaly mezi jednotlivými připomenutími postupně narůstají až k týdnům a měsícům. Pochopitelně žákyně, která testování prováděla, neměla pro tak dlouhé intervaly dostatek času.
+    Na aplikaci byly provedeny jednotkové, integrační a základní testy uživatelem. Ověření motivačních prvků a efektivnosti algoritmů by vyžadovalo více uživatelů a delší časové období, jelikož například intervaly mezi jednotlivými připomenutími slovíček postupně narůstají.
 
-    Aplikace by si v budoucím vývoji zasloužila řadu rozšíření, zejména po designové stránce. Vzhled by bylo dobré předat profesionálnímu návrháři, který by přizpůsobil aplikaci tak, aby zaujala především mladé žáky. Aplikace by také mohla být rozšířena o další možnosti importu slovíček v podobě formátů XLS a PDF. V neposlední řadě rozšířením by mohlo být i zapracování členů přímo do struktury slovíčka, což by umožňovalo přesněji vyhodnocovat odpovědi.
-
+    Pro aplikaci byl vytvořen základní, uživatelsky příjemný design. V budoucnu by bylo vhodné oslovit profesionálního grafika, který by přizpůsobil aplikaci tak, aby zaujala především mladé žáky. Aplikace by také mohla být rozšířena o další možnosti importu slovíček v podobě formátů XLS a PDF nebo zapracování členů podstatných jmen přímo do struktury slovíčka, což by umožňovalo přesněji vyhodnocovat odpovědi.
 
 \newpage
 \begin{thebibliography}{99}
