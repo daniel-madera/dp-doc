@@ -29,7 +29,7 @@
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 
 \lstdefinelanguage{JS}{
-    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let, const},
+    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let, const, for},
     keywordstyle=\color{blue}\bfseries,
     ndkeywords={class, export, boolean, throw, implements, import, this, extends},
     ndkeywordstyle=\color{purple}\bfseries,
@@ -826,7 +826,7 @@ vocabulary learning, spaced repetition, web API, SPA, React, Django
             % komunikace se serverem
             % url diagram
             % mock api
-            Před začátkem vývoje klientské aplikace bylo vytvořeno prozatímní aplikační rozhraní pomocí platformy Anypoint od firmy Mulesoft. Je to volně dostupná služba, kde lze velmi jednoduše, staticky a poměrně variabilně popsat serverové \gls{api} v podobě souborů se syntaxí \gls{raml}. Na základě tohoto \gls{api} byla vytvářena klientská část aplikace. Anypoint umožňovalo \gls{api} zveřejnit a umožnit testování klienta. Na zdrojový kód s \gls{raml} syntaxí lze nahlédnout v příloze. 
+            Před začátkem vývoje klientské aplikace bylo vytvořeno prozatímní aplikační rozhraní pomocí platformy Anypoint od firmy Mulesoft. Je to volně dostupná služba, kde lze velmi jednoduše, staticky a poměrně variabilně popsat serverové \gls{api} v podobě souborů se syntaxí \gls{raml}. Na základě tohoto \gls{api} byla vytvářena klientská část aplikace. Anypoint umožňovalo \gls{api} zveřejnit a umožnit testování klienta. 
 
             \begin{figure}[ht!]
                 \dirtree{%
@@ -1304,35 +1304,104 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 \end{thebibliography}
 
 \newpage
-\thispagestyle{empty}
-\section*{Obsah přiloženého DVD}
-\addcontentsline{toc}{section}{Obsah přiloženého DVD}
+\appendix
+
+\thispagestyle{plain}
+\section*{Přílohy}
+\addcontentsline{toc}{section}{Přílohy}
+
+\section*{A Diagramy}
 
 \begin{figure}[ht!]
-    \dirtree{%
-        .1 doc.
-        .2 dp-madera.pdf.
-        .2 assets.
-        .3 zadani.pdf.
-        .3 prolaseni.pdf.
-        .3 db-model.pdf.
-        .3 use-case.pdf.
-        .3 \dots.
-        .2 src.
-        .3 dp-madera.tex.
-        .3 dp-titlepage.tex.
-        .3 dp-prohlaseni.tex.
-    }
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/init-phase.png}
+    \caption{Vyhodnocování odpovědi v procvičování slov}
 \end{figure}
 
-\begin{itemize}
-\item {\texttt{DOC} -- podadresář \texttt{PDF} obsahuje zadání a kompletní text BP ve formátu PDF,
-    podadresář \verb|src| pak {\LaTeX}ové \uv{zdrojové kódy} a~obrázky použité
-    v~textu BP.}
-\item {\texttt{SRC} -- podadresář \texttt{APP} obsahuje zdrojové kódy webové aplikce včetně souboru \texttt{README} popisující nutná nastavení před spuštěním aplikace.
-     podadresář \texttt{SQL} obsahuje zdrojové kódy SQL dotazů pro vložení struktury databáze a výchozích dat.}
-\end{itemize}
+
+\newpage
+\thispagestyle{plain}
+\section*{B GUI}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/gui-test.png}
+    \caption{GUI testovací stránky}
+\end{figure}
 
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/gui-vocab-select.png}
+    \caption{GUI výběr slov pro testování}
+\end{figure}
+
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/gui-vocab.png}
+    \caption{GUI tvorby slov v učebnici}
+\end{figure}
+
+\newpage
+\thispagestyle{plain}
+\section*{C Ukázky kódů}
+
+\begin{lstlisting}[language=JS, caption={Implementace algoritmu pro výpočet Levenshteinovy vzdálenosti},label=code:levenshtein-full]
+String.prototype.levenshtein = function(string, removeDiacritics = false, replace = {}) {
+  let a = this,
+    b = string + "",
+    m = [],
+    i, j, min = Math.min,
+    eq = false,
+    tmpB, tmpA
+  if (!(a && b)) return (b || a).length
+  if (a.length > b.length) {
+    var tmp = a
+    a = b
+    b = tmp
+  }
+  if (removeDiacritics) {
+    a = a.removeDiacritics()
+    b = b.removeDiacritics()
+  }
+  for (i = 0; i <= b.length; m[i] = [i++]);
+  for (j = 0; j <= a.length; m[0][j] = j++);
+
+  for (i = 1; i <= b.length; i++) {
+    for (j = 1; j <= a.length; j++) {
+      tmpA = a.charAt(j - 1)
+      tmpB = b.charAt(i - 1)
+      eq = tmpA === tmpB
+      if (replace && !eq) {
+        eq = replace[tmpA] ? (replace[tmpA] === tmpB) : (replace[tmpB] === tmpA)
+      }
+      m[i][j] = eq ? m[i - 1][j - 1] : m[i][j] = min(
+        m[i - 1][j - 1] + 1,
+        min(m[i][j - 1] + 1, m[i - 1][j] + 1))
+    }
+  }
+  return m[b.length][a.length]
+}
+\end{lstlisting}
+
+\newpage
+\thispagestyle{plain}
+\section*{D Obsah přiloženého média}
+\begin{figure}[ht!]
+    \dirtree{%
+        .0 /.
+        .1 dp-madera-2017.pdf \DTcomment{Text diplomové práce ve formátu pdf}.
+        .1 git-link.txt \DTcomment{Odkaz na Github repozitář se zdrojovými kódy}.
+        .1 assets \DTcomment{Obrázky a pdf použité v diplomové práci.}.
+        .2 zadani.pdf.
+        .2 db-model.pdf.
+        .2 use-case.pdf.
+        .2 \dots.
+        .1 tex \DTcomment{{\LaTeX}ové zdrojové kódy práce.}.
+        .2 dp-madera.tex.
+        .2 dp-titlepage.tex.
+        .2 dp-prohlaseni.tex.
+    }
+\end{figure}
 
 \end{document}
